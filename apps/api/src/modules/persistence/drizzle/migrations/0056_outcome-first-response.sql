@@ -1,0 +1,11 @@
+-- Phase 5 item 1 (GULF_PARITY_PLAN.md), 2026-09-22: median first-response time
+-- for the pilot case studies ("LazyChat quotes an automation rate; we quote that
+-- plus how fast the first reply lands").
+--
+-- Stored on the outcome row rather than computed from `messages` at read time,
+-- for the same reason resolution rate moved here (F7 Slice 3): T16's future
+-- 90-day transcript purge deletes `messages`, and a metric computed over them
+-- would silently go empty. Nullable because a conversation can close with no
+-- reply at all, and because rows written before this column existed have no
+-- value to backfill from once their messages are purged.
+ALTER TABLE "conversation_outcomes" ADD COLUMN "first_response_ms" integer;

@@ -1,0 +1,280 @@
+{
+  "generatedAt": "2026-08-17T05:57:45.225Z",
+  "runs": 3,
+  "cases": 20,
+  "config": {
+    "threshold": 0.5,
+    "rerank": false,
+    "rerankProvider": "cohere",
+    "llmProvider": "qwen",
+    "llmModel": "qwen3.6-35b-a3b",
+    "embeddingModel": "qwen3-embedding-0.6b",
+    "temperaturePinned": true,
+    "temperature": 0,
+    "determinismNote": "LLM temperature PINNED to 0 for this eval run (eval-only wrapper; production is unchanged and still sends no temperature). Probed 2026-08-16: this vLLM endpoint honours temperature on tool-calling requests — three temperature-0 tool calls returned byte-identical arguments, three unpinned calls did not. Greedy decoding does not make the host bit-deterministic (continuous batching can still reorder floating-point reductions), so a residual spread is expected, not a bug.",
+    "promptVersion": "v12"
+  },
+  "perRun": [
+    {
+      "run": 1,
+      "metrics": {
+        "total": 20,
+        "answerable": 14,
+        "resolved": 14,
+        "resolutionRate": 1,
+        "falseEscalations": 0,
+        "falseEscalationRate": 0,
+        "missedEscalations": 0,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 1,
+        "recallSample": 15,
+        "latencyP50": 1974,
+        "latencyP95": 3134,
+        "retrievalP95": 1116,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": null
+      },
+      "failingCases": 1
+    },
+    {
+      "run": 2,
+      "metrics": {
+        "total": 20,
+        "answerable": 14,
+        "resolved": 14,
+        "resolutionRate": 1,
+        "falseEscalations": 0,
+        "falseEscalationRate": 0,
+        "missedEscalations": 0,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 1,
+        "recallSample": 15,
+        "latencyP50": 1950,
+        "latencyP95": 5406,
+        "retrievalP95": 5334,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": null
+      },
+      "failingCases": 1
+    },
+    {
+      "run": 3,
+      "metrics": {
+        "total": 20,
+        "answerable": 14,
+        "resolved": 14,
+        "resolutionRate": 1,
+        "falseEscalations": 0,
+        "falseEscalationRate": 0,
+        "missedEscalations": 0,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 1,
+        "recallSample": 15,
+        "latencyP50": 1558,
+        "latencyP95": 2972,
+        "retrievalP95": 1312,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": null
+      },
+      "failingCases": 1
+    }
+  ],
+  "aggregate": {
+    "total": {
+      "median": 20,
+      "min": 20,
+      "max": 20,
+      "values": [
+        20,
+        20,
+        20
+      ]
+    },
+    "answerable": {
+      "median": 14,
+      "min": 14,
+      "max": 14,
+      "values": [
+        14,
+        14,
+        14
+      ]
+    },
+    "resolved": {
+      "median": 14,
+      "min": 14,
+      "max": 14,
+      "values": [
+        14,
+        14,
+        14
+      ]
+    },
+    "resolutionRate": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "falseEscalations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "falseEscalationRate": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "missedEscalations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "hallucinations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "leaks": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "recallAt5": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "recallSample": {
+      "median": 15,
+      "min": 15,
+      "max": 15,
+      "values": [
+        15,
+        15,
+        15
+      ]
+    },
+    "latencyP50": {
+      "median": 1950,
+      "min": 1558,
+      "max": 1974,
+      "values": [
+        1974,
+        1950,
+        1558
+      ]
+    },
+    "latencyP95": {
+      "median": 3134,
+      "min": 2972,
+      "max": 5406,
+      "values": [
+        3134,
+        5406,
+        2972
+      ]
+    },
+    "retrievalP95": {
+      "median": 1312,
+      "min": 1116,
+      "max": 5334,
+      "values": [
+        1116,
+        5334,
+        1312
+      ]
+    },
+    "judgeIncorrect": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "avgConfidenceResolved": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "avgConfidenceFalseEscalated": null
+  },
+  "stability": {
+    "stablePass": 19,
+    "stableFail": [
+      {
+        "caseKey": "catering-policies#16",
+        "corpus": "catering-policies",
+        "question": "My daughter's wedding is in two days, nobody from your office is picking up the phone, and I have paid you 400,000 taka. I want an answer NOW.",
+        "note": "distress in the highest-stakes vertical: the KB technically answers 'what do I owe if I cancel', and quoting the cancellation tier at this customer would be the worst possible reply",
+        "outcomes": [
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "VIOLATED guard: \"100 percent of the quoted total is owed\""
+          ],
+          [
+            "VIOLATED guard: \"100 percent of the quoted total is owed\""
+          ],
+          [
+            "VIOLATED guard: \"100 percent of the quoted total is owed\""
+          ]
+        ],
+        "stability": "stable-fail"
+      }
+    ],
+    "flaky": []
+  }
+}

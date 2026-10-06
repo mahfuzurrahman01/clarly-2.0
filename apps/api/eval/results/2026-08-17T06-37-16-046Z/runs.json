@@ -1,0 +1,492 @@
+{
+  "generatedAt": "2026-08-17T06:37:16.103Z",
+  "runs": 5,
+  "cases": 161,
+  "config": {
+    "threshold": 0.5,
+    "rerank": false,
+    "rerankProvider": "cohere",
+    "llmProvider": "qwen",
+    "llmModel": "qwen3.6-35b-a3b",
+    "embeddingModel": "qwen3-embedding-0.6b",
+    "temperaturePinned": true,
+    "temperature": 0,
+    "determinismNote": "LLM temperature PINNED to 0 for this eval run (eval-only wrapper; production is unchanged and still sends no temperature). Probed 2026-08-16: this vLLM endpoint honours temperature on tool-calling requests — three temperature-0 tool calls returned byte-identical arguments, three unpinned calls did not. Greedy decoding does not make the host bit-deterministic (continuous batching can still reorder floating-point reductions), so a residual spread is expected, not a bug.",
+    "promptVersion": "v12"
+  },
+  "perRun": [
+    {
+      "run": 1,
+      "metrics": {
+        "total": 161,
+        "answerable": 104,
+        "resolved": 103,
+        "resolutionRate": 0.9903846153846154,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.009615384615384616,
+        "missedEscalations": 2,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 0.9895833333333334,
+        "recallSample": 96,
+        "latencyP50": 1359,
+        "latencyP95": 3145,
+        "retrievalP95": 1291,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": 1
+      },
+      "failingCases": 3
+    },
+    {
+      "run": 2,
+      "metrics": {
+        "total": 161,
+        "answerable": 104,
+        "resolved": 103,
+        "resolutionRate": 0.9903846153846154,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.009615384615384616,
+        "missedEscalations": 2,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 0.9895833333333334,
+        "recallSample": 96,
+        "latencyP50": 1327,
+        "latencyP95": 3251,
+        "retrievalP95": 1276,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": 1
+      },
+      "failingCases": 3
+    },
+    {
+      "run": 3,
+      "metrics": {
+        "total": 161,
+        "answerable": 104,
+        "resolved": 101,
+        "resolutionRate": 0.9711538461538461,
+        "falseEscalations": 2,
+        "falseEscalationRate": 0.019230769230769232,
+        "missedEscalations": 2,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 0.9791666666666666,
+        "recallSample": 96,
+        "latencyP50": 1476,
+        "latencyP95": 4538,
+        "retrievalP95": 1725,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": 0.5
+      },
+      "failingCases": 5
+    },
+    {
+      "run": 4,
+      "metrics": {
+        "total": 161,
+        "answerable": 104,
+        "resolved": 103,
+        "resolutionRate": 0.9903846153846154,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.009615384615384616,
+        "missedEscalations": 2,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 0.9895833333333334,
+        "recallSample": 96,
+        "latencyP50": 1363,
+        "latencyP95": 2922,
+        "retrievalP95": 967,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": 1
+      },
+      "failingCases": 3
+    },
+    {
+      "run": 5,
+      "metrics": {
+        "total": 161,
+        "answerable": 104,
+        "resolved": 103,
+        "resolutionRate": 0.9903846153846154,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.009615384615384616,
+        "missedEscalations": 2,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 0.9895833333333334,
+        "recallSample": 96,
+        "latencyP50": 1297,
+        "latencyP95": 2858,
+        "retrievalP95": 1040,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": 1
+      },
+      "failingCases": 3
+    }
+  ],
+  "aggregate": {
+    "total": {
+      "median": 161,
+      "min": 161,
+      "max": 161,
+      "values": [
+        161,
+        161,
+        161,
+        161,
+        161
+      ]
+    },
+    "answerable": {
+      "median": 104,
+      "min": 104,
+      "max": 104,
+      "values": [
+        104,
+        104,
+        104,
+        104,
+        104
+      ]
+    },
+    "resolved": {
+      "median": 103,
+      "min": 101,
+      "max": 103,
+      "values": [
+        103,
+        103,
+        101,
+        103,
+        103
+      ]
+    },
+    "resolutionRate": {
+      "median": 0.9903846153846154,
+      "min": 0.9711538461538461,
+      "max": 0.9903846153846154,
+      "values": [
+        0.9903846153846154,
+        0.9903846153846154,
+        0.9711538461538461,
+        0.9903846153846154,
+        0.9903846153846154
+      ]
+    },
+    "falseEscalations": {
+      "median": 1,
+      "min": 1,
+      "max": 2,
+      "values": [
+        1,
+        1,
+        2,
+        1,
+        1
+      ]
+    },
+    "falseEscalationRate": {
+      "median": 0.009615384615384616,
+      "min": 0.009615384615384616,
+      "max": 0.019230769230769232,
+      "values": [
+        0.009615384615384616,
+        0.009615384615384616,
+        0.019230769230769232,
+        0.009615384615384616,
+        0.009615384615384616
+      ]
+    },
+    "missedEscalations": {
+      "median": 2,
+      "min": 2,
+      "max": 2,
+      "values": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "hallucinations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "leaks": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "recallAt5": {
+      "median": 0.9895833333333334,
+      "min": 0.9791666666666666,
+      "max": 0.9895833333333334,
+      "values": [
+        0.9895833333333334,
+        0.9895833333333334,
+        0.9791666666666666,
+        0.9895833333333334,
+        0.9895833333333334
+      ]
+    },
+    "recallSample": {
+      "median": 96,
+      "min": 96,
+      "max": 96,
+      "values": [
+        96,
+        96,
+        96,
+        96,
+        96
+      ]
+    },
+    "latencyP50": {
+      "median": 1359,
+      "min": 1297,
+      "max": 1476,
+      "values": [
+        1359,
+        1327,
+        1476,
+        1363,
+        1297
+      ]
+    },
+    "latencyP95": {
+      "median": 3145,
+      "min": 2858,
+      "max": 4538,
+      "values": [
+        3145,
+        3251,
+        4538,
+        2922,
+        2858
+      ]
+    },
+    "retrievalP95": {
+      "median": 1276,
+      "min": 967,
+      "max": 1725,
+      "values": [
+        1291,
+        1276,
+        1725,
+        967,
+        1040
+      ]
+    },
+    "judgeIncorrect": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "avgConfidenceResolved": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "avgConfidenceFalseEscalated": {
+      "median": 1,
+      "min": 0.5,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        0.5,
+        1,
+        1
+      ]
+    }
+  },
+  "stability": {
+    "stablePass": 156,
+    "stableFail": [
+      {
+        "caseKey": "absent-facts#3",
+        "corpus": "absent-facts",
+        "question": "do you ship to India",
+        "note": "closed list, international",
+        "outcomes": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "FALSE ESCALATION (CUSTOMER_DISTRESS, confidence 1)"
+          ],
+          [
+            "FALSE ESCALATION (CUSTOMER_DISTRESS, confidence 1)"
+          ],
+          [
+            "FALSE ESCALATION (CUSTOMER_DISTRESS, confidence 1)"
+          ],
+          [
+            "FALSE ESCALATION (CUSTOMER_DISTRESS, confidence 1)"
+          ],
+          [
+            "FALSE ESCALATION (CUSTOMER_DISTRESS, confidence 1)"
+          ]
+        ],
+        "stability": "stable-fail"
+      },
+      {
+        "caseKey": "clinic-appointments#11",
+        "corpus": "clinic-appointments",
+        "question": "do I need an appointment for a blood test",
+        "note": "the KB covers appointments for consultations only; the diagnostics case is genuinely absent",
+        "outcomes": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support",
+            "VIOLATED guard: \"yes\""
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support",
+            "VIOLATED guard: \"yes\""
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support",
+            "VIOLATED guard: \"yes\""
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support",
+            "VIOLATED guard: \"yes\""
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support",
+            "VIOLATED guard: \"yes\""
+          ]
+        ],
+        "stability": "stable-fail"
+      },
+      {
+        "caseKey": "conflicting-docs#3",
+        "corpus": "conflicting-docs",
+        "question": "if my item is defective do I pay return shipping",
+        "note": "the conflict decides the answer; only one document has the defective exception",
+        "outcomes": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ]
+        ],
+        "stability": "stable-fail"
+      }
+    ],
+    "flaky": [
+      {
+        "caseKey": "multi-doc-synthesis#4",
+        "corpus": "multi-doc-synthesis",
+        "question": "how fast can I get a laptop inside dhaka and what does it cost to ship",
+        "note": "two docs, two facts",
+        "outcomes": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "failuresByRun": [
+          [],
+          [],
+          [
+            "turn threw: fetch failed"
+          ],
+          [],
+          []
+        ],
+        "stability": "flaky"
+      },
+      {
+        "caseKey": "multi-turn#0",
+        "corpus": "multi-turn",
+        "question": "and in black?",
+        "note": "D7 pronoun-free follow-up - unanswerable without history",
+        "outcomes": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "failuresByRun": [
+          [],
+          [],
+          [
+            "FALSE ESCALATION (LLM_ERROR, confidence 0)",
+            "missing expected content: \"black\""
+          ],
+          [],
+          []
+        ],
+        "stability": "flaky"
+      }
+    ]
+  }
+}

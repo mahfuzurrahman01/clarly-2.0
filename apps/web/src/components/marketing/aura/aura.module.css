@@ -1,0 +1,701 @@
+/* ==========================================================================
+   Aura — the landing page's look (star-dot sky, lime sun glow, glass panels,
+   lime emphasis) packaged for every other public page: auth, product,
+   pricing, waitlist, legal, 404. Follows the active theme: night-dark in dark
+   mode, warm paper in light mode, lime energy in both. Logical properties
+   throughout so everything mirrors in Arabic.
+   Motion is CSS-first and fully static under prefers-reduced-motion.
+   ========================================================================== */
+
+.surface {
+  --aura-glow: var(--lime);
+  --aura-glow-strength: 0.32;
+  --aura-glass: color-mix(in oklch, var(--card) 72%, transparent);
+  --aura-line: color-mix(in oklch, var(--foreground) 10%, transparent);
+  --aura-line-strong: color-mix(in oklch, var(--foreground) 18%, transparent);
+  --aura-ease: cubic-bezier(0.2, 0, 0, 1);
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  background: var(--background);
+}
+:global(.dark) .surface {
+  --aura-glow-strength: 0.42;
+}
+
+/* ---------- sky: dot grid + twinkling stars ---------- */
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 25%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 25%, transparent 100%);
+}
+:global(.dark) .stars {
+  opacity: 0.9;
+}
+
+/* ---------- sun glow: slow drifting lime light ---------- */
+.glow {
+  position: absolute;
+  width: var(--size, 60vmin);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in oklch, var(--aura-glow) calc(var(--aura-glow-strength) * 100%), transparent) 0%,
+    color-mix(in oklch, var(--aura-glow) calc(var(--aura-glow-strength) * 40%), transparent) 35%,
+    transparent 70%
+  );
+  filter: blur(18px);
+  animation: drift 18s var(--aura-ease) infinite alternate;
+}
+.glowTop {
+  --size: 70vmin;
+  inset-block-start: -38vmin;
+  inset-inline-start: 50%;
+  translate: -50% 0;
+}
+.glowTop:dir(rtl) {
+  translate: 50% 0;
+}
+.glowEnd {
+  --size: 55vmin;
+  inset-block-end: -22vmin;
+  inset-inline-end: -14vmin;
+  animation-duration: 22s;
+  animation-delay: -6s;
+}
+.glowStart {
+  --size: 48vmin;
+  inset-block-start: 30%;
+  inset-inline-start: -20vmin;
+  animation-duration: 26s;
+  animation-delay: -12s;
+  opacity: 0.7;
+}
+.glowCenter {
+  --size: 58vmin;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  translate: -50% -50%;
+}
+.glowCenter:dir(rtl) {
+  translate: 50% -50%;
+}
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3vmin, 2vmin, 0) scale(1.12);
+  }
+}
+
+/* ---------- typography ---------- */
+.eyebrow {
+  color: var(--lime-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--lime-ring);
+  box-shadow: 0 0 0 0 color-mix(in oklch, var(--lime-ring) 60%, transparent);
+  animation: pulse 2.4s var(--aura-ease) infinite;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--lime-ring) 55%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 0.55rem transparent;
+  }
+}
+.title {
+  font-family: var(--app-font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 5.2vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.title:lang(ar) {
+  line-height: 1.3;
+  font-weight: 600;
+}
+.titleSm {
+  font-size: clamp(2rem, 3.6vw, 3rem);
+}
+.titleAuth {
+  font-size: clamp(2.1rem, 3vw, 2.6rem);
+}
+.em {
+  font-style: italic;
+  color: var(--lime-text);
+}
+.em:lang(ar) {
+  font-style: normal;
+}
+.lede {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+  max-width: 36rem;
+  text-wrap: pretty;
+}
+
+/* ---------- entrance: CSS-only rise on first paint ---------- */
+.rise {
+  animation: rise 0.9s var(--aura-ease) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 60ms);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ---------- reveal on scroll (JS adds data-shown; no-JS stays visible) ---------- */
+@media (scripting: enabled) {
+  .reveal:not([data-shown]) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+.reveal {
+  transition:
+    opacity 0.8s var(--aura-ease),
+    transform 0.8s var(--aura-ease);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+/* ---------- glass panel ---------- */
+.glass {
+  background: var(--aura-glass);
+  border: 1px solid var(--aura-line);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  box-shadow:
+    0 1px 0 color-mix(in oklch, var(--foreground) 4%, transparent) inset,
+    0 30px 80px -40px oklch(0 0 0 / 0.35);
+}
+
+/* ---------- spotlight: a lime light that follows the pointer ---------- */
+.spot {
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.3s,
+    transform 0.4s var(--aura-ease),
+    box-shadow 0.4s var(--aura-ease);
+}
+.spot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s;
+  background: radial-gradient(
+    28rem circle at var(--mx, 50%) var(--my, 0%),
+    color-mix(in oklch, var(--lime) 16%, transparent),
+    transparent 45%
+  );
+}
+.spot:hover::before,
+.spot:focus-within::before {
+  opacity: 1;
+}
+.spot:hover {
+  border-color: color-mix(in oklch, var(--lime-ring) 45%, transparent);
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 40px 90px -45px color-mix(in oklch, var(--lime) 55%, transparent);
+}
+
+/* ---------- floating chips around the demo phone ---------- */
+.floatChip {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  color: var(--foreground);
+  animation:
+    rise 0.9s var(--aura-ease) both,
+    bob 6s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 160ms + 500ms), calc(var(--i, 0) * -1.7s);
+}
+.floatChip svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  color: var(--lime-text);
+  flex: none;
+}
+@keyframes bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+/* ---------- chat demo ---------- */
+.demo {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.demoPhone {
+  height: var(--phone-h, 34rem) !important;
+  min-height: 0 !important;
+}
+.thread {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem 0.8rem;
+  overflow: hidden;
+  transition: opacity 0.5s var(--aura-ease);
+}
+.thread[data-resetting] {
+  opacity: 0;
+}
+.msg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation: msgIn 0.45s var(--aura-ease) both;
+}
+.msg[data-side="out"] {
+  align-items: flex-end;
+}
+@keyframes msgIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Landing hides typing dots outside its animated layout; the demo always animates. */
+.typingOn > * {
+  display: flex;
+}
+.note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+.note :global(.eyebrow) {
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+}
+.noteChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 1.5rem;
+  padding-inline: 0.55rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  border: 1px solid var(--aura-line-strong);
+  background: var(--card);
+}
+.noteChip[data-tone="signal"] {
+  border-color: color-mix(in oklch, var(--signal) 50%, transparent);
+  color: var(--foreground);
+}
+.noteChip svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+/* ---------- step explorer (product page) ---------- */
+.steps {
+  display: grid;
+  gap: 0.75rem;
+}
+.stepBtn {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1.4rem;
+  text-align: start;
+  border-radius: 1rem;
+  border: 1px solid var(--aura-line);
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s;
+}
+.stepBtn:hover {
+  color: var(--foreground);
+  border-color: var(--aura-line-strong);
+}
+.stepBtn[aria-selected="true"] {
+  color: var(--foreground);
+  background: var(--aura-glass);
+  border-color: color-mix(in oklch, var(--lime-ring) 40%, transparent);
+}
+.stepNum {
+  font-family: var(--app-font-mono);
+  font-size: 0.75rem;
+  color: var(--lime-text);
+  padding-top: 0.3rem;
+}
+.stepTitle {
+  font-family: var(--app-font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.stepBody {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--aura-ease);
+}
+.stepBtn[aria-selected="true"] .stepBody {
+  grid-template-rows: 1fr;
+}
+.stepBody > p {
+  overflow: hidden;
+  margin: 0;
+  padding-top: 0.4rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+.stepBar {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 2px;
+  background: var(--lime-ring);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+.stepBar:dir(rtl) {
+  transform-origin: right center;
+}
+.stepBtn[aria-selected="true"] .stepBar {
+  animation: fillBar var(--step-ms, 6000ms) linear forwards;
+}
+.steps[data-paused] .stepBar {
+  animation-play-state: paused;
+}
+@keyframes fillBar {
+  to {
+    transform: scaleX(1);
+  }
+}
+.stage {
+  position: relative;
+  min-height: 30rem;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+.stagePanel {
+  width: 100%;
+  max-width: 26rem;
+  animation: rise 0.6s var(--aura-ease) both;
+}
+
+/* docs → dots (knowledge visual) */
+.docRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--aura-line);
+  background: var(--card);
+  font-size: 0.85rem;
+  animation: rise 0.6s var(--aura-ease) both;
+  animation-delay: calc(var(--i, 0) * 120ms);
+}
+.docRow svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--muted-foreground);
+  flex: none;
+}
+.docCount {
+  margin-inline-start: auto;
+  font-family: var(--app-font-mono);
+  font-size: 0.7rem;
+  color: var(--lime-text);
+}
+.dotGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+.dotGrid span {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed var(--aura-line-strong);
+}
+.dotGrid span[data-on] {
+  border-color: transparent;
+  background: var(--lime-ring);
+  animation: pop 0.4s var(--aura-ease) both;
+  animation-delay: calc(var(--i, 0) * 22ms + 400ms);
+}
+@keyframes pop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* sources (answer visual) */
+.srcCard {
+  padding: 0.9rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--aura-line);
+  background: var(--card);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  animation: rise 0.6s var(--aura-ease) both;
+  animation-delay: calc(var(--i, 0) * 140ms + 200ms);
+}
+.srcCard[data-unused] {
+  opacity: 0.45;
+}
+.srcFile {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+  color: var(--muted-foreground);
+}
+.srcCard mark {
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 0.15rem;
+  background: linear-gradient(
+      color-mix(in oklch, var(--lime) 50%, transparent),
+      color-mix(in oklch, var(--lime) 50%, transparent)
+    )
+    no-repeat 0 0 / 0% 100%;
+  animation: mark 0.8s var(--aura-ease) forwards;
+  animation-delay: calc(var(--i, 0) * 140ms + 700ms);
+}
+.srcCard mark:dir(rtl) {
+  background-position: 100% 0;
+}
+@keyframes mark {
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+/* handoff ticket */
+.ticket {
+  padding: 1.1rem 1.2rem;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in oklch, var(--signal) 45%, transparent);
+  background: var(--card);
+}
+.ticketTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 1.6rem;
+  padding-inline: 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  background: color-mix(in oklch, var(--signal) 18%, transparent);
+  color: var(--foreground);
+}
+.status::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--signal);
+  animation: pulse 2s var(--aura-ease) infinite;
+}
+.guards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.guard {
+  display: inline-flex;
+  align-items: center;
+  height: 1.7rem;
+  padding-inline: 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--aura-line-strong);
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+.guard[data-hit] {
+  border-color: transparent;
+  background: var(--signal);
+  color: var(--signal-foreground);
+  animation: pop 0.5s var(--aura-ease) both 0.5s;
+}
+
+/* ---------- 404 ---------- */
+.giant {
+  font-family: var(--app-font-display);
+  font-size: clamp(7rem, 22vw, 15rem);
+  line-height: 0.9;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  background: linear-gradient(180deg, var(--foreground) 30%, color-mix(in oklch, var(--foreground) 15%, transparent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .eyebrow::before,
+  .rise,
+  .floatChip,
+  .msg,
+  .stagePanel,
+  .docRow,
+  .dotGrid span[data-on],
+  .srcCard,
+  .srcCard mark,
+  .status::before,
+  .guard[data-hit] {
+    animation: none;
+  }
+  .srcCard mark {
+    background-size: 100% 100%;
+  }
+  .reveal,
+  .spot,
+  .lift:hover {
+    transition: none;
+    transform: none;
+  }
+  .stepBar {
+    display: none;
+  }
+}
+
+/* ---------- auth ---------- */
+.authPanel {
+  position: relative;
+  overflow: hidden;
+  border-inline-end: 1px solid var(--aura-line);
+  background: color-mix(in oklch, var(--card) 35%, transparent);
+}
+.authStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-inline: 4.5rem;
+}
+.authStage .floatChip:nth-of-type(1) {
+  inset-block-start: 24%;
+  inset-inline-start: 0;
+}
+.authStage .floatChip:nth-of-type(2) {
+  inset-block-start: 52%;
+  inset-inline-end: -0.5rem;
+}
+.authStage .floatChip:nth-of-type(3) {
+  inset-block-end: 8%;
+  inset-inline-start: 0.5rem;
+}
+/* Chips need room beside the phone; on phones the demo speaks for itself. */
+@media (max-width: 639.98px) {
+  .authStage {
+    padding-inline: 0;
+  }
+  .authStage .floatChip {
+    display: none;
+  }
+}
+.authForm {
+  animation: rise 0.9s var(--aura-ease) both 0.25s;
+}
+.authForm [data-slot="input"] {
+  height: 2.75rem;
+  padding-inline: 0.85rem;
+  border-radius: 0.75rem;
+  background: var(--aura-glass);
+}
+.authForm [data-slot="input"]:global(.pe-10) {
+  padding-inline-end: 2.5rem;
+}
+.authForm [data-slot="button"][type="submit"] {
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 14px 40px -18px color-mix(in oklch, var(--lime) 80%, transparent);
+  transition:
+    transform 0.25s var(--aura-ease),
+    box-shadow 0.25s var(--aura-ease);
+}
+.authForm [data-slot="button"][type="submit"]:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 50px -18px color-mix(in oklch, var(--lime) 90%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .authForm {
+    animation: none;
+  }
+}

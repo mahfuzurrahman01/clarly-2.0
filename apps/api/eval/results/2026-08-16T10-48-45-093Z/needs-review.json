@@ -1,0 +1,38 @@
+[
+  {
+    "corpus": "multi-doc-synthesis",
+    "question": "can I get EMI on the headphones",
+    "expect": "resolve",
+    "note": "needs products (12,900) + payment (EMI floor 15,000) - answer is effectively no",
+    "answer": "Yes, you can get EMI on the Sony WH-CH720N headphones (priced at 12,900 BDT). However, please note the following conditions:\n\n1. **Minimum Amount**: EMI is available for purchases above 15,000 BDT. Since the headphones are 12,900 BDT, they do **not** meet the minimum requirement for EMI.\n2. **Card Type**: EMI is available **only** on credit cards (never debit cards) from City Bank, BRAC Bank, and Eastern Bank.\n\nBecause the headphones cost less than 15,000 BDT, you cannot avail EMI for this item alone. You would need to add other items to your order to reach the 15,000 BDT threshold.",
+    "escalated": false,
+    "escalationReason": null,
+    "escalationSource": null,
+    "confidence": 1,
+    "citedChunkIds": [
+      "6015942f-829c-4f65-8667-a4d56a80b279",
+      "7828ddd6-48b4-4b78-97c7-f671e20a9dff"
+    ],
+    "isHallucination": false,
+    "promptVersion": "v5",
+    "latencyMs": 3952,
+    "inputTokens": 4071,
+    "outputTokens": 592,
+    "retrievalMs": 413,
+    "retrievedChunkIds": [
+      "6015942f-829c-4f65-8667-a4d56a80b279",
+      "7828ddd6-48b4-4b78-97c7-f671e20a9dff",
+      "1d55f27b-704d-4243-bab8-02347b60b28d"
+    ],
+    "retrievedScores": [
+      1,
+      0.6666666666666666,
+      0.3333333333333333
+    ],
+    "recallHit": true,
+    "deterministicPass": true,
+    "deterministicFailures": [],
+    "judgeVerdict": "incorrect",
+    "judgeReason": ""
+  }
+]

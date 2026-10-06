@@ -1,0 +1,531 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1786517697262,
+      "tag": "0000_init-extensions",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1786521216554,
+      "tag": "0001_tenant-isolation",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1786521226752,
+      "tag": "0002_tenant-tools-rls-policy",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1786529252075,
+      "tag": "0003_webhook-channel-tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1786529263173,
+      "tag": "0004_webhook-channel-rls-policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1786536468760,
+      "tag": "0005_tenant-policy-and-kb-documents",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1786536480387,
+      "tag": "0006_tenant-policy-kb-rls-policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1786536717798,
+      "tag": "0007_tenant-policy-default-fix",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1786543508817,
+      "tag": "0008_kb-chunks-pgvector",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1786543550571,
+      "tag": "0009_tenant-policy-rerank-flag",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1786603356781,
+      "tag": "0010_conversations-and-messages",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1786603369516,
+      "tag": "0011_conversations-messages-rls-policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1786613411670,
+      "tag": "0012_customers-and-ticket-alterations",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1786613438609,
+      "tag": "0013_customers-rls-policy",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1786621826470,
+      "tag": "0014_agent-runs",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1786621858908,
+      "tag": "0015_agent-runs-rls-policy",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1786624184055,
+      "tag": "0016_conversation-outcomes",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1786624200834,
+      "tag": "0017_conversation-outcomes-rls-policy",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1786626790543,
+      "tag": "0018_billing-plans-subscriptions",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1786626809902,
+      "tag": "0019_tenant-subscriptions-rls-policy",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1786626921730,
+      "tag": "0020_plans-trial-days",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1786627703435,
+      "tag": "0021_stripe-customer-tenant-map",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1786627704435,
+      "tag": "0022_kb-chunks-partition-rls",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1786627705435,
+      "tag": "0023_kb-chunks-embedding-1024",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1786627706435,
+      "tag": "0024_agent-runs-escalation-detail",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1786627707435,
+      "tag": "0025_inbox-read-indexes",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1786627708435,
+      "tag": "0026_human-handover-and-delivery-status",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "7",
+      "when": 1786627709435,
+      "tag": "0027_agents-and-agent-versions",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1786627710435,
+      "tag": "0028_agent-runs-agent-attribution",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "7",
+      "when": 1786627711435,
+      "tag": "0029_notifications",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1786627712435,
+      "tag": "0030_agent-kb-scoping",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1786627713435,
+      "tag": "0031_human-reply-support",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1786627714435,
+      "tag": "0032_answer-feedback",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1786627715435,
+      "tag": "0033_intake-fields",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1786627716435,
+      "tag": "0034_tenant-webhooks",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1786627717435,
+      "tag": "0035_message-templates",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1786627718435,
+      "tag": "0036_inbound-media",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "7",
+      "when": 1786627719435,
+      "tag": "0037_audit-log",
+      "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "7",
+      "when": 1786627720435,
+      "tag": "0038_subscription-cancel-at-period-end",
+      "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "7",
+      "when": 1786627721435,
+      "tag": "0039_tenant-offboarding",
+      "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "7",
+      "when": 1786627722435,
+      "tag": "0040_data-exports",
+      "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "7",
+      "when": 1786627723435,
+      "tag": "0041_customer-consent",
+      "breakpoints": true
+    },
+    {
+      "idx": 42,
+      "version": "7",
+      "when": 1786627724435,
+      "tag": "0042_customer-labels",
+      "breakpoints": true
+    },
+    {
+      "idx": 43,
+      "version": "7",
+      "when": 1786627725435,
+      "tag": "0043_customer-labels-rls-policy",
+      "breakpoints": true
+    },
+    {
+      "idx": 44,
+      "version": "7",
+      "when": 1786627726435,
+      "tag": "0044_social-channels",
+      "breakpoints": true
+    },
+    {
+      "idx": 45,
+      "version": "7",
+      "when": 1786627727435,
+      "tag": "0045_tenant-subscriptions-comp-and-event-ordering",
+      "breakpoints": true
+    },
+    {
+      "idx": 46,
+      "version": "7",
+      "when": 1786627728435,
+      "tag": "0046_billing-launch-backfill",
+      "breakpoints": true
+    },
+    {
+      "idx": 47,
+      "version": "7",
+      "when": 1786627729435,
+      "tag": "0047_meta-privacy-callbacks",
+      "breakpoints": true
+    },
+    {
+      "idx": 48,
+      "version": "7",
+      "when": 1786627730435,
+      "tag": "0048_whatsapp-numbers-connection-state",
+      "breakpoints": true
+    },
+    {
+      "idx": 49,
+      "version": "7",
+      "when": 1786627731435,
+      "tag": "0049_whatsapp-number-health",
+      "breakpoints": true
+    },
+    {
+      "idx": 50,
+      "version": "7",
+      "when": 1786627732435,
+      "tag": "0050_comment-automation",
+      "breakpoints": true
+    },
+    {
+      "idx": 51,
+      "version": "7",
+      "when": 1786627733435,
+      "tag": "0051_products-catalog",
+      "breakpoints": true
+    },
+    {
+      "idx": 52,
+      "version": "7",
+      "when": 1786627734435,
+      "tag": "0052_store-integrations",
+      "breakpoints": true
+    },
+    {
+      "idx": 53,
+      "version": "7",
+      "when": 1786627735435,
+      "tag": "0053_catalog-search-and-tool-seed",
+      "breakpoints": true
+    },
+    {
+      "idx": 54,
+      "version": "7",
+      "when": 1786627736435,
+      "tag": "0054_message-media-transcript",
+      "breakpoints": true
+    },
+    {
+      "idx": 55,
+      "version": "7",
+      "when": 1786627737435,
+      "tag": "0055_campaigns-broadcast",
+      "breakpoints": true
+    },
+    {
+      "idx": 56,
+      "version": "7",
+      "when": 1786627738435,
+      "tag": "0056_outcome-first-response",
+      "breakpoints": true
+    },
+    {
+      "idx": 57,
+      "version": "7",
+      "when": 1786627739435,
+      "tag": "0057_catalog-trgm",
+      "breakpoints": true
+    },
+    {
+      "idx": 58,
+      "version": "7",
+      "when": 1786627740435,
+      "tag": "0058_woocommerce-provider",
+      "breakpoints": true
+    },
+    {
+      "idx": 59,
+      "version": "7",
+      "when": 1786627741435,
+      "tag": "0059_orders",
+      "breakpoints": true
+    },
+    {
+      "idx": 60,
+      "version": "7",
+      "when": 1786627742435,
+      "tag": "0060_delivery-tracking",
+      "breakpoints": true
+    },
+    {
+      "idx": 61,
+      "version": "7",
+      "when": 1786627743435,
+      "tag": "0061_campaign-pause-states",
+      "breakpoints": true
+    },
+    {
+      "idx": 62,
+      "version": "7",
+      "when": 1786627744435,
+      "tag": "0062_message-template-waba",
+      "breakpoints": true
+    },
+    {
+      "idx": 63,
+      "version": "7",
+      "when": 1786627745435,
+      "tag": "0063_fix-tenants-whatsapp-numbers-rls",
+      "breakpoints": true
+    },
+    {
+      "idx": 64,
+      "version": "7",
+      "when": 1786627746435,
+      "tag": "0064_ensure-kb-partition-function",
+      "breakpoints": true
+    },
+    {
+      "idx": 65,
+      "version": "7",
+      "when": 1786627747435,
+      "tag": "0065_nullable-product-stock",
+      "breakpoints": true
+    },
+    {
+      "idx": 66,
+      "version": "7",
+      "when": 1786627748435,
+      "tag": "0066_store-authorization-token",
+      "breakpoints": true
+    },
+    {
+      "idx": 67,
+      "version": "7",
+      "when": 1786627749435,
+      "tag": "0067_handover-holding-reply",
+      "breakpoints": true
+    },
+    {
+      "idx": 68,
+      "version": "7",
+      "when": 1786627750435,
+      "tag": "0068_notification-params",
+      "breakpoints": true
+    },
+    {
+      "idx": 69,
+      "version": "7",
+      "when": 1786627751435,
+      "tag": "0069_audit-detail-key",
+      "breakpoints": true
+    },
+    {
+      "idx": 70,
+      "version": "7",
+      "when": 1786627752435,
+      "tag": "0070_v2-tenant-profile-platform-admins",
+      "breakpoints": true
+    },
+    {
+      "idx": 71,
+      "version": "7",
+      "when": 1786627753435,
+      "tag": "0071_v2-bookings",
+      "breakpoints": true
+    },
+    {
+      "idx": 72,
+      "version": "7",
+      "when": 1786627754435,
+      "tag": "0072_v2-web-widgets",
+      "breakpoints": true
+    },
+    {
+      "idx": 73,
+      "version": "7",
+      "when": 1786627755435,
+      "tag": "0073_rls-safe-routing",
+      "breakpoints": true
+    },
+    {
+      "idx": 74,
+      "version": "7",
+      "when": 1786627756435,
+      "tag": "0074_v2-broadcasts-followups",
+      "breakpoints": true
+    }
+  ]
+}

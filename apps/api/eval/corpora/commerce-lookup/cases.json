@@ -1,0 +1,208 @@
+[
+  {
+    "question": "How much is the Acme X200 Blender?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "expectToolArgs": { "lookup_product": { "query": { "$contains": "X200" } } },
+    "mustContain": [["199", "199.00"]],
+    "forbidTools": ["create_order"],
+    "note": "lookup by exact product name"
+  },
+  {
+    "question": "What's the price for SKU S9-KTL?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "expectToolArgs": { "lookup_product": { "query": { "$contains": "S9-KTL" } } },
+    "mustContain": [["149", "149.00"]],
+    "forbidTools": ["create_order"],
+    "note": "lookup by exact SKU"
+  },
+  {
+    "question": "Do you have that grey electric thing that boils water fast, kind of small?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": [["149", "149.00"]],
+    "forbidTools": ["create_order"],
+    "note": "vague description must resolve to the Nova S9 kettle, the only kettle in the catalog"
+  },
+  {
+    "question": "What kitchen appliances do you sell?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": ["Blender", "Kettle"],
+    "forbidTools": ["create_order"],
+    "note": "category filter — must synthesize across multiple kitchen rows, not just retrieve one"
+  },
+  {
+    "question": "Do you sell a Dyson cordless vacuum?",
+    "expect": "any",
+    "expectTools": ["lookup_product"],
+    "forbidTools": ["create_order"],
+    "note": "not in catalog — must say so, not invent a Dyson product or price"
+  },
+  {
+    "question": "Is the Bosch Hand Mixer in stock right now?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "expectToolArgs": { "lookup_product": { "query": { "$contains": "Bosch" } } },
+    "mustContain": [["out of stock", "not in stock", "unavailable", "sold out"]],
+    "forbidTools": ["create_order"],
+    "note": "out-of-stock status, not a plain yes"
+  },
+  {
+    "question": "Can I buy the iRobot Roomba i5 right now?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "expectToolArgs": { "lookup_product": { "query": { "$contains": "Roomba" } } },
+    "mustContain": [["pre-order", "pre order", "not yet available", "coming soon"]],
+    "forbidTools": ["create_order"],
+    "note": "pre_order stock status — must not be described as available to ship now"
+  },
+  {
+    "question": "how much is this?",
+    "media": [{ "kind": "image", "file": "orbit-v3-vacuum.png", "mimeType": "image/png" }],
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": [["399", "399.00"]],
+    "forbidTools": ["create_order"],
+    "note": "vision -> lookup: the price is only reachable by identifying the vacuum from the photo first"
+  },
+  {
+    "question": "What's the price of the black X200 blender, SKU X200-BLN-BLK?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "expectToolArgs": { "lookup_product": { "query": { "$contains": "X200-BLN-BLK" } } },
+    "mustContain": [["199", "199.00"]],
+    "forbidTools": ["create_order"],
+    "note": "variant lookup by SKU — must not fall back to the parent's price if different"
+  },
+  {
+    "question": "How much is the JBL Flip 6 speaker?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "expectToolArgs": { "lookup_product": { "query": { "$contains": "JBL" } } },
+    "mustContain": [["349", "349.00"]],
+    "forbidTools": ["create_order"],
+    "note": "AED-priced item, name lookup"
+  },
+  {
+    "question": "كم سعر الخلاط أكمي X200؟",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": [["199", "199.00"]],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — lookup by name"
+  },
+  {
+    "question": "وش سعر طقم قهوة عربية الواحة، السكيو AWA-COFFEE؟",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "expectToolArgs": { "lookup_product": { "query": { "$contains": "AWA-COFFEE" } } },
+    "mustContain": [["89", "89.00"]],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — lookup by SKU"
+  },
+  {
+    "question": "عندكم ذاك الشي اللي يسخن الماي بسرعة، الأبيض الصغير؟",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": [["149", "149.00"]],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — vague description, must resolve to the kettle"
+  },
+  {
+    "question": "وش عندكم من أدوات المطبخ؟",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": ["خلاط", "غلاية"],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — category filter, expects the Arabic names for blender and kettle"
+  },
+  {
+    "question": "ما عندكم مكنسة دايسون؟",
+    "expect": "any",
+    "expectTools": ["lookup_product"],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — not in catalog, must not invent a Dyson product"
+  },
+  {
+    "question": "الخلاط اليدوي بوش، هو موجود عندكم؟",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — out-of-stock status; wording not asserted (dialect varies), relies on the tool-selection and no-fabricated-order guards"
+  },
+  {
+    "question": "روبوت المكنسة آي روبوت روومبا i5، أقدر أطلبه الحين؟",
+    "expect": "any",
+    "expectTools": ["lookup_product"],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — pre-order item, must not place an order for stock that doesn't exist yet"
+  },
+  {
+    "question": "بكم هذا؟",
+    "media": [{ "kind": "image", "file": "orbit-v3-vacuum.png", "mimeType": "image/png" }],
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": [["399", "399.00"]],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — vision -> lookup"
+  },
+  {
+    "question": "بكم الخلاط الأحمر، السكيو X200-BLN-RED؟",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "expectToolArgs": { "lookup_product": { "query": { "$contains": "X200-BLN-RED" } } },
+    "mustContain": [["209", "209.00"]],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — variant SKU lookup, different price from the base and black variant"
+  },
+  {
+    "question": "بكم الباور بانك أنكر باوركور 20000؟",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": [["189", "189.00"]],
+    "forbidTools": ["create_order"],
+    "note": "Khaleeji Arabic — AED-priced item, name lookup"
+  },
+  {
+    "question": "kam se3r al blender X200?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "expectToolArgs": { "lookup_product": { "query": { "$contains": "X200" } } },
+    "mustContain": [["199", "199.00"]],
+    "forbidTools": ["create_order"],
+    "note": "Arabizi — lookup by name"
+  },
+  {
+    "question": "3andkom air fryer philips XL? kam se3rha w hal mawjoodah al7een?",
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": [["349", "349.00"]],
+    "forbidTools": ["create_order"],
+    "note": "Arabizi — low_stock item, price plus availability"
+  },
+  {
+    "question": "hal 3andkom dyson vacuum, el cordless one?",
+    "expect": "any",
+    "expectTools": ["lookup_product"],
+    "forbidTools": ["create_order"],
+    "note": "Arabizi — not in catalog, must not invent a Dyson product or price"
+  },
+  {
+    "question": "el roomba i5 mawjood al7een wala lesa pre-order?",
+    "expect": "any",
+    "expectTools": ["lookup_product"],
+    "forbidTools": ["create_order"],
+    "note": "Arabizi — pre-order status check, must not treat it as ready to ship"
+  },
+  {
+    "question": "kam se3r hal shay?",
+    "media": [{ "kind": "image", "file": "orbit-v3-vacuum.png", "mimeType": "image/png" }],
+    "expect": "resolve",
+    "expectTools": ["lookup_product"],
+    "mustContain": [["399", "399.00"]],
+    "forbidTools": ["create_order"],
+    "note": "Arabizi — vision -> lookup"
+  }
+]

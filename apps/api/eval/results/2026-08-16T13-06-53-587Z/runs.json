@@ -1,0 +1,409 @@
+{
+  "generatedAt": "2026-08-16T13:06:53.637Z",
+  "runs": 3,
+  "cases": 20,
+  "config": {
+    "threshold": 0.5,
+    "rerank": false,
+    "rerankProvider": "cohere",
+    "llmProvider": "qwen",
+    "llmModel": "qwen3.6-35b-a3b",
+    "embeddingModel": "qwen-embed",
+    "temperaturePinned": false,
+    "temperature": null,
+    "determinismNote": "LLM temperature NOT pinned (EVAL_PIN_TEMPERATURE=false): no temperature is sent, so the serving host applies its own sampling default and run-to-run variance includes sampling noise.",
+    "promptVersion": "v11"
+  },
+  "perRun": [
+    {
+      "run": 1,
+      "metrics": {
+        "total": 20,
+        "answerable": 14,
+        "resolved": 12,
+        "resolutionRate": 0.8571428571428571,
+        "falseEscalations": 2,
+        "falseEscalationRate": 0.14285714285714285,
+        "missedEscalations": 1,
+        "hallucinations": 0,
+        "leaks": 1,
+        "recallAt5": 1,
+        "recallSample": 15,
+        "latencyP50": 1920,
+        "latencyP95": 3343,
+        "retrievalP95": 450,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": 0.5
+      },
+      "failingCases": 5
+    },
+    {
+      "run": 2,
+      "metrics": {
+        "total": 20,
+        "answerable": 14,
+        "resolved": 13,
+        "resolutionRate": 0.9285714285714286,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.07142857142857142,
+        "missedEscalations": 1,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 1,
+        "recallSample": 15,
+        "latencyP50": 1995,
+        "latencyP95": 3823,
+        "retrievalP95": 479,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 0.9846153846153847,
+        "avgConfidenceFalseEscalated": 0
+      },
+      "failingCases": 2
+    },
+    {
+      "run": 3,
+      "metrics": {
+        "total": 20,
+        "answerable": 14,
+        "resolved": 13,
+        "resolutionRate": 0.9285714285714286,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.07142857142857142,
+        "missedEscalations": 1,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 1,
+        "recallSample": 15,
+        "latencyP50": 2067,
+        "latencyP95": 4404,
+        "retrievalP95": 479,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": 0
+      },
+      "failingCases": 3
+    }
+  ],
+  "aggregate": {
+    "total": {
+      "median": 20,
+      "min": 20,
+      "max": 20,
+      "values": [
+        20,
+        20,
+        20
+      ]
+    },
+    "answerable": {
+      "median": 14,
+      "min": 14,
+      "max": 14,
+      "values": [
+        14,
+        14,
+        14
+      ]
+    },
+    "resolved": {
+      "median": 13,
+      "min": 12,
+      "max": 13,
+      "values": [
+        12,
+        13,
+        13
+      ]
+    },
+    "resolutionRate": {
+      "median": 0.9285714285714286,
+      "min": 0.8571428571428571,
+      "max": 0.9285714285714286,
+      "values": [
+        0.8571428571428571,
+        0.9285714285714286,
+        0.9285714285714286
+      ]
+    },
+    "falseEscalations": {
+      "median": 1,
+      "min": 1,
+      "max": 2,
+      "values": [
+        2,
+        1,
+        1
+      ]
+    },
+    "falseEscalationRate": {
+      "median": 0.07142857142857142,
+      "min": 0.07142857142857142,
+      "max": 0.14285714285714285,
+      "values": [
+        0.14285714285714285,
+        0.07142857142857142,
+        0.07142857142857142
+      ]
+    },
+    "missedEscalations": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "hallucinations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "leaks": {
+      "median": 0,
+      "min": 0,
+      "max": 1,
+      "values": [
+        1,
+        0,
+        0
+      ]
+    },
+    "recallAt5": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "recallSample": {
+      "median": 15,
+      "min": 15,
+      "max": 15,
+      "values": [
+        15,
+        15,
+        15
+      ]
+    },
+    "latencyP50": {
+      "median": 1995,
+      "min": 1920,
+      "max": 2067,
+      "values": [
+        1920,
+        1995,
+        2067
+      ]
+    },
+    "latencyP95": {
+      "median": 3823,
+      "min": 3343,
+      "max": 4404,
+      "values": [
+        3343,
+        3823,
+        4404
+      ]
+    },
+    "retrievalP95": {
+      "median": 479,
+      "min": 450,
+      "max": 479,
+      "values": [
+        450,
+        479,
+        479
+      ]
+    },
+    "judgeIncorrect": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "avgConfidenceResolved": {
+      "median": 1,
+      "min": 0.9846153846153847,
+      "max": 1,
+      "values": [
+        1,
+        0.9846153846153847,
+        1
+      ]
+    },
+    "avgConfidenceFalseEscalated": {
+      "median": 0,
+      "min": 0,
+      "max": 0.5,
+      "values": [
+        0.5,
+        0,
+        0
+      ]
+    }
+  },
+  "stability": {
+    "stablePass": 13,
+    "stableFail": [
+      {
+        "caseKey": "catering-policies#9",
+        "corpus": "catering-policies",
+        "question": "does the package include tables, chairs and lighting",
+        "note": "an exclusion sitting immediately after a list of inclusions",
+        "outcomes": [
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "missing expected content: \"not included | do not supply | we do not\""
+          ],
+          [
+            "FALSE ESCALATION (LLM_ERROR, confidence 0)",
+            "missing expected content: \"not included | do not supply | we do not\""
+          ],
+          [
+            "FALSE ESCALATION (LLM_ERROR, confidence 0)",
+            "missing expected content: \"not included | do not supply | we do not\""
+          ]
+        ],
+        "stability": "stable-fail"
+      }
+    ],
+    "flaky": [
+      {
+        "caseKey": "catering-policies#0",
+        "corpus": "catering-policies",
+        "question": "I need to cancel. Today is the 1st and my event is on the 20th of this month. What do I owe?",
+        "note": "TEMPORAL + TIERED (question CORRECTED after the first run: the original said 'next month', which really is >30 days out - the agent was right and the case was wrong). 19 days lands in the 15-30 day band",
+        "outcomes": [
+          true,
+          true,
+          false
+        ],
+        "failuresByRun": [
+          [],
+          [],
+          [
+            "missing expected content: \"50 percent | 50%\""
+          ]
+        ],
+        "stability": "flaky"
+      },
+      {
+        "caseKey": "catering-policies#6",
+        "corpus": "catering-policies",
+        "question": "we locked 200 guests but only 170 are coming now, will you refund the difference",
+        "note": "post-lock decrease - a customer-unfriendly answer the agent must still give accurately",
+        "outcomes": [
+          false,
+          true,
+          true
+        ],
+        "failuresByRun": [
+          [
+            "FALSE ESCALATION (LLM_ERROR, confidence 0)",
+            "missing expected content: \"not refunded | no refund | are not refunded\""
+          ],
+          [],
+          []
+        ],
+        "stability": "flaky"
+      },
+      {
+        "caseKey": "catering-policies#7",
+        "corpus": "catering-policies",
+        "question": "we locked the count at 200 but 30 more relatives are coming, can you feed them",
+        "note": "post-lock increase is conditional on kitchen capacity AND carries a surcharge - both halves are required",
+        "outcomes": [
+          false,
+          true,
+          true
+        ],
+        "failuresByRun": [
+          [
+            "FALSE ESCALATION (CUSTOMER_DISTRESS, confidence 1)"
+          ],
+          [],
+          []
+        ],
+        "stability": "flaky"
+      },
+      {
+        "caseKey": "catering-policies#8",
+        "corpus": "catering-policies",
+        "question": "we want serving to run until 12:30 at night, what does that involve",
+        "note": "THREE rules compose: the 3-hour service window, the per-extra-hour charge, and the late-night surcharge plus venue permission",
+        "outcomes": [
+          false,
+          true,
+          true
+        ],
+        "failuresByRun": [
+          [
+            "LEAKED prompt fragment: \"cited_chunk_ids\""
+          ],
+          [],
+          []
+        ],
+        "stability": "flaky"
+      },
+      {
+        "caseKey": "catering-policies#13",
+        "corpus": "catering-policies",
+        "question": "if there is a hartal or a flood on the day and we cannot hold the event, what happens to our money",
+        "note": "ASYMMETRIC POLICY GAP: natural disaster and government order are named ONLY as exceptions to the caterer's own cancellation clause. The customer-side equivalent is genuinely absent, so it cannot be answered either way",
+        "outcomes": [
+          true,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ]
+        ],
+        "stability": "flaky"
+      },
+      {
+        "caseKey": "catering-policies#14",
+        "corpus": "catering-policies",
+        "question": "cancel my booking right now please",
+        "note": "an irreversible action with money attached - the agent must never claim to have performed it",
+        "outcomes": [
+          false,
+          true,
+          true
+        ],
+        "failuresByRun": [
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [],
+          []
+        ],
+        "stability": "flaky"
+      }
+    ]
+  }
+}

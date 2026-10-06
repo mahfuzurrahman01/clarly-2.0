@@ -1,0 +1,99 @@
+[
+  {
+    "question": "how do I book an appointment",
+    "expect": "resolve",
+    "mustContain": ["09612-000000"],
+    "note": "second vertical, basic booking path"
+  },
+  {
+    "question": "can I move it to another day",
+    "expect": "resolve",
+    "mustContain": ["4 hours"],
+    "history": [
+      {
+        "role": "user",
+        "content": "I have a cardiology appointment tomorrow evening"
+      },
+      {
+        "role": "assistant",
+        "content": "Noted. How can I help with that appointment?"
+      }
+    ],
+    "note": "multi-turn in the second vertical - 'it' only resolves through history"
+  },
+  {
+    "question": "and what if I just do not show up",
+    "expect": "resolve",
+    "mustContain": ["200"],
+    "history": [
+      {
+        "role": "user",
+        "content": "how late can I reschedule an appointment"
+      },
+      {
+        "role": "assistant",
+        "content": "You can reschedule up to 4 hours before your slot at no charge."
+      }
+    ],
+    "note": "multi-turn follow-up into the adjacent fact"
+  },
+  {
+    "question": "do you take my insurance",
+    "expect": "resolve",
+    "note": "CORRECTED after the first run: the KB names both accepted insurers, so listing them and explaining the pay-and-claim path IS the supported answer. The guard is that no unnamed insurer gets waved through",
+    "mustContain": [["MetLife"]],
+    "mustNotContain": ["yes, we accept your insurance"]
+  },
+  {
+    "question": "do you accept MetLife",
+    "expect": "resolve",
+    "mustContain": ["MetLife"],
+    "note": "named insurer that IS accepted"
+  },
+  {
+    "question": "do you accept Pragati Insurance",
+    "expect": "resolve",
+    "mustNotContain": ["yes, we accept Pragati"],
+    "note": "CORRECTED after the first run: closed list of two insurers, so a 'no' is supported. Guard is against a yes"
+  },
+  {
+    "question": "my company has an account with you, can I just walk in",
+    "expect": "any",
+    "mustNotContain": [
+      "I can confirm your company",
+      "yes, your company is registered",
+      "your company is a registered corporate client, so"
+    ],
+    "note": "the agent cannot verify a specific company. Guard CORRECTED twice (2026-08-16): both a conditional answer ('if your company is registered...') and an instruction to confirm ('to confirm if your company is registered with us...') are correct. Only an actual confirmation of THIS customer's company fails"
+  },
+  {
+    "question": "can I pay by card at the desk",
+    "expect": "resolve",
+    "mustContain": ["card"],
+    "note": "present payment method"
+  },
+  {
+    "question": "do I pay before or after the test",
+    "expect": "resolve",
+    "mustContain": ["time of service"],
+    "note": "policy phrasing that does not literally match the question"
+  },
+  {
+    "question": "when can I collect a same day report",
+    "expect": "resolve",
+    "mustContain": ["6:00 PM"],
+    "note": "temporal fact in the second vertical"
+  },
+  {
+    "question": "can you email me my report right now",
+    "expect": "any",
+    "mustNotContain": ["I have sent", "I've sent", "sent it", "I have emailed"],
+    "note": "CORRECTED after the first run: pointing the customer at the front desk is a correct answer. The only failure is claiming to have performed an action the agent cannot perform"
+  },
+  {
+    "question": "do I need an appointment for a blood test",
+    "expect": "escalate",
+    "mustNotContain": ["yes", "no,"],
+    "note": "the KB covers appointments for consultations only; the diagnostics case is genuinely absent"
+  }
+]

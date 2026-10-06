@@ -1,0 +1,333 @@
+# CI pipeline skeleton — Feature 0 deliverable per
+# docs/decisions/F0-ci-test-strategy.md (sequencing: docs/GULF_PARITY_PLAN.md). Gate order: lint (incl. module
+# boundary rules) -> typecheck -> migrate -> test (unit + throwaway
+# integration) -> deploy (stubbed, no cloud credentials in this pass).
+#
+# A10's adversarial injection corpus is a required check once it exists
+# (Feature 3/A10) — not added yet because the corpus doesn't exist yet, but
+# the `test` job is where it will run per F0-ci-test-strategy.md.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  # Phase 5 item 2: the eval suite as a CI signal. Nightly rather than
+  # per-PR because a run makes real, paid LLM + embedding calls and takes
+  # minutes per corpus — a per-PR gate would bill every push and block on
+  # provider flakiness. See the `eval` job below.
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # pnpm 11 requires Node >=22.13.
+  NODE_VERSION: '22'
+  # app_user, NOT the postgres bootstrap superuser — Feature 1's RLS
+  # (T5) is a silent no-op for superusers/BYPASSRLS roles regardless of
+  # policy. The `test` job's "Bootstrap non-superuser app_user role" step
+  # creates this role using the superuser connection before anything else
+  # touches the database. See docs/decisions/F1-security.md.
+  DATABASE_URL: postgres://app_user:app_password@localhost:5432/whatsapp_ai_agent
+  REDIS_URL: redis://localhost:6379
+  # CI-only value — never a real secret. AuthModule (Feature 1) needs this
+  # to construct without throwing; no real JWT verification happens in CI.
+  SUPABASE_JWT_SECRET: ci-test-jwt-secret-not-a-real-secret
+  # CI-only value — never a real key. 32 zero bytes, base64-encoded.
+  BSP_CREDENTIALS_ENCRYPTION_KEY: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
+  # CI-only placeholders — never real keys. Feature 3 (A0) needs these to
+  # construct without throwing; no real DeepSeek/OpenAI calls happen in CI
+  # (LlmProvider/Embedder are mocked in unit tests; integration tests that
+  # would need a live call are skipped, see docs/decisions/F3-agent-core.md).
+  LLM_PROVIDER: deepseek
+  DEEPSEEK_API_KEY: ci-test-placeholder-not-a-real-key
+  OPENAI_API_KEY: ci-test-placeholder-not-a-real-key
+
+jobs:
+  lint:
+    name: Lint (incl. module boundary rules)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.11.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter api run lint
+
+      # Module-graph reachability: every `@Module()` under apps/api/src must be
+      # reachable from AppModule. F24's StoreModule shipped registered nowhere
+      # (every /store/* route 404'd, `c02f756`) and F19's CampaignModule was one
+      # commit from the same fate — the app boots, the build passes and every
+      # other test is green, so nothing else catches it. See
+      # apps/api/src/module-graph.ts for why this is a static walk rather than a
+      # Nest boot.
+      #
+      # It also runs inside the `test` job's unit suite (it is an ordinary
+      # `*.spec.ts` under src/). It is repeated here because it is a pure source
+      # parse — no Postgres, no Redis, no provider keys — so this job fails the
+      # PR in ~1 minute instead of waiting on lint + typecheck + migrate.
+      - name: Module-graph reachability (no orphaned NestJS modules)
+        run: pnpm --filter api exec jest --testPathPatterns=module-graph.spec
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.11.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter api run build
+
+  test:
+    name: Migrate + Test (unit + integration)
+    runs-on: ubuntu-latest
+    needs: [lint, typecheck]
+    services:
+      postgres:
+        # pgvector/pgvector:pg16 — see docker-compose.yml's comment.
+        # Feature 3/A1's kb_chunks needs the `vector` extension.
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: whatsapp_ai_agent
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.11.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Bootstrap non-superuser app_user role (RLS-safe, see F1-security.md)
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -h localhost -U postgres -d whatsapp_ai_agent -v ON_ERROR_STOP=1 <<'SQL'
+          CREATE ROLE app_user LOGIN PASSWORD 'app_password' NOSUPERUSER NOBYPASSRLS NOCREATEDB NOCREATEROLE;
+          GRANT ALL PRIVILEGES ON DATABASE whatsapp_ai_agent TO app_user;
+          GRANT CREATE ON SCHEMA public TO app_user;
+          ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO app_user;
+          ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO app_user;
+          CREATE EXTENSION IF NOT EXISTS vector;
+          # F20 (D4): catalog fuzzy search. Same superuser-only step as `vector`.
+          CREATE EXTENSION IF NOT EXISTS pg_trgm;
+          SQL
+
+      - name: Run Drizzle migrations against ephemeral Postgres
+        run: pnpm --filter api run db:migrate
+
+      - name: Unit tests
+        run: pnpm --filter api run test -- --coverage
+
+      - name: Integration tests (tenant isolation + Feature 2 webhook channel)
+        run: pnpm --filter api run test:integration
+
+      # TODO(Feature 3/A10): add the adversarial prompt-injection corpus here
+      # as a required check once it exists, per F0-ci-test-strategy.md — not
+      # a one-time manual verify step.
+
+  # Phase 5 item 2 (docs/GULF_PARITY_PLAN.md): the resolution-rate eval suite as a
+  # recurring signal rather than something a person remembers to run.
+  #
+  # GENUINELY GATED, not stubbed: the run needs real provider credentials
+  # (DEEPSEEK_API_KEY for the chat model, EMBEDDING_BASE_URL/EMBEDDING_API_KEY for
+  # the retrieval embeddings). Until those exist as repo secrets the job is a
+  # real no-op, the same honest pattern the deploy job below uses — CI must not
+  # report a quality signal it never measured.
+  #
+  # Scope is the dialect and behaviour corpora, which is what this job can
+  # actually cover. The plan's OTHER half — running the suite over real pilot
+  # conversations (D15a) — needs pilot traffic that does not exist before
+  # Phase 4 launch, and no CI configuration can manufacture it.
+  eval:
+    name: Eval suite (nightly, corpora)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+      EMBEDDING_BASE_URL: ${{ secrets.EMBEDDING_BASE_URL }}
+      EMBEDDING_API_KEY: ${{ secrets.EMBEDDING_API_KEY }}
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: whatsapp_ai_agent
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.11.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Bootstrap non-superuser app_user role (RLS-safe, see F1-security.md)
+        if: env.DEEPSEEK_API_KEY != '' && env.EMBEDDING_BASE_URL != ''
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -h localhost -U postgres -d whatsapp_ai_agent -v ON_ERROR_STOP=1 <<'SQL'
+          CREATE ROLE app_user LOGIN PASSWORD 'app_password' NOSUPERUSER NOBYPASSRLS NOCREATEDB NOCREATEROLE;
+          GRANT ALL PRIVILEGES ON DATABASE whatsapp_ai_agent TO app_user;
+          GRANT CREATE ON SCHEMA public TO app_user;
+          ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO app_user;
+          ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO app_user;
+          CREATE EXTENSION IF NOT EXISTS vector;
+          # F20 (D4): catalog fuzzy search. Same superuser-only step as `vector`.
+          CREATE EXTENSION IF NOT EXISTS pg_trgm;
+          SQL
+
+      - name: Run Drizzle migrations
+        if: env.DEEPSEEK_API_KEY != '' && env.EMBEDDING_BASE_URL != ''
+        run: pnpm --filter api run db:migrate
+
+      - name: F27 Gulf Arabic corpora
+        if: env.DEEPSEEK_API_KEY != '' && env.EMBEDDING_BASE_URL != ''
+        run: |
+          for corpus in gulf-arabic-khaleeji gulf-arabic-egyptian \
+                        gulf-arabic-levantine gulf-arabic-arabizi; do
+            pnpm --filter api run eval -- --corpus "$corpus"
+          done
+
+      - name: Behaviour corpora (escalation, tone, refunds, vision, voice)
+        if: env.DEEPSEEK_API_KEY != '' && env.EMBEDDING_BASE_URL != ''
+        run: |
+          for corpus in tone-escalation refund-policy conflicting-docs \
+                        vision-product voice-support; do
+            pnpm --filter api run eval -- --corpus "$corpus"
+          done
+
+      - name: Publish scorecards
+        if: always() && env.DEEPSEEK_API_KEY != '' && env.EMBEDDING_BASE_URL != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-scorecards
+          path: apps/api/eval/results/
+          retention-days: 30
+
+      - name: Report when the eval could not run
+        if: env.DEEPSEEK_API_KEY == '' || env.EMBEDDING_BASE_URL == ''
+        run: |
+          echo "::notice::Eval suite skipped — no provider secrets configured." \
+               "Set DEEPSEEK_API_KEY and EMBEDDING_BASE_URL/EMBEDDING_API_KEY to turn this signal on."
+
+  # Deploy pipeline (docs/GULF_PARITY_PLAN.md Phase 0.5, staging deploy). Real Railway/Vercel CLI steps,
+  # gated behind secret presence rather than the earlier plain-echo stub —
+  # but STILL cannot actually run in this pass: no RAILWAY_TOKEN/
+  # RAILWAY_PROJECT_ID/VERCEL_TOKEN/VERCEL_ORG_ID/VERCEL_PROJECT_ID exist as
+  # repo secrets (no cloud accounts provisioned — Phase 0.5 of
+  # docs/GULF_PARITY_PLAN.md, "Staging deploy", is external lead time this
+  # repo cannot self-serve). Per CLAUDE.md's engineering principles this does NOT
+  # invent placeholder secret values; every `if: env.FOO != ''` guard below
+  # is real and means each deploy step is a genuine no-op (not a failure)
+  # until Settings -> Secrets and variables -> Actions has the real values.
+  #
+  # One Railway service today, not two: apps/api has a single `main.ts` —
+  # every BullMQ @Processor (respond-path, media-download, every alerting
+  # sweep) runs as an in-process worker inside the same NestJS app that
+  # serves HTTP, there is no separate worker binary. docs/decisions/
+  # F0-infra.md's secrets-layout table describes a future "API service +
+  # worker service" split that was never built; `railway up` below deploys
+  # the one service that actually exists. Split this into two `railway up`
+  # invocations (one per Railway service) only if/when apps/api is actually
+  # split into two deployables.
+  deploy:
+    name: Deploy (Railway API/worker + Vercel web)
+    runs-on: ubuntu-latest
+    needs: [test]
+    if: github.ref == 'refs/heads/main'
+    # Job-level (not step-level): a step's own `env:` block is not visible
+    # to that same step's `if:` condition, so the presence checks below
+    # read from here instead.
+    env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy apps/api to Railway
+        # Required repo secrets: RAILWAY_TOKEN (Railway account -> Tokens),
+        # RAILWAY_PROJECT_ID (the target project's id — `railway status`
+        # locally, or the project's Settings page).
+        if: ${{ env.RAILWAY_TOKEN != '' && env.RAILWAY_PROJECT_ID != '' }}
+        run: |
+          npm install -g @railway/cli
+          railway up --service api --detach -- apps/api
+
+      - name: Skip Railway deploy (secrets not configured)
+        if: ${{ env.RAILWAY_TOKEN == '' || env.RAILWAY_PROJECT_ID == '' }}
+        run: echo "RAILWAY_TOKEN/RAILWAY_PROJECT_ID not set — skipping Railway deploy."
+
+      - name: Deploy apps/web to Vercel
+        # Required repo secrets: VERCEL_TOKEN (Vercel account -> Settings ->
+        # Tokens), VERCEL_ORG_ID and VERCEL_PROJECT_ID (`vercel link` inside
+        # apps/web locally writes both into .vercel/project.json).
+        if: ${{ env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' }}
+        working-directory: apps/web
+        run: |
+          npm install -g vercel
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          vercel build --prod --token="$VERCEL_TOKEN"
+          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+      - name: Skip Vercel deploy (secrets not configured)
+        if: ${{ env.VERCEL_TOKEN == '' || env.VERCEL_ORG_ID == '' || env.VERCEL_PROJECT_ID == '' }}
+        run: echo "VERCEL_TOKEN/VERCEL_ORG_ID/VERCEL_PROJECT_ID not set — skipping Vercel deploy."

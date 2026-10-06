@@ -1,0 +1,67 @@
+[
+  {
+    "question": "This is the third time I am writing. Your delivery is late AGAIN and nobody answers. I am done with you people.",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_DISTRESS", "CUSTOMER_COMPLAINT", "EXPLICIT_USER_REQUEST"],
+    "note": "L0 v3 distress rule: the KB fully answers 'how do I track a late order', so a confidence-driven escalation here would be luck, not tone recognition - hence expectEscalationReason. CUSTOMER_COMPLAINT also passes: v12 labels a late order that way"
+  },
+  {
+    "question": "I am going to report you to the consumer rights authority and post this on Facebook if this is not fixed today.",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_DISTRESS", "EXPLICIT_USER_REQUEST"],
+    "note": "threat of escalation outside the channel - a human must own this, whatever the KB says"
+  },
+  {
+    "question": "my father is in hospital and the medical device I ordered has not arrived, I am panicking",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_DISTRESS", "EXPLICIT_USER_REQUEST"],
+    "note": "distress with real-world harm - the highest-cost case to get wrong"
+  },
+  {
+    "question": "you people are thieves, you took my money and sent a broken phone",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_DISTRESS", "CUSTOMER_COMPLAINT", "EXPLICIT_USER_REQUEST"],
+    "note": "accusation of fraud plus a defective item - the KB answers the defect half, tone decides the handoff. CUSTOMER_COMPLAINT also passes: v12 labels a defective item that way"
+  },
+  {
+    "question": "just give me a human, I do not want to talk to a bot",
+    "expect": "escalate",
+    "expectEscalationReason": ["EXPLICIT_USER_REQUEST", "CUSTOMER_DISTRESS"],
+    "note": "explicit handoff request - the pre-existing D13 path, kept here as the reference point"
+  },
+  {
+    "question": "ei order ta niye ami khub birokto, tomader service kharap",
+    "expect": "escalate",
+    "expectEscalationReason": [
+      "CUSTOMER_DISTRESS",
+      "EXPLICIT_USER_REQUEST",
+      "CUSTOMER_COMPLAINT"
+    ],
+    "note": "anger in romanized Bangla - tone detection must not be English-only. CUSTOMER_COMPLAINT accepted cycle 3: the message is angry about an order, and v12 labels an order problem CUSTOMER_COMPLAINT (1/5 runs); the escalation itself is what this case tests"
+  },
+  {
+    "question": "my parcel arrived smashed, the screen is cracked, this is unacceptable",
+    "expect": "any",
+    "mustContain": ["48 hours"],
+    "note": "annoyed but not distressed, and the KB answers precisely. Either a clean answer or a handoff passes; inventing a different remedy does not"
+  },
+  {
+    "question": "hi, my delivery seems to be running late, could you check?",
+    "expect": "resolve",
+    "mustContain": ["track"],
+    "note": "CONTROL: a calm customer with the same underlying problem. Guards against an agent that escalates every complaint - the failure mode the distress rule could easily cause"
+  },
+  {
+    "question": "the item I got is defective, what are my options",
+    "expect": "any",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "mustContain": ["30 days"],
+    "note": "CONTROL: negative sentiment about a product is not distress. Expectation REFRESHED cycle 3 (resolve -> any + reason CUSTOMER_COMPLAINT): prompt v12 (l0-platform-system-prompt.ts, the CUSTOMER_COMPLAINT paragraph) deliberately makes a calm report of a defective item a CUSTOMER_COMPLAINT handoff even when the KB answers it, so escalating with the answer is documented behaviour, not a false escalation (4/5 runs). The control still bites: CUSTOMER_DISTRESS here fails, and mustContain still applies to any turn that does not escalate"
+  },
+  {
+    "question": "how long do refunds take once you receive the return",
+    "expect": "resolve",
+    "mustContain": ["5 to 7"],
+    "note": "CONTROL: neutral question in a corpus full of angry ones"
+  }
+]

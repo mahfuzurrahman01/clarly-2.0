@@ -1,0 +1,87 @@
+{
+  "products": [
+    {
+      "name": "Bariq Steam Iron Pro",
+      "nameAr": "مكواة بخار باريق برو",
+      "sku": "BRQ-IRN-PRO",
+      "price": "129.00",
+      "currency": "SAR",
+      "stock": 20,
+      "stockStatus": "in_stock",
+      "category": "home-appliances",
+      "variants": [
+        { "variantLabel": "White", "sku": "BRQ-IRN-PRO-WHT", "price": "129.00", "stock": 9, "stockStatus": "in_stock" },
+        { "variantLabel": "Rose Gold", "sku": "BRQ-IRN-PRO-RGD", "price": "139.00", "stock": 0, "stockStatus": "out_of_stock" }
+      ]
+    },
+    {
+      "name": "Bariq Air Fryer 5.5L",
+      "nameAr": "قلاية هوائية باريق 5.5 لتر",
+      "sku": "BRQ-AFY-55",
+      "price": "289.00",
+      "currency": "SAR",
+      "stock": 14,
+      "stockStatus": "in_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Bariq Ceramic Cookware Set 10pc",
+      "nameAr": "طقم أواني سيراميك باريق 10 قطع",
+      "sku": "BRQ-CKW-10",
+      "price": "349.00",
+      "currency": "SAR",
+      "stock": 6,
+      "stockStatus": "low_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Bariq Electric Kettle 1.7L",
+      "nameAr": "غلاية كهربائية باريق 1.7 لتر",
+      "sku": "BRQ-KTL-17",
+      "price": "79.00",
+      "currency": "SAR",
+      "stock": 30,
+      "stockStatus": "in_stock",
+      "category": "home-appliances"
+    },
+    {
+      "name": "Bariq Stand Mixer 6L",
+      "nameAr": "خلاط بمعدة باريق 6 لتر",
+      "sku": "BRQ-MXR-6L",
+      "price": "599.00",
+      "currency": "SAR",
+      "stock": 0,
+      "stockStatus": "pre_order",
+      "category": "kitchen"
+    },
+    {
+      "name": "Orbit V3 Vacuum Cleaner",
+      "nameAr": "مكنسة أوربت V3",
+      "sku": "ORB-V3",
+      "price": "399.00",
+      "currency": "SAR",
+      "stock": 8,
+      "stockStatus": "in_stock",
+      "category": "home"
+    }
+  ],
+  "customers": [
+    { "phone": "+966501110001", "channel": "whatsapp" },
+    { "phone": "+966501110002", "channel": "whatsapp" },
+    { "phone": "+966501110003", "channel": "whatsapp" },
+    { "phone": "+966501110004", "channel": "whatsapp" },
+    { "phone": "+966501110005", "channel": "whatsapp" },
+    { "phone": "+966501110006", "channel": "whatsapp" },
+    { "phone": "+966501110007", "channel": "whatsapp" },
+    { "phone": "+966501110008", "channel": "whatsapp" },
+    { "phone": "+966501110009", "channel": "whatsapp" },
+    { "phone": "+966501110010", "channel": "whatsapp" },
+    { "phone": "+966501110011", "channel": "whatsapp" },
+    { "phone": "+966501110012", "channel": "whatsapp" },
+    { "phone": "+966501110013", "channel": "whatsapp" },
+    { "phone": "+966501110014", "channel": "whatsapp" },
+    { "phone": "+966501110015", "channel": "whatsapp" }
+  ],
+  "orders": [],
+  "shipments": []
+}

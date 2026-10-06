@@ -1,0 +1,134 @@
+{
+  "products": [
+    {
+      "name": "Acme X200 Blender",
+      "nameAr": "خلاط أكمي X200",
+      "sku": "X200-BLN",
+      "price": "199.00",
+      "currency": "SAR",
+      "stock": 12,
+      "stockStatus": "in_stock",
+      "category": "kitchen",
+      "variants": [
+        {
+          "variantLabel": "Black",
+          "sku": "X200-BLN-BLK",
+          "price": "199.00",
+          "stock": 5,
+          "stockStatus": "in_stock"
+        },
+        {
+          "variantLabel": "Red",
+          "sku": "X200-BLN-RED",
+          "price": "209.00",
+          "stock": 3,
+          "stockStatus": "in_stock"
+        }
+      ]
+    },
+    {
+      "name": "Nova S9 Electric Kettle",
+      "nameAr": "غلاية نوفا S9",
+      "sku": "S9-KTL",
+      "price": "149.00",
+      "currency": "SAR",
+      "stock": 20,
+      "stockStatus": "in_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Bosch Hand Mixer",
+      "nameAr": "خلاط بوش اليدوي",
+      "sku": "BSH-HM100",
+      "price": "259.00",
+      "currency": "SAR",
+      "stock": 0,
+      "stockStatus": "out_of_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Philips Air Fryer XL",
+      "nameAr": "قلاية فيليبس الهوائية XL",
+      "sku": "PHL-AF-XL",
+      "price": "349.00",
+      "currency": "SAR",
+      "stock": 2,
+      "stockStatus": "low_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Al Waha Arabic Coffee Set",
+      "nameAr": "طقم قهوة عربية الواحة",
+      "sku": "AWA-COFFEE",
+      "price": "89.00",
+      "currency": "SAR",
+      "stock": 30,
+      "stockStatus": "in_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "iRobot Roomba i5",
+      "nameAr": "روبوت المكنسة آي روبوت روومبا i5",
+      "sku": "IRB-I5",
+      "price": "1499.00",
+      "currency": "SAR",
+      "stock": 0,
+      "stockStatus": "pre_order",
+      "category": "home"
+    },
+    {
+      "name": "Orbit V3 Vacuum Cleaner",
+      "nameAr": "مكنسة أوربت V3",
+      "sku": "ORB-V3",
+      "price": "399.00",
+      "currency": "SAR",
+      "stock": 8,
+      "stockStatus": "in_stock",
+      "category": "home"
+    },
+    {
+      "name": "Samsung Galaxy A55",
+      "nameAr": "سامسونج غالاكسي A55",
+      "sku": "SGA55-128",
+      "price": "1799.00",
+      "currency": "SAR",
+      "stock": 15,
+      "stockStatus": "in_stock",
+      "category": "electronics",
+      "variants": [
+        {
+          "variantLabel": "256GB",
+          "sku": "SGA55-256",
+          "price": "1999.00",
+          "stock": 6,
+          "stockStatus": "in_stock"
+        }
+      ]
+    },
+    {
+      "name": "Anker PowerCore 20000",
+      "nameAr": "باور بانك أنكر باوركور 20000",
+      "sku": "ANK-PC20K",
+      "price": "189.00",
+      "currency": "AED",
+      "stock": 25,
+      "stockStatus": "in_stock",
+      "category": "electronics"
+    },
+    {
+      "name": "JBL Flip 6 Speaker",
+      "nameAr": "مكبر صوت جي بي ال فليب 6",
+      "sku": "JBL-FLP6",
+      "price": "349.00",
+      "currency": "AED",
+      "stock": 10,
+      "stockStatus": "in_stock",
+      "category": "electronics"
+    }
+  ],
+  "customers": [
+    { "phone": "+966501234567", "channel": "whatsapp" }
+  ],
+  "orders": [],
+  "shipments": []
+}

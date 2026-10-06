@@ -1,0 +1,184 @@
+/*
+ * Clarly design tokens — the single source for colour, type, space, radius,
+ * elevation, and motion. Nothing outside this file defines a raw value.
+ *
+ * Semantic names only. A component asks for `surface` or `danger`, never for a
+ * scale step, so a palette change is one edit here rather than a grep.
+ *
+ * The console ground is deliberately near-neutral: ticket state is the only
+ * thing that must be scannable at a glance, so it gets to own the colour.
+ * The marketing surface is allowed to be warmer — that is what `--color-brand-*`
+ * exists for, and it is the only place those tokens may be used.
+ */
+
+@theme {
+  /* Typography ----------------------------------------------------------- */
+  /* Two faces. Geist Sans carries the product; the display face is reserved
+     for the marketing surface so the front door does not read as the console. */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-clarly-display), var(--font-geist-sans), serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Body floor is 1rem. Nothing below --text-xs carries meaning — it is for
+     eyebrow labels and numeric adornments only. */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.25rem;
+
+  --tracking-eyebrow: 0.08em;
+
+  /* Surfaces and ink ----------------------------------------------------- */
+  --color-canvas: oklch(0.985 0.002 250);
+  --color-surface: oklch(1 0 0);
+  --color-surface-muted: oklch(0.968 0.004 250);
+  --color-surface-raised: oklch(1 0 0);
+  --color-border: oklch(0.906 0.006 250);
+  --color-border-strong: oklch(0.83 0.008 250);
+
+  --color-ink: oklch(0.24 0.015 255);
+  --color-ink-muted: oklch(0.52 0.012 255);
+  /* Adornment only — fails 4.5:1 against surface by design. Never body text. */
+  --color-ink-faint: oklch(0.62 0.011 255);
+  --color-ink-inverse: oklch(0.99 0 0);
+
+  /* Accent and status ---------------------------------------------------- */
+  --color-accent: oklch(0.58 0.13 165);
+  --color-accent-strong: oklch(0.5 0.14 165);
+  --color-accent-soft: oklch(0.955 0.03 165);
+
+  --color-danger: oklch(0.55 0.19 25);
+  --color-danger-strong: oklch(0.48 0.2 25);
+  --color-danger-soft: oklch(0.96 0.04 25);
+
+  --color-warn: oklch(0.62 0.14 70);
+  --color-warn-soft: oklch(0.97 0.05 80);
+
+  /*
+   * Foreground for filled accent/danger surfaces. These exist because a
+   * literal `text-white` on a filled button is only legible while the fill is
+   * dark: in dark mode `--color-accent` lightens to 0.72 and white drops to
+   * roughly 2.2:1, which is every primary button in the product failing
+   * contrast at once. Pairing the fill with its own foreground token keeps
+   * both schemes legible from one class.
+   */
+  --color-on-accent: oklch(0.99 0 0);
+  --color-on-danger: oklch(0.99 0 0);
+
+  --color-info: oklch(0.55 0.12 250);
+  --color-info-soft: oklch(0.96 0.03 250);
+
+  /* Marketing only ------------------------------------------------------- */
+  --color-brand-ground: oklch(0.22 0.03 170);
+  --color-brand-ink: oklch(0.98 0.008 160);
+  --color-brand-glow: oklch(0.68 0.15 165);
+
+  /* Radius --------------------------------------------------------------- */
+  --radius-control: 0.375rem;
+  --radius-panel: 0.75rem;
+  --radius-overlay: 1rem;
+  --radius-full: 9999px;
+
+  /* Elevation — two only. Depth signals layer, never decoration. */
+  --shadow-panel: 0 1px 2px oklch(0.24 0.015 255 / 0.05);
+  --shadow-overlay:
+    0 16px 40px oklch(0.24 0.015 255 / 0.16),
+    0 2px 8px oklch(0.24 0.015 255 / 0.08);
+
+  /* Motion --------------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-canvas: oklch(0.19 0.012 255);
+    --color-surface: oklch(0.23 0.014 255);
+    --color-surface-muted: oklch(0.26 0.014 255);
+    --color-surface-raised: oklch(0.27 0.014 255);
+    --color-border: oklch(0.32 0.015 255);
+    --color-border-strong: oklch(0.42 0.016 255);
+
+    --color-ink: oklch(0.95 0.005 255);
+    --color-ink-muted: oklch(0.76 0.012 255);
+    --color-ink-faint: oklch(0.62 0.012 255);
+    --color-ink-inverse: oklch(0.18 0.012 255);
+
+    --color-accent: oklch(0.72 0.13 165);
+    --color-accent-strong: oklch(0.79 0.13 165);
+    --color-accent-soft: oklch(0.3 0.05 165);
+
+    --color-danger: oklch(0.7 0.16 25);
+    --color-danger-strong: oklch(0.78 0.15 25);
+    --color-danger-soft: oklch(0.31 0.07 25);
+
+    /* Flipped: the fills are light here, so their foreground goes near-black. */
+    --color-on-accent: oklch(0.17 0.02 165);
+    --color-on-danger: oklch(0.17 0.02 25);
+
+    --color-warn: oklch(0.8 0.14 75);
+    --color-warn-soft: oklch(0.32 0.06 75);
+
+    --color-info: oklch(0.72 0.12 250);
+    --color-info-soft: oklch(0.29 0.05 250);
+
+    --color-brand-ground: oklch(0.17 0.025 170);
+    --color-brand-ink: oklch(0.97 0.008 160);
+    --color-brand-glow: oklch(0.72 0.15 165);
+
+    --shadow-panel: 0 1px 2px oklch(0 0 0 / 0.3);
+    --shadow-overlay:
+      0 16px 40px oklch(0 0 0 / 0.5),
+      0 2px 8px oklch(0 0 0 / 0.3);
+  }
+}
+
+/* Base ------------------------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-size: var(--text-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * One focus ring for the whole product, applied here so no component can
+ * forget it. `outline-none` without a replacement ring is a review failure —
+ * focus must never be signalled by border colour alone (WCAG 2.4.7, 1.4.11).
+ */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-control);
+}
+
+/* Respect the OS setting rather than animating over it. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Native dialog gives focus trapping, Escape, and the top layer for free. */
+dialog::backdrop {
+  background: oklch(0.24 0.015 255 / 0.45);
+  backdrop-filter: blur(2px);
+}

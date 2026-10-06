@@ -1,0 +1,21 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "page-messenger-001",
+      "time": 1788000120,
+      "messaging": [
+        {
+          "sender": { "id": "page-messenger-001" },
+          "recipient": { "id": "PSID-100001" },
+          "timestamp": 1788000120000,
+          "message": {
+            "mid": "mid.echo001",
+            "text": "Our AI reply to the customer",
+            "is_echo": true
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "displayName": "store-contract",
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "testMatch": ["<rootDir>/test/store-contract.spec.ts"],
+  "transform": {
+    "^.+\\.tsx?$": [
+      "ts-jest",
+      {
+        "tsconfig": "tsconfig.json",
+        "isolatedModules": true
+      }
+    ]
+  },
+  "transformIgnorePatterns": ["/node_modules/"],
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1"
+  }
+}

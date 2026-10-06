@@ -1,0 +1,85 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "!.next/dev/**",
+        "dist/**"
+      ],
+      "env": [
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "NEXT_PUBLIC_API_URL",
+        "DEV_SIMULATOR_ENABLED",
+        "DEV_SIMULATOR_APP_SECRET",
+        "DEV_SIMULATOR_PHONE_NUMBER_ID",
+        "NEXT_PUBLIC_ONBOARDING_EMAIL",
+        "NEXT_PUBLIC_FACEBOOK_APP_ID",
+        "NEXT_PUBLIC_META_EMBEDDED_SIGNUP_CONFIG_ID",
+        "NEXT_PUBLIC_FACEBOOK_LOGIN_CONFIG_ID",
+        "NEXT_PUBLIC_META_GRAPH_VERSION",
+        "E2E_BASE_URL",
+        "E2E_EMAIL",
+        "E2E_PASSWORD",
+        "E2E_NO_SERVER"
+      ]
+    },
+    "lint": {
+      "dependsOn": [
+        "^lint"
+      ],
+      "env": [
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "NEXT_PUBLIC_API_URL",
+        "DEV_SIMULATOR_ENABLED",
+        "DEV_SIMULATOR_APP_SECRET",
+        "DEV_SIMULATOR_PHONE_NUMBER_ID",
+        "NEXT_PUBLIC_ONBOARDING_EMAIL",
+        "E2E_BASE_URL",
+        "E2E_EMAIL",
+        "E2E_PASSWORD",
+        "E2E_NO_SERVER"
+      ]
+    },
+    "check-types": {
+      "dependsOn": [
+        "^check-types"
+      ]
+    },
+    "dev": {
+      "dependsOn": [
+        "^build"
+      ],
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [],
+      "env": [
+        "NEXT_PUBLIC_ONBOARDING_EMAIL",
+        "E2E_BASE_URL",
+        "E2E_EMAIL",
+        "E2E_PASSWORD",
+        "E2E_NO_SERVER"
+      ]
+    }
+  },
+  "globalEnv": [
+    "CI",
+    "NODE_ENV"
+  ]
+}

@@ -1,0 +1,140 @@
+[
+  {
+    "question": "Hi, the air fryer I ordered (tracking AWB-C-9001) arrived with a cracked lid, this is unacceptable.",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — damaged item, annoyed tone; complaint label + ticket, never a silent resolve"
+  },
+  {
+    "question": "مرحبا، القلاية الهوائية اللي طلبتها وصلت وفيها كسر بالغطاء.",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Khaleeji — damaged item, calm tone; must still classify as a complaint, not merely a confidence escalation"
+  },
+  {
+    "question": "hala, al blender lly tlabta wasal ma3ah scratch w crack bel jism, sh at9dar tsawi?",
+    "expect": "escalate",
+    "customerIndex": 1,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Arabizi — damaged item"
+  },
+  {
+    "question": "I ordered the Blender Pro but what arrived in the box is a kettle instead, that's not what I paid for.",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — wrong item shipped"
+  },
+  {
+    "question": "طلبت الخلاط بس وصلني غلاية بدل منه، هذا خطأ بالطلب.",
+    "expect": "escalate",
+    "customerIndex": 1,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Khaleeji — wrong item shipped"
+  },
+  {
+    "question": "You sent me the WRONG item completely, I paid for a blender and got a kettle, fix this right now.",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — wrong item, angry tone"
+  },
+  {
+    "question": "طلبيتي رقم AWB-C-9004 متأخرة كثير عن الموعد المتوقع، ليش صارت هالمدة؟",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Khaleeji — late delivery, order still out_for_delivery"
+  },
+  {
+    "question": "This is the second time your courier is late, I needed this air fryer for a family event and it's still not here.",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — late delivery, frustrated tone, real-world consequence"
+  },
+  {
+    "question": "بعد ما توصل شحنتي؟ كانت لازم توصل قبل يومين ولين الحين ماوصلت.",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Khaleeji — late delivery, calm tone; customer 0 owns the only late shipment (AWB-C-9004)"
+  },
+  {
+    "question": "I want a full refund for the Blender Pro, it stopped working after two days of normal use.",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "mustNotContain": ["your refund has been processed", "refund approved", "100% refund guaranteed"],
+    "note": "EN — refund demand; agent must hand off, never confirm or promise a refund itself"
+  },
+  {
+    "question": "أبي أسترجع فلوسي كاملة، الخلاط اللي طلبته وصل ومكسور من داخل ومارضي يشتغل.",
+    "expect": "escalate",
+    "customerIndex": 1,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "mustNotContain": ["تم استرجاع المبلغ", "استرداد كامل مضمون"],
+    "note": "Khaleeji — refund demand for a defective item"
+  },
+  {
+    "question": "ana abi refund lel air fryer, weslat kasrana min al box, mub radi asawi shay thani ma3 hal item.",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "mustNotContain": ["refund approved", "money back guaranteed"],
+    "note": "Arabizi — refund demand for a damaged item"
+  },
+  {
+    "question": "This is absolutely ridiculous, my kettle arrived broken and nobody has replied to me for days, I am furious.",
+    "expect": "escalate",
+    "customerIndex": 1,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — angry tone; the reply's register should match urgency. Reason widened cycle 3 to CUSTOMER_COMPLAINT or CUSTOMER_DISTRESS: the customer is both furious AND reporting a broken purchase, v12 gives no priority between the two labels (2 of 3 runs chose DISTRESS), and the handoff itself is what the case tests"
+  },
+  {
+    "question": "لاحظت إن الخلاط اللي وصلني فيه عيب بسيط بالسلك، بس مو مشكلة كبيرة، بس حبيت أخبركم أول بأول.",
+    "expect": "escalate",
+    "customerIndex": 1,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Khaleeji — mild, calm complaint; CONTROL for tone matching — must classify as a complaint and hand off calmly, not escalate as distress or fail to escalate at all"
+  },
+  {
+    "question": "wallah ana za3lan jiddan, al item lly wasalni kasran w ma7ad radd 3alay, hatha mub ma36ool abadan.",
+    "expect": "escalate",
+    "customerIndex": 0,
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Arabizi — angry tone, damaged item plus unanswered follow-up"
+  }
+]

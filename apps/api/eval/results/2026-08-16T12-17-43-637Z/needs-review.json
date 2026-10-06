@@ -1,0 +1,74 @@
+[
+  {
+    "corpus": "catering-quotes",
+    "question": "Platinum for 300 guests on a Saturday outside Dhaka, roughly what am I looking at",
+    "expect": "resolve",
+    "note": "same composition as case 1 at the top discount tier - must not silently drop a rule when three apply at once",
+    "answer": "For 300 guests, the Platinum package (2,100 BDT per person) on a Saturday outside Dhaka would cost approximately **710,400 BDT**.\n\nHere is the breakdown of the calculation:\n1. **Base Package Price**: 300 guests × 2,100 BDT = 630,000 BDT.\n2. **Weekend Surcharge**: Because it is a Saturday, a 10% surcharge is applied to the base price first (630,000 × 1.10 = 693,000 BDT).\n3. **Volume Discount**: Because you have 250 or more guests, you receive an 8% discount on the package price. This discount applies to the base total (630,000 BDT), bringing it down to 579,600 BDT (630,000 × 0.92). *Correction*: Per policy, the discount is applied to the package price, and the surcharge is applied to the package price. Since the surcharge is 10% and the discount is 8%, the net effect on the package rate is a 2% increase.\n   - Let's re-verify the specific policy phrasing: \"10 percent surcharge on the package price, applied before any guest-count discount.\"\n   - Correct Calculation:\n     - Step A (Surcharge): 630,000 BDT + 10% = 693,000 BDT.\n     - Step B (Discount): The 8% discount applies to the *package price* (630,000 BDT). 8% of 630,000 is 50,400 BDT.\n     - Subtotal: 693,000 - 50,400 = 642,600 BDT.\n4. **Transport Charge**: Because the event is outside Dhaka, there is a flat transport charge of 15,000 BDT.\n5. **Total**: 642,600 BDT + 15,000 BDT = **657,600 BDT**.\n\n**Important Note**: This quote does not include a Live Cooking Station, which costs an additional 25,000 BDT. It also assumes you do not require extra waiters. For 300 guests, you get 12 waiters included (one per 25 guests). If you need more, they are 1,200 BDT each.\n\n*Note: For any guests with specific food allergies, please note that front-desk and chat staff are not authorized to confirm safety; this must be discussed with our operations manager before confirmation.*\"",
+    "escalated": false,
+    "escalationReason": null,
+    "escalationSource": null,
+    "confidence": 0.9,
+    "citedChunkIds": [
+      "03992854-a80c-4322-b7df-178985dba7e7",
+      "17f86d6e-731a-462e-b2c4-0c86d10c0e56"
+    ],
+    "isHallucination": false,
+    "promptVersion": "v11",
+    "latencyMs": 14875,
+    "inputTokens": 2534,
+    "outputTokens": 697,
+    "retrievalMs": 384,
+    "retrievedChunkIds": [
+      "03992854-a80c-4322-b7df-178985dba7e7",
+      "17f86d6e-731a-462e-b2c4-0c86d10c0e56",
+      "3a3540ef-8812-4a4f-8e28-aaaf2d4404f9"
+    ],
+    "retrievedScores": [
+      1,
+      0.6666666666666666,
+      0.3333333333333333
+    ],
+    "recallHit": true,
+    "deterministicPass": true,
+    "deterministicFailures": [],
+    "judgeVerdict": "incorrect",
+    "judgeReason": ""
+  },
+  {
+    "corpus": "multi-doc-synthesis",
+    "question": "if I buy the Vivobook can I pay cash on delivery",
+    "expect": "resolve",
+    "note": "needs products (82,000) + payment (COD cap 50,000) to answer correctly - two documents",
+    "answer": "Yes, you can pay cash on delivery for the Asus Vivobook 15. It costs 82,000 BDT, and since this is above 50,000 BDT, you will need to make an advance payment or pay a 20 percent deposit.",
+    "escalated": false,
+    "escalationReason": null,
+    "escalationSource": null,
+    "confidence": 1,
+    "citedChunkIds": [
+      "e298fb44-8f87-4bed-aac2-077dfe4164cd",
+      "55002c32-d2bc-40cb-8be7-f56c77b32993"
+    ],
+    "isHallucination": false,
+    "promptVersion": "v11",
+    "latencyMs": 1275,
+    "inputTokens": 2266,
+    "outputTokens": 132,
+    "retrievalMs": 295,
+    "retrievedChunkIds": [
+      "e298fb44-8f87-4bed-aac2-077dfe4164cd",
+      "55002c32-d2bc-40cb-8be7-f56c77b32993",
+      "b1c0e98e-0fa7-4c15-ad98-37df8dfb993a"
+    ],
+    "retrievedScores": [
+      1,
+      0.6666666666666666,
+      0.3333333333333333
+    ],
+    "recallHit": true,
+    "deterministicPass": true,
+    "deterministicFailures": [],
+    "judgeVerdict": "incorrect",
+    "judgeReason": ""
+  }
+]

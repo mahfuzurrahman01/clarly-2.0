@@ -1,0 +1,26 @@
+[
+  {
+    "question": "what time do you open",
+    "expect": "resolve",
+    "mustContain": ["10"],
+    "note": "tiny KB - does a 4-fact corpus over-escalate"
+  },
+  {
+    "question": "are you open on friday",
+    "expect": "resolve",
+    "mustContain": ["3"],
+    "note": "exception day"
+  },
+  {
+    "question": "where are you located",
+    "expect": "resolve",
+    "mustContain": ["Dhanmondi"],
+    "note": ""
+  },
+  {
+    "question": "are you open on Eid",
+    "expect": "resolve",
+    "mustContain": ["closed"],
+    "note": "negative fact"
+  }
+]

@@ -1,0 +1,40 @@
+-- A8: persist AgentTurnResult.escalationDetail on agent_runs.
+--
+-- `escalation_reason` (D13) is the PRODUCT-level answer to "why did a human
+-- have to take over" — it is what tickets, the kanban console and A9's
+-- escalation-mix rollup are written against, and it deliberately has a small,
+-- stable vocabulary. That vocabulary collapses five structurally different
+-- bounded-loop failures (deadline exceeded, no respond call, invalid respond
+-- payload, tool round-trip cap, provider error) into the single value
+-- LLM_ERROR, which is correct for the product and useless for operating the
+-- loop: "we lost 40 turns to LLM_ERROR yesterday" cannot be turned into an
+-- action without knowing whether the deadline, the provider, or the model's
+-- own tool use was at fault.
+--
+-- `escalation_detail` is that second, ENGINEERING-level axis. It is set once,
+-- at the exact loop branch that gave up (AgentRuntime.terminalEscalation()),
+-- carried on the turn result, and written here by the same single
+-- AgentRunService.recordRun() call that writes everything else about the run.
+-- Never inferred downstream, never customer-facing, and never a substitute
+-- for escalation_reason.
+--
+-- Deliberately plain `text` with NO CHECK constraint, matching
+-- `escalation_reason`/`escalation_source` on this same table: the value set is
+-- an application-level union (AgentModule's EscalationDetail, which includes
+-- the open-ended `provider_error:<code>` form), so pinning it in the database
+-- would turn every new provider error code into a migration. Nullable with no
+-- default, because NULL is meaningful and distinct from every detail value: it
+-- means the run never took a forced-escalation branch at all — a normal
+-- answer, a model-initiated `agent_decision` escalation, or a pre-Feature-7
+-- row written before this column existed.
+--
+-- No RLS work is needed: `agent_runs` already has ENABLE + FORCE ROW LEVEL
+-- SECURITY and its `agent_runs_isolation` policy from migrations 0014/0015,
+-- and policies apply to the table, not to individual columns. Note for anyone
+-- backfilling this column later: agent_runs is FORCE RLS, so a plain UPDATE
+-- run from a migration (no `app.tenant_id` GUC set) silently matches ZERO
+-- rows — the exact trap documented at length in migration 0023. There is
+-- nothing to backfill here (the detail was never recorded before now, so
+-- every existing row is honestly NULL), which is why this migration is a bare
+-- ADD COLUMN.
+ALTER TABLE "agent_runs" ADD COLUMN IF NOT EXISTS "escalation_detail" text;

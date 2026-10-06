@@ -1,0 +1,117 @@
+[
+  {
+    "question": "بكم هذا؟",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Khaleeji (Saudi) — basic price question, the most common Gulf retail query"
+  },
+  {
+    "question": "كم سعره؟",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Khaleeji — alternative price phrasing"
+  },
+  {
+    "question": "وين فرعكم؟",
+    "expect": "any",
+    "mustNotContain": [" Riyadh ", " جدة ", " الدمام "],
+    "note": "Khaleeji — store location question; agent must not hallucinate a branch address"
+  },
+  {
+    "question": "كم التوصيل للرياض؟",
+    "expect": "resolve",
+    "mustContain": [["70", "ريال"]],
+    "note": "Khaleeji — delivery fee to Riyadh"
+  },
+  {
+    "question": "شنو المواد اللي منه؟",
+    "expect": "resolve",
+    "mustContain": [["plastic", "PVC", "ABS", "material", "مادة"]],
+    "note": "Khaleeji — product material question; 'شنو' is Gulf for 'what'"
+  },
+  {
+    "question": "فيه ضمان؟",
+    "expect": "resolve",
+    "mustContain": [["1 year", "سنة", "warranty", "ضمان"]],
+    "note": "Khaleeji — warranty question"
+  },
+  {
+    "question": "ساعات الدوام؟",
+    "expect": "resolve",
+    "mustContain": [["10", ":00", "10:00"]],
+    "note": "Khaleeji — opening hours"
+  },
+  {
+    "question": "اقدر ارجعه لو ما عجبني؟",
+    "expect": "resolve",
+    "mustContain": [["7", "seven", "سبعة"]],
+    "note": "Khaleeji — return policy question"
+  },
+  {
+    "question": "دز لي الرابط ابي اشتري",
+    "expect": "any",
+    "note": "Khaleeji — purchase intent with request for link; 'دز' is Gulf for 'send'"
+  },
+  {
+    "question": "عندكم كاش؟ او بس بطاقه؟",
+    "expect": "any",
+    "note": "Khaleeji — payment method question; 'عندكم' = 'do you have'"
+  },
+  {
+    "question": "ممكن اطلب عن طريق الواتساب؟",
+    "expect": "any",
+    "note": "Khaleeji — ordering via WhatsApp question"
+  },
+  {
+    "question": "شنو افضل منتج عندكم؟",
+    "expect": "any",
+    "note": "Khaleeji — product recommendation question; must not hallucinate a specific product"
+  },
+  {
+    "question": "ي comes مع شاحن؟",
+    "expect": "resolve",
+    "mustContain": [["charger", "شاحن", "yes", "نعم"]],
+    "note": "Khaleeji — code-switched Arabic/English, charger inclusion"
+  },
+  {
+    "question": "يناسب الايفون؟",
+    "expect": "resolve",
+    "mustContain": [["iPhone", "ايفون", "yes", "نعم"]],
+    "note": "Khaleeji — iPhone compatibility question"
+  },
+  {
+    "question": "كيف اتبع طلبي؟",
+    "expect": "any",
+    "note": "Khaleeji — order tracking question"
+  },
+  {
+    "question": "ابي اشتري واحد كم سعره",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Khaleeji — purchase intent with price question"
+  },
+  {
+    "question": "اللون مختلف عن الصور",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Khaleeji — color mismatch complaint; must escalate, not try to resolve; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "وصلني مكسور، هذا غلط",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Khaleeji — damaged product complaint; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "من اسبوعين استنى ما وصل",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Khaleeji — delayed delivery complaint; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "ابي فلوسي رجعوهم، هذا مو طلبي",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Khaleeji — wrong order + refund request; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  }
+]

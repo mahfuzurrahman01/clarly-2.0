@@ -1,0 +1,27 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "page-messenger-001",
+      "time": 1788000060,
+      "messaging": [
+        {
+          "sender": { "id": "PSID-100002" },
+          "recipient": { "id": "page-messenger-001" },
+          "timestamp": 1788000060000,
+          "message": {
+            "mid": "mid.messenger002",
+            "attachments": [
+              {
+                "type": "image",
+                "payload": {
+                  "url": "https://lookaside.fbsbx.com/test-image.jpg?token=abc123"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

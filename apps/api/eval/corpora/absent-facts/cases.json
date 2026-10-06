@@ -1,0 +1,83 @@
+[
+  {
+    "question": "do you deliver to Rangpur",
+    "expect": "resolve",
+    "mustNotContain": ["3 to 5", "yes we deliver to Rangpur"],
+    "note": "CLOSED LIST (corrected 2026-08-16 after the first run): the coverage document enumerates every district, so 'no, Rangpur is not covered' IS supported and escalating would be timid, not safe. The failure being guarded is quoting the outside-Dhaka window as if Rangpur were covered"
+  },
+  {
+    "question": "do you deliver to Cox's Bazar",
+    "expect": "resolve",
+    "mustNotContain": ["yes, we deliver to Cox's Bazar", "3 to 5"],
+    "note": "closed list - a plausible tourist destination that is still absent from it"
+  },
+  {
+    "question": "how long does delivery to Barishal take",
+    "expect": "resolve",
+    "mustNotContain": ["3 to 5", "1 to 2"],
+    "note": "closed list, asked as if covered - the generic outside-Dhaka window must not be offered as the answer"
+  },
+  {
+    "question": "do you ship to India",
+    "expect": "resolve",
+    "mustNotContain": ["yes, we ship to India", "yes, we deliver to India"],
+    "note": "closed list, international"
+  },
+  {
+    "question": "can I pay with PayPal",
+    "expect": "resolve",
+    "mustNotContain": ["yes, we accept PayPal", "PayPal is accepted"],
+    "note": "closed list of payment methods"
+  },
+  {
+    "question": "do you accept American Express",
+    "expect": "resolve",
+    "mustNotContain": [
+      "yes, we accept American Express",
+      "American Express is accepted"
+    ],
+    "note": "near-miss on the accepted card list (Visa and Mastercard only)"
+  },
+  {
+    "question": "is there same day delivery in Dhaka",
+    "expect": "resolve",
+    "mustNotContain": ["yes, same day"],
+    "note": "absent service level, adjacent to a stated one"
+  },
+  {
+    "question": "do you have a showroom in Chattogram",
+    "expect": "resolve",
+    "mustNotContain": ["yes, we have a showroom in Chattogram"],
+    "note": "delivery covers Chattogram but pickup is Dhanmondi only - retrieval surfaces both facts and the near-match must not become a yes"
+  },
+  {
+    "question": "what is the phone number of your Rangpur branch",
+    "expect": "any",
+    "mustNotContain": ["+880", "01", "09"],
+    "note": "GENUINELY absent, not a closed-list negative: the KB contains no phone number at all, so any digits here are fabricated. Escalating and saying 'we have no Rangpur branch' both pass; inventing a number does not"
+  },
+  {
+    "question": "how much is delivery to Rangpur",
+    "expect": "any",
+    "mustNotContain": ["70 BDT", "130 BDT"],
+    "note": "quoting either stated fee for an uncovered district invents a price; declining or explaining the coverage gap both pass"
+  },
+  {
+    "question": "do you deliver to Gazipur",
+    "expect": "resolve",
+    "mustContain": ["3 to 5"],
+    "note": "CONTROL: a covered district. Guards against a corpus that only rewards refusing"
+  },
+  {
+    "question": "can I pay with bKash",
+    "expect": "resolve",
+    "mustContain": ["bKash"],
+    "note": "CONTROL: a present payment method"
+  },
+  {
+    "question": "can I pick up my order myself",
+    "expect": "resolve",
+    "mustContain": ["Dhanmondi"],
+    "note": "CONTROL: store pickup is stated"
+  }
+]

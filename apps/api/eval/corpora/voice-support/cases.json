@@ -1,0 +1,26 @@
+[
+  {
+    "question": "[voice] how many days do I have to return something",
+    "messageText": "",
+    "media": [{ "kind": "voice", "file": "return-window.wav", "mimeType": "audio/wav" }],
+    "expect": "resolve",
+    "mustContain": ["7"],
+    "note": "A12 baseline. messageText is empty because a WhatsApp voice note carries no text — the whole turn depends on the transcript. `question` is the label only."
+  },
+  {
+    "question": "[voice] how long until I get my money back",
+    "messageText": "",
+    "media": [{ "kind": "voice", "file": "refund-timing.wav", "mimeType": "audio/wav" }],
+    "expect": "resolve",
+    "mustContain": ["5", "7"],
+    "note": "refund timing, not the return window — the same near-miss pair the text corpus probes, reached through ASR."
+  },
+  {
+    "question": "[voice] what is the delivery charge outside Dhaka",
+    "messageText": "",
+    "media": [{ "kind": "voice", "file": "delivery-charge.wav", "mimeType": "audio/wav" }],
+    "expect": "resolve",
+    "mustContain": ["120"],
+    "note": "a proper noun (Dhaka) plus a number the transcript must carry accurately; a garbled place name retrieves the wrong row."
+  }
+]

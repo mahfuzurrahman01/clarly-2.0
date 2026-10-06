@@ -1,0 +1,332 @@
+[
+  {
+    "turns": [
+      {
+        "question": "how much is this?",
+        "media": [{ "kind": "image", "file": "orbit-v3-vacuum.png", "mimeType": "image/png" }],
+        "expect": "resolve",
+        "mustContain": [["399.00"]],
+        "expectTools": ["lookup_product"]
+      },
+      {
+        "question": "I'll take one, my name is Sara Ahmed, phone +966501110001, address 45 King Fahd Rd, Riyadh",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectToolArgs": { "create_order": { "items": [{ "quantity": 1 }] } },
+        "expectOrder": { "items": [{ "productName": "Orbit V3 Vacuum Cleaner", "quantity": 1 }], "total": "399.00", "currency": "SAR" }
+      },
+      {
+        "question": "where is my order?",
+        "expect": "any",
+        "expectTools": ["track_order"],
+        "mustNotContain": ["delivered", "arrived"]
+      },
+      {
+        "question": "it just arrived but it won't turn on at all, it's defective",
+        "expect": "escalate",
+        "expectEscalationReason": ["CUSTOMER_COMPLAINT"]
+      }
+    ],
+    "customerIndex": 0,
+    "note": "EN — F17 full journey: photo -> price (vision -> lookup_product) -> order -> confirm -> 'where is it?' (track_order, no shipment yet) -> defective-item complaint escalates with CUSTOMER_COMPLAINT"
+  },
+  {
+    "turns": [
+      {
+        "question": "بكم القلاية الهوائية باريق؟",
+        "expect": "resolve",
+        "mustContain": [["289.00"]],
+        "expectTools": ["lookup_product"]
+      },
+      {
+        "question": "أبغى وحدة، اسمي فهد العتيبي، جوالي +966501110002",
+        "expect": "resolve",
+        "expectNoOrder": true,
+        "forbidTools": ["create_order"],
+        "note": "address missing — agent must ask, not invent one"
+      },
+      {
+        "question": "العنوان: شارع الأمير سلطان، جدة",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": { "items": [{ "productName": "Bariq Air Fryer 5.5L", "quantity": 1 }], "total": "289.00", "currency": "SAR" }
+      }
+    ],
+    "customerIndex": 1,
+    "note": "Khaleeji — order builds across three turns as details trickle in; the middle turn must NOT write an order"
+  },
+  {
+    "turns": [
+      {
+        "question": "Is the Bariq Ceramic Cookware Set in stock?",
+        "expect": "resolve",
+        "mustContain": [["low stock", "limited", "few left", "6 "]],
+        "expectTools": ["lookup_product"]
+      },
+      {
+        "question": "I'll order one, Noura Al-Harbi, +966501110003, 12 Tahlia St, Jeddah",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": { "items": [{ "productName": "Bariq Ceramic Cookware Set 10pc", "quantity": 1 }], "total": "349.00", "currency": "SAR" }
+      },
+      {
+        "question": "any update on my order?",
+        "expect": "any",
+        "expectTools": ["track_order"]
+      }
+    ],
+    "customerIndex": 2,
+    "note": "EN — low-stock disclosure then order then a status check against a still-pending order (no shipment yet)"
+  },
+  {
+    "turns": [
+      {
+        "question": "kam si3r al-ghallaya al-kahrabaiyah?",
+        "expect": "resolve",
+        "mustContain": [["79.00"]],
+        "expectTools": ["lookup_product"]
+      },
+      {
+        "question": "abi wahda, ismi Khalid, phone +966501110004, address Al Khobar corniche street",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": { "items": [{ "productName": "Bariq Electric Kettle 1.7L", "quantity": 1 }], "total": "79.00", "currency": "SAR" }
+      }
+    ],
+    "customerIndex": 3,
+    "note": "Arabizi — two-turn price then order"
+  },
+  {
+    "turns": [
+      {
+        "question": "الخلاط بمعدة 6 لتر متوفر الحين؟",
+        "expect": "resolve",
+        "mustContain": [["طلب مسبق", "الطلب المسبق", "pre-order", "pre order", "preorder", "pre_order"]],
+        "expectTools": ["lookup_product"]
+      },
+      {
+        "question": "متى بيوصل إذا طلبته؟",
+        "expect": "any",
+        "expectNoOrder": true,
+        "forbidTools": ["create_order"],
+        "note": "asking about lead time only — not an order yet"
+      },
+      {
+        "question": "خلها بعدين، ما أبيها الحين",
+        "expect": "any",
+        "expectNoOrder": true,
+        "forbidTools": ["create_order"]
+      }
+    ],
+    "customerIndex": 4,
+    "note": "Khaleeji — pre-order item, customer inquires then declines; no order should ever be written"
+  },
+  {
+    "turns": [
+      {
+        "question": "Do you have the Bariq Steam Iron Pro in Rose Gold?",
+        "expect": "resolve",
+        "mustContain": [["out of stock", "not available", "sold out"]],
+        "expectTools": ["lookup_product"]
+      },
+      {
+        "question": "ok give me the white one then, Mona Saeed, +966501110006, 9 Prince Sultan St, Riyadh",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectToolArgs": { "create_order": { "items": [{ "quantity": 1 }] } },
+        "expectOrder": { "items": [{ "productName": "Bariq Steam Iron Pro - White", "quantity": 1 }], "total": "129.00", "currency": "SAR" }
+      }
+    ],
+    "customerIndex": 5,
+    "note": "EN — out-of-stock variant disclosed, customer switches to the in-stock White variant; expectOrder pins the SPECIFIC variant row, not the parent product"
+  },
+  {
+    "turns": [
+      {
+        "question": "أبغى القلاية الهوائية، الاسم سلطان الدوسري، جوال +966501110007، العنوان الرياض حي النرجس",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": { "items": [{ "productName": "Bariq Air Fryer 5.5L", "quantity": 1 }], "total": "289.00", "currency": "SAR" }
+      },
+      {
+        "question": "وين طلبي الحين؟",
+        "expect": "any",
+        "expectTools": ["track_order"]
+      },
+      {
+        "question": "وصلتني القلاية بس فيها خدش وما تشتغل زين، أبغى أستبدلها",
+        "expect": "escalate",
+        "expectEscalationReason": ["CUSTOMER_COMPLAINT"]
+      }
+    ],
+    "customerIndex": 6,
+    "note": "Khaleeji — full chain: order in one turn (all details up front) → track → damaged-item complaint escalates with CUSTOMER_COMPLAINT"
+  },
+  {
+    "turns": [
+      {
+        "question": "I want to order the Bariq Electric Kettle, Ahmed Nasser, +966501110008, 5 Al Salam St, Dammam",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": { "items": [{ "productName": "Bariq Electric Kettle 1.7L", "quantity": 1 }], "total": "79.00", "currency": "SAR" }
+      },
+      {
+        "question": "where's my order",
+        "expect": "any",
+        "expectTools": ["track_order"]
+      },
+      {
+        "question": "this is taking forever, it's so late and I'm really upset, I want a refund right now",
+        "expect": "escalate",
+        "expectEscalationReason": ["CUSTOMER_DISTRESS", "CUSTOMER_COMPLAINT"]
+      }
+    ],
+    "customerIndex": 7,
+    "note": "EN — order → track → angry late-delivery refund demand; either distress or complaint reason passes, tone recognition is what's being tested"
+  },
+  {
+    "turns": [
+      {
+        "question": "abi order al-iron al-bariq, bs khaleeni afakker shwaya awal",
+        "expect": "any",
+        "expectNoOrder": true,
+        "forbidTools": ["create_order"],
+        "note": "intent expressed but hedged, no confirmed details — must not order"
+      },
+      {
+        "question": "la khalas, mub ab8a, cancel it",
+        "expect": "any",
+        "expectNoOrder": true,
+        "forbidTools": ["create_order"]
+      }
+    ],
+    "customerIndex": 8,
+    "note": "Arabizi — customer hedges then cancels before ever confirming; no order row at any point"
+  },
+  {
+    "turns": [
+      {
+        "question": "بكم طقم الأواني وبكم الغلاية الكهربائية؟",
+        "expect": "resolve",
+        "mustContain": ["349.00", "79.00"],
+        "expectTools": ["lookup_product"]
+      },
+      {
+        "question": "أبغى وحدة من كل واحد، الاسم ريم القحطاني، جوال +966501110010، العنوان الرياض حي الملقا",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": {
+          "items": [
+            { "productName": "Bariq Ceramic Cookware Set 10pc", "quantity": 1 },
+            { "productName": "Bariq Electric Kettle 1.7L", "quantity": 1 }
+          ],
+          "total": "428.00",
+          "currency": "SAR"
+        }
+      }
+    ],
+    "customerIndex": 9,
+    "note": "Khaleeji — two products priced in one turn, then a single multi-item order; total 349.00+79.00=428.00"
+  },
+  {
+    "turns": [
+      {
+        "question": "I want 2 Bariq Air Fryers",
+        "expect": "resolve",
+        "expectNoOrder": true,
+        "forbidTools": ["create_order"],
+        "note": "no name/phone/address yet — must ask, not invent"
+      },
+      {
+        "question": "actually make it 3, Layla Fahad, +966501110011, 20 Corniche Rd, Khobar",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectToolArgs": { "create_order": { "items": [{ "quantity": 3 }] } },
+        "expectOrder": { "items": [{ "productName": "Bariq Air Fryer 5.5L", "quantity": 3 }], "total": "867.00", "currency": "SAR" }
+      }
+    ],
+    "customerIndex": 10,
+    "note": "EN — quantity changes from 2 to 3 before any order is placed; the written order must reflect the FINAL quantity only (289.00 x 3 = 867.00)"
+  },
+  {
+    "turns": [
+      {
+        "question": "أبغى غلاية كهربائية، الاسم بندر العنزي، جوال +966501110012، العنوان بريدة",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": { "items": [{ "productName": "Bariq Electric Kettle 1.7L", "quantity": 1 }], "total": "79.00", "currency": "SAR" }
+      },
+      {
+        "question": "متى بيوصل بالضبط؟",
+        "expect": "any",
+        "expectTools": ["track_order"],
+        "mustNotContain": ["غدا", "غداً", "tomorrow"]
+      }
+    ],
+    "customerIndex": 11,
+    "note": "Khaleeji — order then immediately ask for an exact arrival date with no shipment yet; agent must not fabricate a delivery date"
+  },
+  {
+    "turns": [
+      {
+        "question": "I'd like to order the Ceramic Cookware Set, Yara Malik, +966501110013, 3 Prince Mohammed St, Riyadh",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": { "items": [{ "productName": "Bariq Ceramic Cookware Set 10pc", "quantity": 1 }], "total": "349.00", "currency": "SAR" }
+      },
+      {
+        "question": "I just opened the box and it's completely the wrong set, not what I ordered at all",
+        "expect": "escalate",
+        "expectEscalationReason": ["CUSTOMER_COMPLAINT"]
+      }
+    ],
+    "customerIndex": 12,
+    "note": "EN — order then wrong-item complaint escalates as CUSTOMER_COMPLAINT, calm tone (not CUSTOMER_DISTRESS)"
+  },
+  {
+    "turns": [
+      {
+        "question": "hal al-mixer al-kabeer mawjood?",
+        "expect": "resolve",
+        "mustContain": [["pre-order", "pre order", "preorder", "pre_order", "pre-ordered"]],
+        "expectTools": ["lookup_product"]
+      },
+      {
+        "question": "ok abi order minha, ismi Turki, phone +966501110014, address Riyadh Al Yasmin",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": { "items": [{ "productName": "Bariq Stand Mixer 6L", "quantity": 1 }], "total": "599.00", "currency": "SAR" }
+      }
+    ],
+    "customerIndex": 13,
+    "note": "Arabizi — pre-order stock status disclosed, customer orders anyway (create_order does not require in-stock)"
+  },
+  {
+    "turns": [
+      {
+        "question": "بكم مكواة البخار برو؟",
+        "expect": "resolve",
+        "mustContain": [["129.00"]],
+        "expectTools": ["lookup_product"]
+      },
+      {
+        "question": "طيب أبغى وحدة، الاسم عبدالله المطيري، جوال +966501110015، العنوان جدة حي الروضة",
+        "expect": "any",
+        "expectTools": ["create_order"],
+        "expectOrder": { "items": [{ "productName": "Bariq Steam Iron Pro", "quantity": 1 }], "total": "129.00", "currency": "SAR" }
+      },
+      {
+        "question": "وصل طلبي؟",
+        "expect": "any",
+        "expectTools": ["track_order"]
+      },
+      {
+        "question": "وصلتني المكواة بس فيها عطل، ما تسخن",
+        "expect": "escalate",
+        "expectEscalationReason": ["CUSTOMER_COMPLAINT"]
+      }
+    ],
+    "customerIndex": 14,
+    "note": "Khaleeji — the full five-step journey: price → order → track → defective-item complaint"
+  }
+]

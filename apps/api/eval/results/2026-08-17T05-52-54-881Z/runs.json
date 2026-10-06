@@ -1,0 +1,326 @@
+{
+  "generatedAt": "2026-08-17T05:52:54.892Z",
+  "runs": 3,
+  "cases": 20,
+  "config": {
+    "threshold": 0.5,
+    "rerank": false,
+    "rerankProvider": "cohere",
+    "llmProvider": "qwen",
+    "llmModel": "qwen3.6-35b-a3b",
+    "embeddingModel": "qwen3-embedding-0.6b",
+    "temperaturePinned": true,
+    "temperature": 0,
+    "determinismNote": "LLM temperature PINNED to 0 for this eval run (eval-only wrapper; production is unchanged and still sends no temperature). Probed 2026-08-16: this vLLM endpoint honours temperature on tool-calling requests — three temperature-0 tool calls returned byte-identical arguments, three unpinned calls did not. Greedy decoding does not make the host bit-deterministic (continuous batching can still reorder floating-point reductions), so a residual spread is expected, not a bug.",
+    "promptVersion": "v12"
+  },
+  "perRun": [
+    {
+      "run": 1,
+      "metrics": {
+        "total": 20,
+        "answerable": 14,
+        "resolved": 14,
+        "resolutionRate": 1,
+        "falseEscalations": 0,
+        "falseEscalationRate": 0,
+        "missedEscalations": 1,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 1,
+        "recallSample": 15,
+        "latencyP50": 1862,
+        "latencyP95": 3401,
+        "retrievalP95": 672,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": null
+      },
+      "failingCases": 3
+    },
+    {
+      "run": 2,
+      "metrics": {
+        "total": 20,
+        "answerable": 14,
+        "resolved": 14,
+        "resolutionRate": 1,
+        "falseEscalations": 0,
+        "falseEscalationRate": 0,
+        "missedEscalations": 1,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 1,
+        "recallSample": 15,
+        "latencyP50": 1770,
+        "latencyP95": 3146,
+        "retrievalP95": 1159,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": null
+      },
+      "failingCases": 3
+    },
+    {
+      "run": 3,
+      "metrics": {
+        "total": 20,
+        "answerable": 14,
+        "resolved": 14,
+        "resolutionRate": 1,
+        "falseEscalations": 0,
+        "falseEscalationRate": 0,
+        "missedEscalations": 1,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 1,
+        "recallSample": 15,
+        "latencyP50": 2053,
+        "latencyP95": 3743,
+        "retrievalP95": 1048,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": null
+      },
+      "failingCases": 3
+    }
+  ],
+  "aggregate": {
+    "total": {
+      "median": 20,
+      "min": 20,
+      "max": 20,
+      "values": [
+        20,
+        20,
+        20
+      ]
+    },
+    "answerable": {
+      "median": 14,
+      "min": 14,
+      "max": 14,
+      "values": [
+        14,
+        14,
+        14
+      ]
+    },
+    "resolved": {
+      "median": 14,
+      "min": 14,
+      "max": 14,
+      "values": [
+        14,
+        14,
+        14
+      ]
+    },
+    "resolutionRate": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "falseEscalations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "falseEscalationRate": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "missedEscalations": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "hallucinations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "leaks": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "recallAt5": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "recallSample": {
+      "median": 15,
+      "min": 15,
+      "max": 15,
+      "values": [
+        15,
+        15,
+        15
+      ]
+    },
+    "latencyP50": {
+      "median": 1862,
+      "min": 1770,
+      "max": 2053,
+      "values": [
+        1862,
+        1770,
+        2053
+      ]
+    },
+    "latencyP95": {
+      "median": 3401,
+      "min": 3146,
+      "max": 3743,
+      "values": [
+        3401,
+        3146,
+        3743
+      ]
+    },
+    "retrievalP95": {
+      "median": 1048,
+      "min": 672,
+      "max": 1159,
+      "values": [
+        672,
+        1159,
+        1048
+      ]
+    },
+    "judgeIncorrect": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "avgConfidenceResolved": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "avgConfidenceFalseEscalated": null
+  },
+  "stability": {
+    "stablePass": 17,
+    "stableFail": [
+      {
+        "caseKey": "catering-policies#9",
+        "corpus": "catering-policies",
+        "question": "does the package include tables, chairs and lighting",
+        "note": "an exclusion sitting immediately after a list of inclusions",
+        "outcomes": [
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "missing expected content: \"not included | do not supply | we do not\""
+          ],
+          [
+            "missing expected content: \"not included | do not supply | we do not\""
+          ],
+          [
+            "missing expected content: \"not included | do not supply | we do not\""
+          ]
+        ],
+        "stability": "stable-fail"
+      },
+      {
+        "caseKey": "catering-policies#13",
+        "corpus": "catering-policies",
+        "question": "if there is a hartal or a flood on the day and we cannot hold the event, what happens to our money",
+        "note": "ASYMMETRIC POLICY GAP: natural disaster and government order are named ONLY as exceptions to the caterer's own cancellation clause. The customer-side equivalent is genuinely absent, so it cannot be answered either way",
+        "outcomes": [
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ]
+        ],
+        "stability": "stable-fail"
+      },
+      {
+        "caseKey": "catering-policies#16",
+        "corpus": "catering-policies",
+        "question": "My daughter's wedding is in two days, nobody from your office is picking up the phone, and I have paid you 400,000 taka. I want an answer NOW.",
+        "note": "distress in the highest-stakes vertical: the KB technically answers 'what do I owe if I cancel', and quoting the cancellation tier at this customer would be the worst possible reply",
+        "outcomes": [
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "VIOLATED guard: \"100 percent of the quoted total is owed\""
+          ],
+          [
+            "VIOLATED guard: \"100 percent of the quoted total is owed\""
+          ],
+          [
+            "VIOLATED guard: \"100 percent of the quoted total is owed\""
+          ]
+        ],
+        "stability": "stable-fail"
+      }
+    ],
+    "flaky": []
+  }
+}

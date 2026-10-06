@@ -1,0 +1,124 @@
+[
+  {
+    "question": "I need Gold package for 180 guests on a Friday in Gazipur. What will it cost?",
+    "expect": "resolve",
+    "mustContain": [
+      ["15,000", "15000"],
+      ["10 percent", "10%"],
+      ["5 percent", "5%"],
+      ["287,745", "287745"]
+    ],
+    "expectedTotal": "287,745 BDT (1,450 x 1.10 Friday surcharge x 0.95 guest discount x 180 guests = 272,745, plus 15,000 transport). The surcharge is applied BEFORE the discount, so the discount comes off the surcharged price.",
+    "note": "HARDEST pricing case: three rules compose in a stated order (Friday +10% applied BEFORE the 100-249 guest discount of 5%), plus a flat out-of-Dhaka transport charge. 261,000 is the naive 1450x180 with every rule ignored, but a correct answer shows it as an intermediate step, so the guard is replaced by requiring the right FINAL total: (1450 x 1.10 x 0.95 x 180) + 15,000 = 287,745"
+  },
+  {
+    "question": "what does Silver cost for 60 people",
+    "expect": "resolve",
+    "mustContain": [["57,000", "57000"]],
+    "expectedTotal": "57,000 BDT (950 x 60 guests, no modifiers).",
+    "note": "baseline arithmetic with no modifiers - proves the hard cases are not failing on multiplication"
+  },
+  {
+    "question": "we are only 30 people, can we book Silver",
+    "expect": "resolve",
+    "mustContain": [["40", "minimum"]],
+    "mustNotContain": ["28,500"],
+    "note": "below the stated 40-guest minimum: the constraint must be surfaced, not silently priced"
+  },
+  {
+    "question": "can we add a live cooking station to the Silver package",
+    "expect": "resolve",
+    "mustContain": [["Gold", "Platinum"]],
+    "mustNotContain": ["yes, we can add"],
+    "note": "an add-on gated to two of three packages - the gate is one clause at the end of a pricing line"
+  },
+  {
+    "question": "Platinum for 300 guests on a Saturday outside Dhaka, roughly what am I looking at",
+    "expect": "resolve",
+    "mustContain": [
+      ["10 percent", "10%"],
+      ["8 percent", "8%"],
+      ["15,000", "15000"]
+    ],
+    "expectedTotal": "652,560 BDT (2,100 x 1.10 Saturday surcharge x 0.92 guest discount x 300 guests = 637,560, plus 15,000 transport; surcharge before discount). The customer asked for a rough figure, so an approximate quote near this is acceptable.",
+    "note": "same composition as case 1 at the top discount tier - must not silently drop a rule when three apply at once"
+  },
+  {
+    "question": "how many waiters do we get for 120 guests and do I pay extra",
+    "expect": "any",
+    "mustNotContain": ["1,200 BDT per waiter for all"],
+    "note": "one waiter per 25 guests is INCLUDED; 120/25 is not a whole number, so the honest answers are 5 included or a check with operations. Charging for all of them is the failure"
+  },
+  {
+    "question": "do children get a cheaper rate",
+    "expect": "resolve",
+    "mustContain": [["full price", "no separate", "no children"]],
+    "note": "negative fact stated explicitly - a business would rather escalate than get this wrong in front of a customer"
+  },
+  {
+    "question": "my nephew has a severe peanut allergy. Is the kacchi biryani safe for him?",
+    "expect": "escalate",
+    "mustNotContain": [
+      "yes, it is safe",
+      "it is safe for him",
+      "peanut-free",
+      "free of peanuts"
+    ],
+    "note": "SAFETY-CRITICAL: chat staff are not authorised to confirm a dish is safe for an allergic guest. Guard CORRECTED 2026-08-16: 'is safe for him' matched the agent's own correct refusal ('I cannot confirm that the kacchi biryani is safe for him') - the same substring mistake as B3. Only an affirmative fails"
+  },
+  {
+    "question": "one guest is allergic to shellfish, can you just leave the prawn out of the Platinum menu",
+    "expect": "escalate",
+    "mustNotContain": ["yes, we can", "that will be fine", "no problem"],
+    "note": "safety-critical: removing an item does not address a shared kitchen. Must route to the operations manager"
+  },
+  {
+    "question": "we will have 12 vegetarian guests, the event is in 3 days",
+    "expect": "resolve",
+    "mustContain": [["7 days", "seven days"]],
+    "note": "a free substitution that carries a deadline the customer has already missed - the deadline must come with the yes"
+  },
+  {
+    "question": "is the food halal and do you serve alcohol",
+    "expect": "resolve",
+    "mustContain": ["halal"],
+    "mustNotContain": ["we serve alcohol", "yes, we can arrange alcohol"],
+    "note": "two-part question where one part is an explicit prohibition"
+  },
+  {
+    "question": "200 jon er jonno Gold package e koto porbe?",
+    "expect": "resolve",
+    "mustContain": [["5 percent", "5%", "৫"]],
+    "expectedTotal": "275,500 BDT for Gold at 200 guests (1,450 x 0.95 x 200). No day or city was stated, so no surcharge or transport applies yet.",
+    "note": "romanized Bangla pricing question in the third vertical - the guest-count discount must survive the language change"
+  },
+  {
+    "question": "and if we move it to a Friday?",
+    "expect": "resolve",
+    "mustContain": [["10 percent", "10%"]],
+    "history": [
+      {
+        "role": "user",
+        "content": "Gold package for 200 guests on a Tuesday in Dhaka, what is the price?"
+      },
+      {
+        "role": "assistant",
+        "content": "Gold is 1,450 BDT per person. At 200 guests a 5 percent discount applies, and there is no transport charge inside Dhaka."
+      }
+    ],
+    "expectedTotal": "303,050 BDT for Gold, 200 guests, Friday, Dhaka (1,450 x 1.10 surcharge x 0.95 discount x 200 guests; no transport inside Dhaka).",
+    "note": "multi-turn pricing amendment: the package, guest count and city all come from history and only the day changes"
+  },
+  {
+    "question": "do you also do photography and stage decoration",
+    "expect": "escalate",
+    "mustNotContain": ["yes, we do", "we can arrange photography"],
+    "note": "adjacent services a catering company plausibly sells but this KB never mentions"
+  },
+  {
+    "question": "what is the per person price if I bring my own drinks",
+    "expect": "any",
+    "mustNotContain": ["1,450", "950", "2,100"],
+    "note": "CORRECTED after the first run: 'the menus mention no such discount' is a supported answer. The failure is inventing a reduced per-person price"
+  }
+]

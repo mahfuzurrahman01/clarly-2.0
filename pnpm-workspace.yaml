@@ -1,0 +1,22 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+allowBuilds:
+  '@scarf/scarf': false
+  '@sentry/cli': false
+  esbuild: false
+  msgpackr-extract: false
+  unrs-resolver: false
+
+# Build scripts we deliberately don't run on install. sharp/unrs-resolver ship
+# prebuilt binaries; the rest are optional native optimizations Next/turbo pull in.
+# @sentry/cli's postinstall only fetches the source-map upload binary — re-allow
+# it once NEXT_PUBLIC_SENTRY_DSN + SENTRY_AUTH_TOKEN are set in production.
+ignoredBuiltDependencies:
+  - "@scarf/scarf"
+  - "@sentry/cli"
+  - esbuild
+  - msgpackr-extract
+  - sharp
+  - unrs-resolver

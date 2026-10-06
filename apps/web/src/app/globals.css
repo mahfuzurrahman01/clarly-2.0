@@ -1,0 +1,308 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--app-font-sans);
+  --font-mono: var(--app-font-mono);
+  --font-display: var(--app-font-display);
+  --font-heading: var(--app-font-display);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-lime: var(--lime);
+  --color-lime-foreground: var(--lime-foreground);
+  --color-lime-soft: var(--lime-soft);
+  --color-lime-ring: var(--lime-ring);
+  --color-lime-text: var(--lime-text);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-hairline: var(--border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Type stacks. Raw faces come from next/font in app/layout.tsx. */
+  --app-font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --app-font-display: var(--font-fraunces), Georgia, serif;
+  --app-font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Night — the dark storytelling surface (landing night scene, principle
+     band, featured plan). A scene, not a theme: identical in light and dark. */
+  --night: oklch(0.14 0.014 255);
+  --night-2: oklch(0.2 0.018 255);
+  --night-3: oklch(0.27 0.018 255);
+  --night-foreground: oklch(0.96 0.004 95);
+  --night-muted: oklch(0.7 0.014 255);
+  --night-line: oklch(1 0 0 / 0.11);
+  --night-glass: oklch(1 0 0 / 0.08);
+
+  /* Warm paper + near-black ink. Gray is used like ink, not spread evenly. */
+  --paper: oklch(0.986 0.003 95);
+  --ink: oklch(0.15 0 0);
+  /* Muted, desaturated WhatsApp-adjacent green — the single signal colour. */
+  --signal: oklch(0.36 0.03 158);
+  --signal-foreground: oklch(0.985 0.003 95);
+  /* Lemon-lime accent — the new energy colour for primary actions + glow. */
+  --lime: oklch(0.9 0.19 118);
+  --lime-foreground: oklch(0.28 0.06 130);
+  --lime-soft: oklch(0.95 0.09 116);
+  --lime-ring: oklch(0.82 0.17 118);
+  /* Readable lime for TEXT on paper — bright lime is too pale to read. */
+  --lime-text: oklch(0.62 0.15 128);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(0.995 0.003 95);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.995 0.003 95);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: oklch(0.965 0.004 95);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.965 0.004 95);
+  --muted-foreground: oklch(0.53 0.006 95);
+  --accent: oklch(0.965 0.004 95);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.9 0.004 95);
+  --input: oklch(0.9 0.004 95);
+  --ring: var(--ink);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* Arabic: Arabic faces first; Latin faces stay in the stack for brand names,
+   numbers and code that appear inside Arabic text. */
+:root:lang(ar) {
+  --app-font-sans: var(--font-plex-arabic), var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --app-font-display: var(--font-naskh-arabic), var(--font-fraunces), serif;
+  --app-font-mono: var(--font-jetbrains), var(--font-plex-arabic), ui-monospace, monospace;
+}
+
+.dark {
+  --lime: oklch(0.88 0.19 118);
+  --lime-foreground: oklch(0.24 0.06 130);
+  --lime-soft: oklch(0.32 0.08 120);
+  --lime-ring: oklch(0.78 0.16 118);
+  --lime-text: oklch(0.84 0.17 120);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01";
+  }
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* Everything is sized in rem, so scaling the root scales the whole UI —
+     sidebar, type, spacing, max-widths — together. Laptops (<1536px) stay at
+     the tuned 16px; larger panels step up so a 25"+ monitor reads at a
+     comfortable size at 100% zoom instead of needing browser zoom. */
+  @media (min-width: 1536px) {
+    html {
+      font-size: 18px;
+    }
+  }
+  @media (min-width: 1920px) {
+    html {
+      font-size: 20px;
+    }
+  }
+  @media (min-width: 2560px) {
+    html {
+      font-size: 22px;
+    }
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--lime) 40%, transparent);
+    color: var(--foreground);
+  }
+}
+
+@layer components {
+  /* Editorial display face: tight, optical-size tuned Fraunces. */
+  .font-display {
+    font-family: var(--app-font-display);
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+  }
+  /* Tiny uppercase mono eyebrow — the "designed, not generated" detail. */
+  .eyebrow {
+    font-family: var(--app-font-mono);
+    font-size: 0.6875rem;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+}
+
+@layer utilities {
+  /* Faint structured dot grid — echoes "knowledge base" without being literal. */
+  .bg-dot-grid {
+    background-image: radial-gradient(
+      var(--border) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+  }
+  /* Barely-there fractal grain for tactility over the paper background. */
+  .bg-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* Radial fade mask — lets a pattern dissolve toward the edges. */
+  .mask-radial-fade {
+    -webkit-mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 40%,
+      #000 40%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 40%,
+      #000 40%,
+      transparent 100%
+    );
+  }
+}
+/* ---------------------------------------------------------------------------
+   Arabic typography. Unlayered on purpose so it wins over tracking utilities.
+   Arabic is cursive: any letter-spacing pulls joined letters apart, so tracking
+   is zeroed for Arabic text everywhere (eyebrows, tracking-tight headings).
+   Uppercase eyebrows have no Arabic equivalent, so they get a readable size
+   instead. Arabic display type needs more line-height than Fraunces' tight
+   leading, and has no true italic: emphasis stays upright.
+   --------------------------------------------------------------------------- */
+:lang(ar) {
+  letter-spacing: 0 !important;
+}
+.eyebrow:lang(ar) {
+  font-size: 0.8125rem;
+  line-height: 1.3;
+}
+.font-display:lang(ar) {
+  line-height: 1.35;
+}
+:lang(ar) em,
+:lang(ar) .italic {
+  font-style: normal;
+}
+
+/* ---------------------------------------------------------------------------
+   Marketing header tone. Pages with a dark "night" (or always-light "paper")
+   surface set html[data-header-tone] while it sits under the header; the header
+   re-points its own tokens so every utility inside it follows, with no
+   per-element dark variants.
+   --------------------------------------------------------------------------- */
+[data-slot="marketing-header"] {
+  transition:
+    background-color 0.4s,
+    border-color 0.4s,
+    color 0.4s;
+}
+html[data-header-tone="night"] [data-slot="marketing-header"] {
+  --background: var(--night);
+  --foreground: var(--night-foreground);
+  --muted: var(--night-glass);
+  --muted-foreground: var(--night-muted);
+  --border: var(--night-line);
+  --input: var(--night-line);
+  color: var(--night-foreground);
+}
+/* The landing hero's dawn is paper in either theme, so the header goes light over it. */
+html[data-header-tone="paper"] [data-slot="marketing-header"] {
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --muted: oklch(0.965 0.004 95);
+  --muted-foreground: oklch(0.53 0.006 95);
+  --border: oklch(0.9 0.004 95);
+  --input: oklch(0.9 0.004 95);
+  color: var(--ink);
+}

@@ -1,0 +1,81 @@
+[
+  {
+    "question": "Galaxy A55 er dam koto?",
+    "expect": "resolve",
+    "mustContain": [["47,999", "৪৭,৯৯৯"]],
+    "note": "romanized Bangla - the single most common WhatsApp input form for a Bangladeshi tenant"
+  },
+  {
+    "question": "গ্যালাক্সি A55 এর দাম কত?",
+    "expect": "resolve",
+    "mustContain": [["47,999", "৪৭,৯৯৯"]],
+    "note": "Bangla script - price must survive the script change, in either numeral system"
+  },
+  {
+    "question": "apnara koyta theke khola thaken?",
+    "expect": "resolve",
+    "mustContain": [["10", "১০"]],
+    "note": "romanized Bangla, opening hours"
+  },
+  {
+    "question": "আপনারা শুক্রবার খোলা থাকেন?",
+    "expect": "resolve",
+    "mustContain": [["3", ":00", "৩"]],
+    "note": "Bangla script, Friday exception"
+  },
+  {
+    "question": "Dhaka te delivery charge koto?",
+    "expect": "resolve",
+    "mustContain": [["70", "৭০"]],
+    "note": "romanized Bangla, delivery fee"
+  },
+  {
+    "question": "phone er warranty koto din?",
+    "expect": "resolve",
+    "mustContain": [["1 year", "১ বছর", "one year"]],
+    "note": "romanized Bangla, warranty - the KB states this for phones"
+  },
+  {
+    "question": "headphone er warranty koto din?",
+    "expect": "any",
+    "mustNotContain": ["হেডফোনের ১ বছর", "headphone er 1 bochor"],
+    "note": "CORRECTED after the first run: the agent stated the phone-only warranty and offered a human, which is correct. The failure being guarded is asserting a 1-year warranty FOR the headphones"
+  },
+  {
+    "question": "ami return korte chai, koto din er moddhe korte hobe?",
+    "expect": "resolve",
+    "mustContain": [["7", "৭"]],
+    "note": "romanized Bangla, returns window"
+  },
+  {
+    "question": "Sony headphone ta koto? and do you deliver in Dhaka?",
+    "expect": "resolve",
+    "mustContain": [
+      ["12,900", "১২,৯০০"],
+      ["1 to 2", "1-2", "১"]
+    ],
+    "note": "code-switched single message with two questions - both must be answered"
+  },
+  {
+    "question": "দাম কত এই হেডফোনের? price please",
+    "expect": "resolve",
+    "mustContain": [["12,900", "১২,৯০০"]],
+    "history": [
+      {
+        "role": "user",
+        "content": "Sony WH-CH720N"
+      },
+      {
+        "role": "assistant",
+        "content": "The Sony WH-CH720N wireless headphones are in stock."
+      }
+    ],
+    "note": "mixed script + multi-turn, the realistic worst case"
+  },
+  {
+    "question": "apnader shop kothay? Rangpur e deliver koren?",
+    "expect": "any",
+    "mustNotContain": ["Rangpur e deliver kori", "yes, we deliver to Rangpur"],
+    "note": "romanized Bangla asking one answerable and one absent fact in one message - the absent half must not be invented"
+  }
+]

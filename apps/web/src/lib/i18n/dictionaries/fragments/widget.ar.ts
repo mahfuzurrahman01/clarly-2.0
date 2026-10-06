@@ -1,0 +1,50 @@
+import type { widgetEn } from "./widget.en";
+
+/** Arabic side of the `widget` namespace — see ./widget.en.ts. */
+export const widgetAr: typeof widgetEn = {
+  eyebrow: "القنوات",
+  title: "الدردشة على موقعك",
+  description:
+    "زر دردشة على موقعك الإلكتروني. يحصل الزوار على نفس الوكيل ونفس القواعد ونفس التحويل إلى فريقك كما في واتساب.",
+  adminOnly: "يمكن للمسؤول فقط تغيير إعدادات الدردشة على الموقع.",
+  statusLabel: "الدردشة على الموقع",
+  on: "تعمل",
+  off: "متوقفة",
+  statusHint: "عند إيقافها لا يظهر الزر على أي موقع.",
+  originsLabel: "المواقع المسموح لها بعرضها",
+  originsHint:
+    "العنوان الكامل لكل موقع، مثل https://shop.example.com. ترفض الدردشة العمل في أي مكان آخر، فنسخ الكود إلى موقع آخر لا يفعل شيئًا.",
+  originPlaceholder: "https://shop.example.com",
+  addOrigin: "إضافة",
+  removeOrigin: "حذف",
+  invalidOrigin: "استخدم عنوان https الكامل، مثل https://shop.example.com.",
+  noOrigins: "لا توجد مواقع بعد. أضف عنوان الموقع الذي ستضع فيه الكود.",
+  appearanceLabel: "المظهر",
+  titleLabel: "العنوان (اختياري)",
+  titleHint: "يظهر أعلى نافذة الدردشة. يُستخدم اسم مساحة العمل إذا تُرك فارغًا.",
+  welcomeLabel: "رسالة الترحيب (اختياري)",
+  welcomeHint: "أول رسالة يراها الزائر. اكتبها باللغة التي يستخدمها زوارك.",
+  colorLabel: "اللون",
+  positionLabel: "مكان الزر",
+  positions: {
+    right: "أسفل اليمين",
+    left: "أسفل اليسار",
+  },
+  localeLabel: "اللغة",
+  locales: {
+    auto: "حسب لغة الموقع",
+    ar: "العربية",
+    en: "English",
+  },
+  save: "حفظ",
+  saved: "تم حفظ إعدادات الدردشة على الموقع.",
+  couldNotSave: "تعذّر حفظ إعدادات الدردشة على الموقع.",
+  snippetLabel: "كود التضمين",
+  snippetHint: "الصقه قبل ‎</body>‎ مباشرة في كل صفحة تريد ظهور الدردشة فيها.",
+  copy: "نسخ",
+  copied: "تم نسخ الكود.",
+  rotate: "إصدار مفتاح جديد",
+  rotateConfirm: "إصدار مفتاح جديد؟ سيتوقف الكود الحالي فورًا ويجب استبداله في كل موقع.",
+  rotated: "تم إصدار مفتاح جديد. استبدل الكود في مواقعك.",
+  enableFirst: "شغّل الدردشة وأضف موقعك قبل لصق الكود.",
+};

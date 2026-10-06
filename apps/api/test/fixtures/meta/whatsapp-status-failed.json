@@ -1,0 +1,34 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "WABA_ID_001",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "966500001111",
+              "phone_number_id": "pn-test-status-004"
+            },
+            "statuses": [
+              {
+                "id": "wamid.fail001",
+                "status": "failed",
+                "timestamp": "1788000300",
+                "errors": [
+                  {
+                    "code": 190,
+                    "title": "Error",
+                    "message": "Failed to send message because this user's account security has been recently updated"
+                  }
+                ]
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

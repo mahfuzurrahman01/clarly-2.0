@@ -1,0 +1,121 @@
+{
+  "products": [
+    {
+      "name": "Petra Home Air Fryer 5.5L",
+      "nameAr": "قلاية هوائية بيترا هوم ٥.٥ لتر",
+      "sku": "AF-55L",
+      "price": "349.00",
+      "currency": "AED",
+      "stock": 10,
+      "stockStatus": "in_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Petra Home Blender Pro",
+      "nameAr": "خلاط بيترا هوم برو",
+      "sku": "BLD-PRO",
+      "price": "159.00",
+      "currency": "AED",
+      "stock": 20,
+      "stockStatus": "in_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Petra Home Kettle Steel",
+      "sku": "KTL-STL",
+      "price": "89.00",
+      "currency": "AED",
+      "stock": 5,
+      "stockStatus": "low_stock",
+      "category": "kitchen"
+    }
+  ],
+  "customers": [
+    { "phone": "+971501234567", "channel": "whatsapp" },
+    { "phone": "+971509876543", "channel": "whatsapp" }
+  ],
+  "orders": [
+    {
+      "customerIndex": 0,
+      "items": [{ "productSku": "AF-55L", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Mariam Al-Fahim",
+      "contactPhone": "+971501234567",
+      "address": "Villa 12, Jumeirah 3",
+      "city": "Dubai"
+    },
+    {
+      "customerIndex": 0,
+      "items": [{ "productSku": "BLD-PRO", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Mariam Al-Fahim",
+      "contactPhone": "+971501234567",
+      "address": "Villa 12, Jumeirah 3",
+      "city": "Dubai"
+    },
+    {
+      "customerIndex": 1,
+      "items": [{ "productSku": "KTL-STL", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Hamdan Al-Marri",
+      "contactPhone": "+971509876543",
+      "address": "Al Reem Tower 4, Flat 802",
+      "city": "Abu Dhabi"
+    },
+    {
+      "customerIndex": 0,
+      "items": [{ "productSku": "AF-55L", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Mariam Al-Fahim",
+      "contactPhone": "+971501234567",
+      "address": "Villa 12, Jumeirah 3",
+      "city": "Dubai"
+    },
+    {
+      "customerIndex": 1,
+      "items": [{ "productSku": "BLD-PRO", "quantity": 2 }],
+      "status": "confirmed",
+      "contactName": "Hamdan Al-Marri",
+      "contactPhone": "+971509876543",
+      "address": "Al Reem Tower 4, Flat 802",
+      "city": "Abu Dhabi"
+    }
+  ],
+  "shipments": [
+    {
+      "orderIndex": 0,
+      "courier": "aramex",
+      "trackingNumber": "AWB-C-9001",
+      "status": "delivered",
+      "estimatedDeliveryAt": "2026-09-15T00:00:00Z"
+    },
+    {
+      "orderIndex": 1,
+      "courier": "smsa",
+      "trackingNumber": "AWB-C-9002",
+      "status": "delivered",
+      "estimatedDeliveryAt": "2026-09-17T00:00:00Z"
+    },
+    {
+      "orderIndex": 2,
+      "courier": "naqel",
+      "trackingNumber": "AWB-C-9003",
+      "status": "delivered",
+      "estimatedDeliveryAt": "2026-09-10T00:00:00Z"
+    },
+    {
+      "orderIndex": 3,
+      "courier": "jt",
+      "trackingNumber": "AWB-C-9004",
+      "status": "out_for_delivery",
+      "estimatedDeliveryAt": "2026-09-22T00:00:00Z"
+    },
+    {
+      "orderIndex": 4,
+      "courier": "aramex",
+      "trackingNumber": "AWB-C-9005",
+      "status": "delivered",
+      "estimatedDeliveryAt": "2026-09-12T00:00:00Z"
+    }
+  ]
+}

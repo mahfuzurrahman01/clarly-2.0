@@ -1,0 +1,97 @@
+{
+  "products": [
+    {
+      "name": "Acme X200 Blender",
+      "nameAr": "خلاط أكمي X200",
+      "sku": "X200-BLN",
+      "price": "199.00",
+      "currency": "SAR",
+      "stock": 15,
+      "stockStatus": "in_stock",
+      "category": "kitchen",
+      "variants": [
+        {
+          "variantLabel": "Black",
+          "sku": "X200-BLN-BLK",
+          "price": "199.00",
+          "stock": 5,
+          "stockStatus": "in_stock"
+        },
+        {
+          "variantLabel": "Red",
+          "sku": "X200-BLN-RED",
+          "price": "209.00",
+          "stock": 0,
+          "stockStatus": "out_of_stock"
+        }
+      ]
+    },
+    {
+      "name": "Zenith Air Fryer 5L",
+      "nameAr": "قلاية هوائية زينث 5 لتر",
+      "sku": "ZAF-5L",
+      "price": "349.00",
+      "currency": "SAR",
+      "stock": 8,
+      "stockStatus": "in_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Nova Stand Mixer 700W",
+      "nameAr": "خلاط عجين نوفا 700 واط",
+      "sku": "NVM-700",
+      "price": "599.00",
+      "currency": "SAR",
+      "stock": 3,
+      "stockStatus": "low_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Coral Electric Kettle 1L",
+      "nameAr": "غلاية كهربائية كورال 1 لتر",
+      "sku": "CEK-1L",
+      "price": "89.00",
+      "currency": "SAR",
+      "stock": 0,
+      "stockStatus": "out_of_stock",
+      "category": "kitchen"
+    },
+    {
+      "name": "Falcon Vacuum Cleaner 1200W",
+      "nameAr": "مكنسة كهربائية فالكون 1200 واط",
+      "sku": "FVC-1200",
+      "price": "459.00",
+      "currency": "SAR",
+      "stock": 20,
+      "stockStatus": "in_stock",
+      "category": "home"
+    },
+    {
+      "name": "Oasis Water Dispenser 3-Tap",
+      "nameAr": "برادة مياه واحة 3 حنفيات",
+      "sku": "OWD-3T",
+      "price": "749.00",
+      "currency": "AED",
+      "stock": 6,
+      "stockStatus": "in_stock",
+      "category": "home"
+    }
+  ],
+  "customers": [
+    { "phone": "+966500000001", "channel": "whatsapp" },
+    { "phone": "+966500000002", "channel": "whatsapp" },
+    { "phone": "+971500000003", "channel": "whatsapp" }
+  ],
+  "orders": [
+    {
+      "customerIndex": 2,
+      "items": [{ "productSku": "OWD-3T", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Sara M.",
+      "contactPhone": "+971500000003",
+      "address": "45 Sheikh Zayed Road",
+      "city": "Dubai"
+    }
+  ],
+  "shipments": []
+}

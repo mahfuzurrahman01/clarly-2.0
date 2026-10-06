@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "name": "Zahra Oud Perfume 50ml",
+      "nameAr": "زهرة عطر عود 50 مل",
+      "sku": "ZHR-PRF-001",
+      "price": "185.00",
+      "currency": "AED",
+      "stock": 40,
+      "stockStatus": "in_stock",
+      "category": "fragrance"
+    },
+    {
+      "name": "Zahra Electric Kettle 1.5L",
+      "nameAr": "زهرة غلاية كهربائية 1.5 لتر",
+      "sku": "ZHR-KTL-002",
+      "price": "95.00",
+      "currency": "AED",
+      "stock": 25,
+      "stockStatus": "in_stock",
+      "category": "home-appliances"
+    },
+    {
+      "name": "Zahra Pro Blender 1000W",
+      "nameAr": "زهرة خلاط برو 1000 واط",
+      "sku": "ZHR-BLN-003",
+      "price": "249.00",
+      "currency": "AED",
+      "stock": 10,
+      "stockStatus": "in_stock",
+      "category": "kitchen"
+    }
+  ],
+  "customers": [
+    { "phone": "+971501110001", "channel": "whatsapp" },
+    { "phone": "+971501110002", "channel": "whatsapp" }
+  ],
+  "orders": [
+    {
+      "customerIndex": 0,
+      "items": [{ "productSku": "ZHR-KTL-002", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Huda Al Marri",
+      "contactPhone": "+971501110001",
+      "address": "Marina Walk, Building 4",
+      "city": "Dubai"
+    }
+  ],
+  "shipments": [
+    {
+      "orderIndex": 0,
+      "courier": "aramex",
+      "trackingNumber": "ARX-9981234AE",
+      "status": "in_transit",
+      "estimatedDeliveryAt": "2026-10-02T00:00:00Z"
+    }
+  ]
+}

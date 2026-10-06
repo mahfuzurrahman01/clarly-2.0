@@ -1,0 +1,146 @@
+[
+  {
+    "corpus": "catering-quotes",
+    "question": "and if we move it to a Friday?",
+    "expect": "resolve",
+    "note": "multi-turn pricing amendment: the package, guest count and city all come from history and only the day changes",
+    "answer": "For a Friday event, a 10 percent surcharge is applied to the package price before the guest-count discount.\n\nHere is the breakdown for 200 guests on a Friday in Dhaka:\n1. **Base Price:** 1,450 BDT per person.\n2. **Friday Surcharge:** 10 percent of 1,450 BDT is 145 BDT. The price becomes 1,595 BDT per person (1,450 + 145).\n3. **Guest Count Discount:** Since there are 200 guests (100–249 range), a 5 percent discount is applied to the package price. The discount is 5 percent of 1,595 BDT, which is 79.75 BDT.\n4. **Final Price per Person:** 1,595 BDT - 79.75 BDT = 1,515.25 BDT.\n5. **Total Cost:** 1,515.25 BDT x 200 guests = 303,050 BDT.\n\nThere is no transport charge as the event is in Dhaka.",
+    "escalated": false,
+    "escalationReason": null,
+    "escalationSource": null,
+    "confidence": 1,
+    "citedChunkIds": [
+      "7359c01c-5b17-43b6-93d7-3d7b3c84e17e"
+    ],
+    "isHallucination": false,
+    "promptVersion": "v11",
+    "latencyMs": 4755,
+    "inputTokens": 5545,
+    "outputTokens": 633,
+    "retrievalMs": 472,
+    "retrievedChunkIds": [
+      "7359c01c-5b17-43b6-93d7-3d7b3c84e17e",
+      "a175949d-aa2f-4c26-89a8-97c791991499",
+      "975182b3-c31a-476b-9bfc-c7fb0e4c59da"
+    ],
+    "retrievedScores": [
+      1,
+      0.6666666666666666,
+      0.3333333333333333
+    ],
+    "recallHit": true,
+    "deterministicPass": true,
+    "deterministicFailures": [],
+    "retrievalPhases": {
+      "embedMs": 468,
+      "embedHttpTtfbMs": 463,
+      "embedHttpBodyMs": 5,
+      "vectorQueryMs": 1,
+      "lexicalQueryMs": 1,
+      "fusionMs": 0,
+      "storeMs": 4,
+      "rerankMs": 0,
+      "totalMs": 472
+    },
+    "caseKey": "catering-quotes#12",
+    "runIndex": 1,
+    "judgeVerdict": "incorrect",
+    "judgeReason": ""
+  },
+  {
+    "corpus": "catering-quotes",
+    "question": "and if we move it to a Friday?",
+    "expect": "resolve",
+    "note": "multi-turn pricing amendment: the package, guest count and city all come from history and only the day changes",
+    "answer": "For a Friday event, a 10 percent surcharge is applied to the package price before the guest-count discount.\n\nHere is the breakdown for 200 guests on a Friday in Dhaka:\n1. **Base Price:** 1,450 BDT per person.\n2. **Friday Surcharge:** 10 percent of 1,450 BDT is 145 BDT. The price becomes 1,595 BDT per person (1,450 + 145).\n3. **Guest Count Discount:** Since there are 200 guests (100–249 range), a 5 percent discount is applied to the package price. The discount is 5 percent of 1,595 BDT, which is 79.75 BDT.\n4. **Final Price per Person:** 1,595 BDT - 79.75 BDT = 1,515.25 BDT.\n5. **Total Cost:** 1,515.25 BDT x 200 guests = 303,050 BDT.\n\nThere is no transport charge as the event is in Dhaka.",
+    "escalated": false,
+    "escalationReason": null,
+    "escalationSource": null,
+    "confidence": 1,
+    "citedChunkIds": [
+      "7359c01c-5b17-43b6-93d7-3d7b3c84e17e"
+    ],
+    "isHallucination": false,
+    "promptVersion": "v11",
+    "latencyMs": 3970,
+    "inputTokens": 5545,
+    "outputTokens": 633,
+    "retrievalMs": 406,
+    "retrievedChunkIds": [
+      "7359c01c-5b17-43b6-93d7-3d7b3c84e17e",
+      "a175949d-aa2f-4c26-89a8-97c791991499",
+      "975182b3-c31a-476b-9bfc-c7fb0e4c59da"
+    ],
+    "retrievedScores": [
+      1,
+      0.6666666666666666,
+      0.3333333333333333
+    ],
+    "recallHit": true,
+    "deterministicPass": true,
+    "deterministicFailures": [],
+    "retrievalPhases": {
+      "embedMs": 398,
+      "embedHttpTtfbMs": 382,
+      "embedHttpBodyMs": 16,
+      "vectorQueryMs": 2,
+      "lexicalQueryMs": 2,
+      "fusionMs": 0,
+      "storeMs": 8,
+      "rerankMs": 0,
+      "totalMs": 406
+    },
+    "caseKey": "catering-quotes#12",
+    "runIndex": 2,
+    "judgeVerdict": "incorrect",
+    "judgeReason": ""
+  },
+  {
+    "corpus": "catering-quotes",
+    "question": "and if we move it to a Friday?",
+    "expect": "resolve",
+    "note": "multi-turn pricing amendment: the package, guest count and city all come from history and only the day changes",
+    "answer": "For a Friday event, a 10 percent surcharge is applied to the package price before the guest-count discount.\n\nHere is the breakdown for 200 guests on a Friday in Dhaka:\n1. **Base Price:** 1,450 BDT per person.\n2. **Friday Surcharge:** 10 percent of 1,450 BDT is 145 BDT. The price becomes 1,595 BDT per person (1,450 + 145).\n3. **Guest Count Discount:** Since there are 200 guests (100–249 range), a 5 percent discount is applied to the package price. The discount is 5 percent of 1,595 BDT, which is 79.75 BDT.\n4. **Final Price per Person:** 1,595 BDT - 79.75 BDT = 1,515.25 BDT.\n5. **Total Cost:** 1,515.25 BDT x 200 guests = 303,050 BDT.\n\nThere is no transport charge as the event is in Dhaka.",
+    "escalated": false,
+    "escalationReason": null,
+    "escalationSource": null,
+    "confidence": 1,
+    "citedChunkIds": [
+      "7359c01c-5b17-43b6-93d7-3d7b3c84e17e"
+    ],
+    "isHallucination": false,
+    "promptVersion": "v11",
+    "latencyMs": 3854,
+    "inputTokens": 5545,
+    "outputTokens": 633,
+    "retrievalMs": 424,
+    "retrievedChunkIds": [
+      "7359c01c-5b17-43b6-93d7-3d7b3c84e17e",
+      "a175949d-aa2f-4c26-89a8-97c791991499",
+      "975182b3-c31a-476b-9bfc-c7fb0e4c59da"
+    ],
+    "retrievedScores": [
+      1,
+      0.6666666666666666,
+      0.3333333333333333
+    ],
+    "recallHit": true,
+    "deterministicPass": true,
+    "deterministicFailures": [],
+    "retrievalPhases": {
+      "embedMs": 398,
+      "embedHttpTtfbMs": 381,
+      "embedHttpBodyMs": 17,
+      "vectorQueryMs": 14,
+      "lexicalQueryMs": 7,
+      "fusionMs": 0,
+      "storeMs": 26,
+      "rerankMs": 0,
+      "totalMs": 424
+    },
+    "caseKey": "catering-quotes#12",
+    "runIndex": 3,
+    "judgeVerdict": "incorrect",
+    "judgeReason": ""
+  }
+]

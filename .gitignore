@@ -1,0 +1,64 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+coverage
+
+# Local Redis dump (created by `redis-cli`/local redis-server runs from repo root)
+dump.rdb
+
+# Local KB document storage (LocalFilesystemStorageAdapter, Feature 2.5 —
+# see docs/decisions/F2.5-kb-foundation.md; KB_LOCAL_STORAGE_DIR env var)
+.data/
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Build Outputs
+.next/
+out/
+build
+dist
+
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.DS_Store
+*.pem
+.gstack/
+.qa-local/
+
+# Eval golden sets (generated artifacts)
+apps/api/eval/golden-sets/
+
+# Eval run results
+apps/api/eval/results/
+
+# Playwright test artifacts
+apps/api/test-results/
+
+# Claude worktrees
+.claude/worktrees/
+.env*
+!.env.example
+
+# Business verification documents (never commit)
+/Tax Registration Certificate.pdf

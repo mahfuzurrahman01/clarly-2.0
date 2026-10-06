@@ -1,0 +1,59 @@
+{
+  "products": [
+    {
+      "name": "Coleman Camping Tent 4-Person",
+      "nameAr": "خيمة تخييم كولمان لأربعة أشخاص",
+      "sku": "CLM-TENT4",
+      "price": "549.00",
+      "currency": "SAR",
+      "stock": 6,
+      "stockStatus": "in_stock",
+      "category": "outdoor"
+    },
+    {
+      "name": "Stanley Vacuum Flask 1L",
+      "nameAr": "ترمس ستانلي فراغي 1 لتر",
+      "sku": "STN-FLASK1",
+      "price": "89.00",
+      "currency": "SAR",
+      "stock": 40,
+      "stockStatus": "in_stock",
+      "category": "outdoor"
+    },
+    {
+      "name": "GoPro Hero 12",
+      "nameAr": "كاميرا جو برو هيرو 12",
+      "sku": "GPR-H12",
+      "price": "1899.00",
+      "currency": "SAR",
+      "stock": 4,
+      "stockStatus": "in_stock",
+      "category": "electronics"
+    },
+    {
+      "name": "Al Sahra Majlis Cushion Set",
+      "nameAr": "طقم وسائد مجلس الصحراء",
+      "sku": "MAJ-CUSH-SET",
+      "price": "349.00",
+      "currency": "SAR",
+      "stock": 15,
+      "stockStatus": "in_stock",
+      "category": "home"
+    },
+    {
+      "name": "Anker Solar Charger 20W",
+      "nameAr": "شاحن أنكر بالطاقة الشمسية 20 واط",
+      "sku": "ANK-SOLAR20",
+      "price": "259.00",
+      "currency": "AED",
+      "stock": 10,
+      "stockStatus": "in_stock",
+      "category": "electronics"
+    }
+  ],
+  "customers": [
+    { "phone": "+966502223344", "channel": "whatsapp" }
+  ],
+  "orders": [],
+  "shipments": []
+}

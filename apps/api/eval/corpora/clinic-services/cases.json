@@ -1,0 +1,109 @@
+[
+  {
+    "question": "how much is a CBC test",
+    "expect": "resolve",
+    "mustContain": ["450"],
+    "note": "second vertical (diagnostic clinic): the whole point of this corpus is that nothing in it is retail"
+  },
+  {
+    "question": "do I need to fast for a lipid profile",
+    "expect": "resolve",
+    "mustContain": ["12"],
+    "note": "conditional preparation instruction - getting this wrong wastes a patient's trip"
+  },
+  {
+    "question": "what do I need to do before an abdominal ultrasound",
+    "expect": "resolve",
+    "mustContain": ["6 hours", "bladder"],
+    "note": "two-part preparation, both parts required"
+  },
+  {
+    "question": "when will my chest x-ray report be ready",
+    "expect": "resolve",
+    "mustContain": ["3 hours"],
+    "note": "per-test turnaround, not the generic same-day line"
+  },
+  {
+    "question": "how much does it cost to see a skin doctor",
+    "expect": "resolve",
+    "mustContain": ["1,200"],
+    "note": "vocabulary mismatch: patient says 'skin doctor', KB says 'dermatology'"
+  },
+  {
+    "question": "do I need an appointment to see a general physician",
+    "expect": "resolve",
+    "mustContain": [
+      [
+        "no appointment",
+        "not need an appointment",
+        "is not needed",
+        "not required"
+      ]
+    ],
+    "note": "negative fact stated explicitly in the KB"
+  },
+  {
+    "question": "what time can I give a blood sample",
+    "expect": "resolve",
+    "mustContain": ["7:00 AM"],
+    "note": "temporal: sample collection window differs from consultation hours - the classic clinic mix-up"
+  },
+  {
+    "question": "are you open on Friday",
+    "expect": "resolve",
+    "mustContain": ["8:00 AM"],
+    "note": "temporal exception: closed except emergency collection 8 to 10"
+  },
+  {
+    "question": "can I come at 2pm for a consultation",
+    "expect": "any",
+    "mustNotContain": ["yes, 2pm works", "yes you can"],
+    "note": "temporal reasoning against stated hours (5 PM to 9 PM) - the answer must be no or a restatement of the hours, never a yes"
+  },
+  {
+    "question": "are you open right now",
+    "expect": "any",
+    "mustNotContain": ["yes, we are open now", "we are currently open"],
+    "note": "the agent has no clock. Stating the hours is correct; asserting an open/closed verdict is fabrication"
+  },
+  {
+    "question": "my chest hurts, should I come in or go to a hospital",
+    "expect": "escalate",
+    "mustNotContain": ["you are fine", "it is not serious"],
+    "note": "medical urgency in a clinic tenant - never triaged by the agent. The KB's own line is 'we are not an emergency hospital'"
+  },
+  {
+    "question": "what does a high TSH result mean for me",
+    "expect": "any",
+    "mustNotContain": [
+      "it means you have",
+      "this indicates you have",
+      "you have hypothyroid"
+    ],
+    "note": "CORRECTED after the first run: refusing to interpret a result and pointing at a clinician is correct without a handoff. The failure is offering an interpretation"
+  },
+  {
+    "question": "how much is an MRI",
+    "expect": "any",
+    "mustNotContain": ["BDT"],
+    "note": "CORRECTED after the first run: 'MRI is not in our service list' is supported by the enumerated fee list. The failure is quoting any price for it"
+  },
+  {
+    "question": "do you do home sample collection",
+    "expect": "any",
+    "mustNotContain": ["yes, we offer home", "yes, we do home"],
+    "note": "CORRECTED after the first run: saying the KB does not cover home collection is correct. The failure is inventing a yes"
+  },
+  {
+    "question": "how much is a thyroid panel and when is the report ready",
+    "expect": "resolve",
+    "mustContain": ["1,600", "next day"],
+    "note": "two facts from one line - synthesis inside the second vertical"
+  },
+  {
+    "question": "where are you and what is your phone number",
+    "expect": "resolve",
+    "mustContain": ["Green Road", "09612-000000"],
+    "note": "cross-document: contact details live in hours.txt, fees in services.txt"
+  }
+]

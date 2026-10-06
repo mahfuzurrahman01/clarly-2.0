@@ -1,0 +1,131 @@
+[
+  {
+    "question": "kam hada al-SmartPro X1?",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Arabizi — basic price question; 'hada' = 'this'. Names the product: a bare 'kam hada?' has no referent and the catalogue has two earbuds, so a clarifying question is the correct answer"
+  },
+  {
+    "question": "kam thamanah?",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Arabizi — price question; 'thamanah' = 'its price'"
+  },
+  {
+    "question": "wayn fra3kum?",
+    "expect": "any",
+    "mustNotContain": ["riyadh", "jeddah", "dammam"],
+    "note": "Arabizi — store location; 'wayn' = 'where', 'fra3kum' = 'your branch'"
+  },
+  {
+    "question": "kam al-tawseel li-l-riyadh?",
+    "expect": "resolve",
+    "mustContain": [["70", "ryal", "ريال", "SAR"]],
+    "note": "Arabizi — delivery fee to Riyadh"
+  },
+  {
+    "question": "shnu al-mawad illi mnah?",
+    "expect": "resolve",
+    "mustContain": [["plastic", "PVC", "ABS", "material", "بلاستيك", "مادة", "مواد"]],
+    "note": "Arabizi — product material; 'shnu' = 'what', 'al-mawad' = 'materials'"
+  },
+  {
+    "question": "fi guarantee?",
+    "expect": "resolve",
+    "mustContain": [["1 year", "sana", "warranty", "guarantee", "سنة", "ضمان"]],
+    "note": "Arabizi — warranty question; code-switched English"
+  },
+  {
+    "question": "sa3at al-dawam?",
+    "expect": "resolve",
+    "mustContain": [["10", ":00", "10:00"]],
+    "note": "Arabizi — opening hours; 'sa3at' = 'hours', 'al-dawam' = 'work'"
+  },
+  {
+    "question": "aqdar aruddha law ma 3jbatni?",
+    "expect": "resolve",
+    "mustContain": [
+      [
+        "7",
+        "seven",
+        "sab3a",
+        "sab'a",
+        "٧",
+        "سبعة",
+        "سبع",
+        "hygiene",
+        "nadhaf",
+        "نظافة",
+        "صحية"
+      ]
+    ],
+    "note": "Arabizi — return policy; 'aqdar' = 'can I', '3jbatni' = 'I like it'. Needles widened cycle 3: the KB states BOTH a 7-day window and a hygiene exclusion on opened earbuds, and an answer built on the hygiene exclusion is grounded (failed 5/5 only for lacking the digit 7)"
+  },
+  {
+    "question": "dizzly al-link abii ashteri",
+    "expect": "any",
+    "note": "Arabizi — purchase intent with link request; 'dizzly' = 'send', 'abii' = 'I want'"
+  },
+  {
+    "question": "3ndkum cash walla bas card?",
+    "expect": "any",
+    "note": "Arabizi — payment method; '3ndkum' = 'do you have', 'walla' = 'or'"
+  },
+  {
+    "question": "mumkin atawassel min al-watsap?",
+    "expect": "any",
+    "note": "Arabizi — ordering via WhatsApp"
+  },
+  {
+    "question": "shnu a7san product 3ndkum?",
+    "expect": "any",
+    "note": "Arabizi — product recommendation; 'a7san' = 'best'"
+  },
+  {
+    "question": "ya3ti ma3ah sha7in (charger)?",
+    "expect": "resolve",
+    "mustContain": [["charger", "sha7in", "shahin", "yes", "aywa", "شاحن", "نعم"]],
+    "note": "Arabizi — charger inclusion; 'ya3ti' = 'does it come', 'sha7in' = 'charger'. Plain 'shahin' was read as shahn (shipping) and answered with delivery fees, so the charger is glossed in the question"
+  },
+  {
+    "question": "yanasib al-iphone?",
+    "expect": "resolve",
+    "mustContain": [["iPhone", "iphone", "yes", "aywa", "آيفون", "ايفون", "آيفون", "نعم"]],
+    "note": "Arabizi — iPhone compatibility"
+  },
+  {
+    "question": "shlon atabi3 tali3i?",
+    "expect": "any",
+    "note": "Arabizi — order tracking; 'shlon' = 'how', 'atabi3' = 'I track', 'tali3i' = 'my order'"
+  },
+  {
+    "question": "abii ashteri wahid kam thamanah?",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Arabizi — purchase intent with price question"
+  },
+  {
+    "question": "al-lawn ghayr 3an al-suwar",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Arabizi — color mismatch complaint; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "waynsali ma3sur ya rb hadha ghalt",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Arabizi — damaged product complaint; 'ma3sur' = 'broken', 'ghalt' = 'wrong'; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "min usbu3ayn astanna ma wasal",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Arabizi — delayed delivery; 'usbu3ayn' = 'two weeks', 'astanna' = 'I wait'; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "abii flusi rudduhum hadha mashrooti",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Arabizi — wrong order + refund; 'flusi' = 'my money', 'rudduhum' = 'return them'; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  }
+]

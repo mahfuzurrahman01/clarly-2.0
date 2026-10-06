@@ -1,0 +1,27 @@
+{
+  "object": "instagram",
+  "entry": [
+    {
+      "id": "ig-comment-001",
+      "time": 1788000000,
+      "changes": [
+        {
+          "field": "comments",
+          "value": {
+            "comment_id": "ig-comment-001",
+            "from": {
+              "id": "IGSID-300002",
+              "username": "buyer_sa"
+            },
+            "text": "بكم؟",
+            "media": {
+              "id": "ig-media-001",
+              "media_product_type": "REELS"
+            },
+            "parent_id": "ig-comment-parent-001"
+          }
+        }
+      ]
+    }
+  ]
+}

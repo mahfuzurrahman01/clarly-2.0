@@ -1,0 +1,187 @@
+{
+  "generatedAt": "2026-09-08T06:40:01.591Z",
+  "runs": 1,
+  "cases": 5,
+  "config": {
+    "threshold": 0.5,
+    "rerank": true,
+    "rerankProvider": "cohere",
+    "llmProvider": "qwen",
+    "llmModel": "qwen3.6-35b-a3b",
+    "embeddingModel": "qwen3-embedding-0.6b",
+    "temperaturePinned": true,
+    "temperature": 0,
+    "determinismNote": "LLM temperature PINNED to 0 for this eval run (eval-only wrapper; production is unchanged and still sends no temperature). Probed 2026-08-16: this vLLM endpoint honours temperature on tool-calling requests — three temperature-0 tool calls returned byte-identical arguments, three unpinned calls did not. Greedy decoding does not make the host bit-deterministic (continuous batching can still reorder floating-point reductions), so a residual spread is expected, not a bug.",
+    "promptVersion": "v11"
+  },
+  "perRun": [
+    {
+      "run": 1,
+      "metrics": {
+        "total": 5,
+        "answerable": 4,
+        "resolved": 4,
+        "resolutionRate": 1,
+        "falseEscalations": 0,
+        "falseEscalationRate": 0,
+        "missedEscalations": 0,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": null,
+        "recallSample": 0,
+        "latencyP50": 9882,
+        "latencyP95": 10996,
+        "retrievalP95": 0,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": null
+      },
+      "failingCases": 1
+    }
+  ],
+  "aggregate": {
+    "total": {
+      "median": 5,
+      "min": 5,
+      "max": 5,
+      "values": [
+        5
+      ]
+    },
+    "answerable": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "values": [
+        4
+      ]
+    },
+    "resolved": {
+      "median": 4,
+      "min": 4,
+      "max": 4,
+      "values": [
+        4
+      ]
+    },
+    "resolutionRate": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1
+      ]
+    },
+    "falseEscalations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "falseEscalationRate": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "missedEscalations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "hallucinations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "leaks": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "recallAt5": null,
+    "recallSample": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "latencyP50": {
+      "median": 9882,
+      "min": 9882,
+      "max": 9882,
+      "values": [
+        9882
+      ]
+    },
+    "latencyP95": {
+      "median": 10996,
+      "min": 10996,
+      "max": 10996,
+      "values": [
+        10996
+      ]
+    },
+    "retrievalP95": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "judgeIncorrect": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "avgConfidenceResolved": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1
+      ]
+    },
+    "avgConfidenceFalseEscalated": null
+  },
+  "stability": {
+    "stablePass": 4,
+    "stableFail": [
+      {
+        "caseKey": "vision-product#0",
+        "corpus": "vision-product",
+        "question": "how much is this one?",
+        "note": "F17 baseline: the price is only reachable by identifying the product FROM the image, then retrieving on that identity. A text-only pipeline cannot pass this case.",
+        "outcomes": [
+          false
+        ],
+        "failuresByRun": [
+          [
+            "missing expected content: \"4500\""
+          ]
+        ],
+        "stability": "stable-fail"
+      }
+    ],
+    "flaky": []
+  }
+}

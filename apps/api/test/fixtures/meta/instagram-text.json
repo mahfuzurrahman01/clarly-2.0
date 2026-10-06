@@ -1,0 +1,20 @@
+{
+  "object": "instagram",
+  "entry": [
+    {
+      "id": "ig-account-001",
+      "time": 1788000000,
+      "messaging": [
+        {
+          "sender": { "id": "IGSID-200001" },
+          "recipient": { "id": "ig-account-001" },
+          "timestamp": 1788000000000,
+          "message": {
+            "mid": "mid.ig001",
+            "text": "How much is this?"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+--- Product catalogue: small kitchen appliances ---
+
+Acme X200 Blender
+Price: 4500 BDT.
+Motor: 800W, 2 speeds plus pulse.
+Warranty: 12 months from the date of purchase, covering motor and electrical faults only.
+Jar capacity: 1.5 litres, BPA-free.
+Availability: in stock at all branches.
+
+Nova S9 Electric Kettle
+Price: 2200 BDT.
+Capacity: 1.7 litres, stainless steel body, auto shut-off.
+Warranty: 6 months from the date of purchase.
+Availability: in stock.
+
+Acme X100 Blender (previous model)
+Price: 3200 BDT.
+Motor: 500W, single speed.
+Warranty: 12 months.
+Availability: discontinued, no longer stocked.
+
+--- Warranty claims ---
+A warranty claim needs the original receipt and the product's serial number.
+Claims are processed at the branch of purchase within 10 working days.
+Physical damage, water damage and burnt motors caused by overloading are not covered.
+
+--- Damaged on arrival ---
+A product that arrives damaged must be reported within 48 hours of delivery.
+Report it with a photo of the damage and the order number; a replacement is dispatched at no cost.

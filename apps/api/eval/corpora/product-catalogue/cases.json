@@ -1,0 +1,50 @@
+[
+  {
+    "question": "how much is the Galaxy A55",
+    "expect": "resolve",
+    "mustContain": ["47,999"],
+    "note": "exact price lookup"
+  },
+  {
+    "question": "what is the price of SKU BLT-LT-VB15",
+    "expect": "resolve",
+    "mustContain": ["82,000"],
+    "note": "exact token retrieval - the case hybrid search exists for"
+  },
+  {
+    "question": "is the MacBook Air in stock",
+    "expect": "resolve",
+    "mustContain": ["pre-order"],
+    "note": "stock status, not a plain yes"
+  },
+  {
+    "question": "what colours does the iPhone 15 come in",
+    "expect": "resolve",
+    "mustContain": ["black", "blue"],
+    "note": ""
+  },
+  {
+    "question": "which laptop is cheapest",
+    "expect": "resolve",
+    "mustContain": ["61,500"],
+    "note": "requires comparing rows, not just retrieving one"
+  },
+  {
+    "question": "do you sell Sony headphones",
+    "expect": "resolve",
+    "mustContain": ["WH-CH720N"],
+    "note": ""
+  },
+  {
+    "question": "how much RAM does the Redmi Note 14 Pro have",
+    "expect": "resolve",
+    "mustContain": ["8GB"],
+    "note": "near-duplicate spec across many rows"
+  },
+  {
+    "question": "what laptops do you have",
+    "expect": "resolve",
+    "mustContain": ["Vivobook"],
+    "note": "broad synthesis across rows - the observed failure mode"
+  }
+]

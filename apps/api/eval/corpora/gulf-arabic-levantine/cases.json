@@ -1,0 +1,117 @@
+[
+  {
+    "question": "شو سعره؟",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Levantine — basic price question; 'شو' = 'what'"
+  },
+  {
+    "question": "كم هيدا الـ SmartPro X1؟",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Levantine — price question; 'هيدا' = 'this'. Names the product: a bare 'كم هيدا؟' has no referent and the catalogue has two earbuds, so a clarifying question is the correct answer"
+  },
+  {
+    "question": "وين فرعكم؟",
+    "expect": "any",
+    "mustNotContain": [" بيروت ", " دمشق ", " عمان "],
+    "note": "Levantine — store location question; must not hallucinate"
+  },
+  {
+    "question": "كم التوصيل عالرياض؟",
+    "expect": "resolve",
+    "mustContain": [["70", "ريال"]],
+    "note": "Levantine — delivery fee"
+  },
+  {
+    "question": "شو مادته؟",
+    "expect": "resolve",
+    "mustContain": [["plastic", "PVC", "ABS", "material", "مادة"]],
+    "note": "Levantine — product material question"
+  },
+  {
+    "question": "فيه ضمان؟",
+    "expect": "resolve",
+    "mustContain": [["1 year", "سنة", "warranty", "ضمان"]],
+    "note": "Levantine — warranty question"
+  },
+  {
+    "question": "ساعات الدوام؟",
+    "expect": "resolve",
+    "mustContain": [["10", ":00", "10:00"]],
+    "note": "Levantine — opening hours"
+  },
+  {
+    "question": "بقدر رجعه لو ما عجبني؟",
+    "expect": "resolve",
+    "mustContain": [["7", "seven", "سبعة"]],
+    "note": "Levantine — return policy; 'بقدر' = 'can I'"
+  },
+  {
+    "question": "ابعتلي الرابط بدنا نشتري",
+    "expect": "any",
+    "note": "Levantine — purchase intent with link request; 'بدنا' = 'we want'"
+  },
+  {
+    "question": "عندكم كاش؟ أو بس كرت؟",
+    "expect": "any",
+    "note": "Levantine — payment method question"
+  },
+  {
+    "question": "ممكن نطلب من الواتساب؟",
+    "expect": "any",
+    "note": "Levantine — ordering via WhatsApp"
+  },
+  {
+    "question": "شو أحسن منتج عندكن؟",
+    "expect": "any",
+    "note": "Levantine — product recommendation question"
+  },
+  {
+    "question": "بيجي مع شاحن؟",
+    "expect": "resolve",
+    "mustContain": [["charger", "شاحن", "yes", "نعم", "أيوا"]],
+    "note": "Levantine — charger inclusion"
+  },
+  {
+    "question": "يناسب الايفون؟",
+    "expect": "resolve",
+    "mustContain": [["iPhone", "ايفون", "yes", "نعم", "أيوا"]],
+    "note": "Levantine — iPhone compatibility"
+  },
+  {
+    "question": "كيف بتتبع طلبي؟",
+    "expect": "any",
+    "note": "Levantine — order tracking"
+  },
+  {
+    "question": "بدنا نشتري واحد كم سعره؟",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Levantine — purchase intent with price question"
+  },
+  {
+    "question": "اللون مختلف عن الصور",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Levantine — color mismatch complaint; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "وصلني مكسور هيدا غلط",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Levantine — damaged product complaint; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "من أسبوعين عم استنى ما وصل",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Levantine — delayed delivery complaint; 'عم' = progressive marker; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "بدنا فلوسنا ترجع هيدا مش طلبنا",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Levantine — wrong order + refund request; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  }
+]

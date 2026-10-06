@@ -1,0 +1,7 @@
+Payments
+
+Payment methods accepted: bKash, Nagad, Visa and Mastercard cards, and bank transfer.
+Card payments are taken on our secure checkout page only. We never take card details over chat or phone.
+Cash on delivery is available inside Dhaka only.
+Refunds go back to the original payment method within 5 to 7 business days.
+An order can be looked up with the order number, which starts with BLT- and is in the confirmation SMS.

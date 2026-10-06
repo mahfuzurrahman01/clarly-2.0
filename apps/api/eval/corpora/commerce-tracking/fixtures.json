@@ -1,0 +1,153 @@
+{
+  "products": [
+    {
+      "name": "Al Rawabi Fresh Dates Box 1kg",
+      "nameAr": "علبة تمر الروابي الطازج ١ كجم",
+      "sku": "DATES-1KG",
+      "price": "45.00",
+      "currency": "SAR",
+      "stock": 40,
+      "stockStatus": "in_stock",
+      "category": "grocery"
+    },
+    {
+      "name": "Samsung Galaxy Buds FE",
+      "sku": "BUDS-FE",
+      "price": "299.00",
+      "currency": "SAR",
+      "stock": 15,
+      "stockStatus": "in_stock",
+      "category": "electronics"
+    },
+    {
+      "name": "Nike Air Max 270",
+      "nameAr": "نايك اير ماكس ٢٧٠",
+      "sku": "NAM270",
+      "price": "459.00",
+      "currency": "SAR",
+      "stock": 6,
+      "stockStatus": "in_stock",
+      "category": "footwear",
+      "variants": [
+        {
+          "variantLabel": "Black",
+          "sku": "NAM270-BLK",
+          "price": "459.00",
+          "stock": 6,
+          "stockStatus": "in_stock"
+        },
+        {
+          "variantLabel": "White",
+          "sku": "NAM270-WHT",
+          "price": "459.00",
+          "stock": 0,
+          "stockStatus": "out_of_stock"
+        }
+      ]
+    }
+  ],
+  "customers": [
+    { "phone": "+966501112222", "channel": "whatsapp" },
+    { "phone": "+966501113333", "channel": "whatsapp" }
+  ],
+  "orders": [
+    {
+      "customerIndex": 0,
+      "items": [{ "productSku": "DATES-1KG", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Fatima Al-Saud",
+      "contactPhone": "+966501112222",
+      "address": "123 Al Olaya St",
+      "city": "Riyadh"
+    },
+    {
+      "customerIndex": 0,
+      "items": [{ "productSku": "BUDS-FE", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Fatima Al-Saud",
+      "contactPhone": "+966501112222",
+      "address": "123 Al Olaya St",
+      "city": "Riyadh"
+    },
+    {
+      "customerIndex": 0,
+      "items": [{ "productSku": "NAM270-BLK", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Fatima Al-Saud",
+      "contactPhone": "+966501112222",
+      "address": "123 Al Olaya St",
+      "city": "Riyadh"
+    },
+    {
+      "customerIndex": 0,
+      "items": [{ "productSku": "DATES-1KG", "quantity": 2 }],
+      "status": "confirmed",
+      "contactName": "Fatima Al-Saud",
+      "contactPhone": "+966501112222",
+      "address": "123 Al Olaya St",
+      "city": "Riyadh"
+    },
+    {
+      "customerIndex": 1,
+      "items": [{ "productSku": "NAM270-BLK", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Youssef Al-Amin",
+      "contactPhone": "+966501113333",
+      "address": "45 King Fahd Rd",
+      "city": "Jeddah"
+    },
+    {
+      "customerIndex": 1,
+      "items": [{ "productSku": "DATES-1KG", "quantity": 1 }],
+      "status": "confirmed",
+      "contactName": "Youssef Al-Amin",
+      "contactPhone": "+966501113333",
+      "address": "45 King Fahd Rd",
+      "city": "Jeddah"
+    }
+  ],
+  "shipments": [
+    {
+      "orderIndex": 0,
+      "courier": "aramex",
+      "trackingNumber": "AWB-100-2001",
+      "status": "delivered",
+      "estimatedDeliveryAt": "2026-09-20T00:00:00Z"
+    },
+    {
+      "orderIndex": 1,
+      "courier": "smsa",
+      "trackingNumber": "AWB-100-2002",
+      "status": "in_transit",
+      "estimatedDeliveryInDays": 0
+    },
+    {
+      "orderIndex": 2,
+      "courier": "naqel",
+      "trackingNumber": "AWB-100-2003",
+      "status": "out_for_delivery",
+      "estimatedDeliveryInDays": 0
+    },
+    {
+      "orderIndex": 3,
+      "courier": "jt",
+      "trackingNumber": "AWB-100-2004",
+      "status": "exception",
+      "estimatedDeliveryInDays": -5
+    },
+    {
+      "orderIndex": 4,
+      "courier": "aramex",
+      "trackingNumber": "AWB-100-3001",
+      "status": "in_transit",
+      "estimatedDeliveryInDays": 1
+    },
+    {
+      "orderIndex": 5,
+      "courier": "smsa",
+      "trackingNumber": "AWB-100-3002",
+      "status": "delivered",
+      "estimatedDeliveryAt": "2026-09-18T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "generatedAt": "2026-08-16T13:02:41.530Z",
+  "runs": 3,
+  "cases": 161,
+  "config": {
+    "threshold": 0.5,
+    "rerank": false,
+    "rerankProvider": "cohere",
+    "llmProvider": "qwen",
+    "llmModel": "qwen3.6-35b-a3b",
+    "embeddingModel": "qwen-embed",
+    "temperaturePinned": true,
+    "temperature": 0,
+    "determinismNote": "LLM temperature PINNED to 0 for this eval run (eval-only wrapper; production is unchanged and still sends no temperature). Probed 2026-08-16: this vLLM endpoint honours temperature on tool-calling requests — three temperature-0 tool calls returned byte-identical arguments, three unpinned calls did not. Greedy decoding does not make the host bit-deterministic (continuous batching can still reorder floating-point reductions), so a residual spread is expected, not a bug.",
+    "promptVersion": "v11"
+  },
+  "perRun": [
+    {
+      "run": 1,
+      "metrics": {
+        "total": 161,
+        "answerable": 104,
+        "resolved": 103,
+        "resolutionRate": 0.9903846153846154,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.009615384615384616,
+        "missedEscalations": 2,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 0.9895833333333334,
+        "recallSample": 96,
+        "latencyP50": 1389,
+        "latencyP95": 2866,
+        "retrievalP95": 465,
+        "judgeIncorrect": 1,
+        "avgConfidenceResolved": 0.9990291262135923,
+        "avgConfidenceFalseEscalated": 0
+      },
+      "failingCases": 4
+    },
+    {
+      "run": 2,
+      "metrics": {
+        "total": 161,
+        "answerable": 104,
+        "resolved": 103,
+        "resolutionRate": 0.9903846153846154,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.009615384615384616,
+        "missedEscalations": 2,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 0.9895833333333334,
+        "recallSample": 96,
+        "latencyP50": 1356,
+        "latencyP95": 2954,
+        "retrievalP95": 452,
+        "judgeIncorrect": 1,
+        "avgConfidenceResolved": 0.9990291262135923,
+        "avgConfidenceFalseEscalated": 0
+      },
+      "failingCases": 4
+    },
+    {
+      "run": 3,
+      "metrics": {
+        "total": 161,
+        "answerable": 104,
+        "resolved": 103,
+        "resolutionRate": 0.9903846153846154,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.009615384615384616,
+        "missedEscalations": 2,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": 0.9895833333333334,
+        "recallSample": 96,
+        "latencyP50": 1354,
+        "latencyP95": 3099,
+        "retrievalP95": 447,
+        "judgeIncorrect": 1,
+        "avgConfidenceResolved": 0.9990291262135923,
+        "avgConfidenceFalseEscalated": 0
+      },
+      "failingCases": 4
+    }
+  ],
+  "aggregate": {
+    "total": {
+      "median": 161,
+      "min": 161,
+      "max": 161,
+      "values": [
+        161,
+        161,
+        161
+      ]
+    },
+    "answerable": {
+      "median": 104,
+      "min": 104,
+      "max": 104,
+      "values": [
+        104,
+        104,
+        104
+      ]
+    },
+    "resolved": {
+      "median": 103,
+      "min": 103,
+      "max": 103,
+      "values": [
+        103,
+        103,
+        103
+      ]
+    },
+    "resolutionRate": {
+      "median": 0.9903846153846154,
+      "min": 0.9903846153846154,
+      "max": 0.9903846153846154,
+      "values": [
+        0.9903846153846154,
+        0.9903846153846154,
+        0.9903846153846154
+      ]
+    },
+    "falseEscalations": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "falseEscalationRate": {
+      "median": 0.009615384615384616,
+      "min": 0.009615384615384616,
+      "max": 0.009615384615384616,
+      "values": [
+        0.009615384615384616,
+        0.009615384615384616,
+        0.009615384615384616
+      ]
+    },
+    "missedEscalations": {
+      "median": 2,
+      "min": 2,
+      "max": 2,
+      "values": [
+        2,
+        2,
+        2
+      ]
+    },
+    "hallucinations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "leaks": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    },
+    "recallAt5": {
+      "median": 0.9895833333333334,
+      "min": 0.9895833333333334,
+      "max": 0.9895833333333334,
+      "values": [
+        0.9895833333333334,
+        0.9895833333333334,
+        0.9895833333333334
+      ]
+    },
+    "recallSample": {
+      "median": 96,
+      "min": 96,
+      "max": 96,
+      "values": [
+        96,
+        96,
+        96
+      ]
+    },
+    "latencyP50": {
+      "median": 1356,
+      "min": 1354,
+      "max": 1389,
+      "values": [
+        1389,
+        1356,
+        1354
+      ]
+    },
+    "latencyP95": {
+      "median": 2954,
+      "min": 2866,
+      "max": 3099,
+      "values": [
+        2866,
+        2954,
+        3099
+      ]
+    },
+    "retrievalP95": {
+      "median": 452,
+      "min": 447,
+      "max": 465,
+      "values": [
+        465,
+        452,
+        447
+      ]
+    },
+    "judgeIncorrect": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    "avgConfidenceResolved": {
+      "median": 0.9990291262135923,
+      "min": 0.9990291262135923,
+      "max": 0.9990291262135923,
+      "values": [
+        0.9990291262135923,
+        0.9990291262135923,
+        0.9990291262135923
+      ]
+    },
+    "avgConfidenceFalseEscalated": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "stability": {
+    "stablePass": 157,
+    "stableFail": [
+      {
+        "caseKey": "catering-policies#0",
+        "corpus": "catering-policies",
+        "question": "I need to cancel. Today is the 1st and my event is on the 20th of this month. What do I owe?",
+        "note": "TEMPORAL + TIERED (question CORRECTED after the first run: the original said 'next month', which really is >30 days out - the agent was right and the case was wrong). 19 days lands in the 15-30 day band",
+        "outcomes": [
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "missing expected content: \"50 percent | 50%\""
+          ],
+          [
+            "missing expected content: \"50 percent | 50%\""
+          ],
+          [
+            "missing expected content: \"50 percent | 50%\""
+          ]
+        ],
+        "stability": "stable-fail"
+      },
+      {
+        "caseKey": "catering-policies#13",
+        "corpus": "catering-policies",
+        "question": "if there is a hartal or a flood on the day and we cannot hold the event, what happens to our money",
+        "note": "ASYMMETRIC POLICY GAP: natural disaster and government order are named ONLY as exceptions to the caterer's own cancellation clause. The customer-side equivalent is genuinely absent, so it cannot be answered either way",
+        "outcomes": [
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ]
+        ],
+        "stability": "stable-fail"
+      },
+      {
+        "caseKey": "multi-doc-synthesis#0",
+        "corpus": "multi-doc-synthesis",
+        "question": "if I buy the Vivobook can I pay cash on delivery",
+        "note": "needs products (82,000) + payment (COD cap 50,000) to answer correctly - two documents",
+        "outcomes": [
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "FALSE ESCALATION (LLM_ERROR, confidence 0)",
+            "missing expected content: \"50,000\""
+          ],
+          [
+            "FALSE ESCALATION (LLM_ERROR, confidence 0)",
+            "missing expected content: \"50,000\""
+          ],
+          [
+            "FALSE ESCALATION (LLM_ERROR, confidence 0)",
+            "missing expected content: \"50,000\""
+          ]
+        ],
+        "stability": "stable-fail"
+      },
+      {
+        "caseKey": "tone-escalation#5",
+        "corpus": "tone-escalation",
+        "question": "ei order ta niye ami khub birokto, tomader service kharap",
+        "note": "anger in romanized Bangla - tone detection must not be English-only",
+        "outcomes": [
+          false,
+          false,
+          false
+        ],
+        "failuresByRun": [
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ],
+          [
+            "MISSED ESCALATION — answered a question the KB cannot support"
+          ]
+        ],
+        "stability": "stable-fail"
+      }
+    ],
+    "flaky": []
+  }
+}

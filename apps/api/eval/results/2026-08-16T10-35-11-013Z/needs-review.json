@@ -1,0 +1,38 @@
+[
+  {
+    "corpus": "multi-doc-synthesis",
+    "question": "if I buy the Vivobook can I pay cash on delivery",
+    "expect": "resolve",
+    "note": "needs products (82,000) + payment (COD cap 50,000) to answer correctly - two documents",
+    "answer": "Yes, you can pay cash on delivery for the Asus Vivobook 15.\n\nThe Asus Vivobook 15 costs 82,000 BDT. Since this amount is above 50,000 BDT, the policy requires advance payment or a 20 percent deposit for orders paid via cash on delivery.",
+    "escalated": false,
+    "escalationReason": null,
+    "escalationSource": null,
+    "confidence": 1,
+    "citedChunkIds": [
+      "5f6343d3-4681-4e4a-93b9-3d1f98628e57",
+      "804a1f8d-e914-4ece-b49f-9c46b73bdd17"
+    ],
+    "isHallucination": false,
+    "promptVersion": "v4",
+    "latencyMs": 2611,
+    "inputTokens": 3786,
+    "outputTokens": 360,
+    "retrievalMs": 380,
+    "retrievedChunkIds": [
+      "5f6343d3-4681-4e4a-93b9-3d1f98628e57",
+      "804a1f8d-e914-4ece-b49f-9c46b73bdd17",
+      "7a944116-614c-41f6-a110-efad88cfd18e"
+    ],
+    "retrievedScores": [
+      1,
+      0.6666666666666666,
+      0.3333333333333333
+    ],
+    "recallHit": true,
+    "deterministicPass": true,
+    "deterministicFailures": [],
+    "judgeVerdict": "incorrect",
+    "judgeReason": ""
+  }
+]

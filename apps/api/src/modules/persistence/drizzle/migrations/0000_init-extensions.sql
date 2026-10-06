@@ -1,0 +1,12 @@
+-- Feature 0: enables pgcrypto for gen_random_uuid(), used as the default id
+-- generator on every tenant-scoped table starting Feature 1.
+--
+-- The `vector` extension is deliberately NOT enabled here. D3's kb_chunks
+-- table (Feature 2.5) is what actually needs it, and the local/CI dev
+-- Postgres image is plain `postgres:16-alpine` (see docker-compose.yml) —
+-- `CREATE EXTENSION vector` would fail against it since the extension
+-- binary isn't installed in that image. Supabase's prod Postgres ships
+-- pgvector already; Feature 2.5's migration adds `CREATE EXTENSION IF NOT
+-- EXISTS vector;` at that point, alongside switching the local/CI image to
+-- `pgvector/pgvector:pg16`.
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

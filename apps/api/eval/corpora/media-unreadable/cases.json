@@ -1,0 +1,27 @@
+[
+  {
+    "question": "here is the receipt",
+    "media": [{ "kind": "image", "file": "not-really-a-photo.jpg", "mimeType": "image/jpeg" }],
+    "expect": "escalate",
+    "expectEscalationReason": ["UNSUPPORTED_MEDIA"],
+    "expectEscalationDetail": ["media_unreadable"],
+    "note": "declared image/jpeg, actually a zip. The declared mime type is attacker-controlled, so the signature check must win — and it must escalate, never crash the loop."
+  },
+  {
+    "question": "photo of the damage",
+    "media": [{ "kind": "image", "file": "truncated.png", "mimeType": "image/png" }],
+    "expect": "escalate",
+    "expectEscalationReason": ["UNSUPPORTED_MEDIA"],
+    "expectEscalationDetail": ["media_unreadable"],
+    "note": "a truncated download: valid PNG signature, no image. Feature 17's 'corrupt media escalates cleanly' as a scored case rather than an informal claim."
+  },
+  {
+    "question": "",
+    "messageText": "",
+    "media": [{ "kind": "voice", "file": "silence.wav", "mimeType": "audio/wav" }],
+    "expect": "escalate",
+    "expectEscalationReason": ["UNSUPPORTED_MEDIA"],
+    "expectEscalationDetail": ["transcription_failed", "media_unreadable"],
+    "note": "readable bytes, nothing to hear. 'we could not open it' and 'we could not hear it' are different failures; either detail passes, but the turn must not invent a question to answer."
+  }
+]

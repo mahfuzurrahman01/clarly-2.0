@@ -1,0 +1,33 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "WABA_ID_001",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "966500001111",
+              "phone_number_id": "pn-test-image-002"
+            },
+            "messages": [
+              {
+                "from": "966509876543",
+                "id": "wamid.image001",
+                "timestamp": "1788000100",
+                "type": "image",
+                "image": {
+                  "id": "MEDIA_IMG_001",
+                  "mime_type": "image/jpeg",
+                  "caption": "What is the price of this item?"
+                }
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

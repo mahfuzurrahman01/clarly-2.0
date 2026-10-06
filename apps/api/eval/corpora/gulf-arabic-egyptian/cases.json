@@ -1,0 +1,117 @@
+[
+  {
+    "question": "بكام سماعة SmartPro X1؟",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Egyptian — basic price question; 'بكام' = 'how much'. Names the product: a bare 'بكام ده؟' has no referent and the catalogue has two earbuds, so a clarifying question is the correct answer"
+  },
+  {
+    "question": "كام سعره؟",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Egyptian — alternative price phrasing"
+  },
+  {
+    "question": "فين فرعكم؟",
+    "expect": "any",
+    "mustNotContain": [" القاهرة ", " الإسكندرية ", " الجيزة "],
+    "note": "Egyptian — store location question; must not hallucinate a branch"
+  },
+  {
+    "question": "كام التوصيل للرياض؟",
+    "expect": "resolve",
+    "mustContain": [["70", "ريال", "SAR"]],
+    "note": "Egyptian — delivery fee to Riyadh. Was Cairo/جنيه, but the KB only prices Riyadh, Jeddah and Dammam in SAR, so the case demanded an unanswerable fee"
+  },
+  {
+    "question": "مادته ايه؟",
+    "expect": "resolve",
+    "mustContain": [["plastic", "PVC", "ABS", "material", "مادة"]],
+    "note": "Egyptian — product material question; 'ايه' = 'what'"
+  },
+  {
+    "question": "فيه ضمان؟",
+    "expect": "resolve",
+    "mustContain": [["1 year", "سنة", "warranty", "ضمان"]],
+    "note": "Egyptian — warranty question"
+  },
+  {
+    "question": "ساعات الشغل؟",
+    "expect": "resolve",
+    "mustContain": [["10", ":00", "10:00"]],
+    "note": "Egyptian — opening hours; 'الشغل' = 'work'"
+  },
+  {
+    "question": "ارجعه لو معجبنيش؟",
+    "expect": "resolve",
+    "mustContain": [["7", "seven", "سبعة"]],
+    "note": "Egyptian — return policy; 'معجبنيش' = 'I don't like it'"
+  },
+  {
+    "question": "ابعتلي اللينك عايز اشتري",
+    "expect": "any",
+    "note": "Egyptian — purchase intent with link request; 'ابعتلي' = 'send me'"
+  },
+  {
+    "question": "عندكم كاش؟ ولا بس كارت؟",
+    "expect": "any",
+    "note": "Egyptian — payment method question"
+  },
+  {
+    "question": "ممكن اطلب من الواتساب؟",
+    "expect": "any",
+    "note": "Egyptian — ordering via WhatsApp"
+  },
+  {
+    "question": "ايه احسن منتج عندكم؟",
+    "expect": "any",
+    "note": "Egyptian — product recommendation question"
+  },
+  {
+    "question": "جاي مع شاحن؟",
+    "expect": "resolve",
+    "mustContain": [["charger", "شاحن", "yes", "ايوة", "اه"]],
+    "note": "Egyptian — charger inclusion; 'جاي' = 'coming with'"
+  },
+  {
+    "question": "بينفع مع الايفون؟",
+    "expect": "resolve",
+    "mustContain": [["iPhone", "ايفون", "آيفون", "أيفون", "yes", "نعم", "ايوة", "اه"]],
+    "note": "Egyptian — iPhone compatibility. Needles widened cycle 3: a correct answer (\"نعم، ... متوافقة مع آيفون\") failed 5/5 only because the alef-madda spelling and the MSA \"نعم\" were not listed"
+  },
+  {
+    "question": "ازاي اتتبع الطلب بتاعي؟",
+    "expect": "any",
+    "note": "Egyptian — order tracking; 'بتاعي' = 'my'"
+  },
+  {
+    "question": "عايز اشتري واحد بكام؟",
+    "expect": "resolve",
+    "mustContain": [["4,500", "4500"]],
+    "note": "Egyptian — purchase intent with price question"
+  },
+  {
+    "question": "اللون مختلف عن الصور",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Egyptian — color mismatch complaint; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "وصلني مكسور ده غلط",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Egyptian — damaged product complaint; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "من اتنين استنى ما وصل",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Egyptian — delayed delivery complaint; 'اتنين' = 'two' (weeks); v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  },
+  {
+    "question": "عايز فلوسي ترجع ده مش طلبي",
+    "expect": "escalate",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT", "CUSTOMER_DISTRESS"],
+    "note": "Egyptian — wrong order + refund request; must escalate; v12 labels order problems CUSTOMER_COMPLAINT so both reasons pass"
+  }
+]

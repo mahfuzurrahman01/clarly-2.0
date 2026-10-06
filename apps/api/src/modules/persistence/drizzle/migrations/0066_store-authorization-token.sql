@@ -1,0 +1,14 @@
+-- Feature 24 (Store Integrations): Zid's second OAuth token.
+--
+-- Zid's token response carries two tokens and every Merchant API call needs
+-- both: `access_token` (the manager token, sent as `X-Manager-Token`, already
+-- stored in `access_token`) and `authorization` (the partner token, sent as
+-- `Authorization: Bearer`). The second one had nowhere to live, so every Zid
+-- call would have been unauthenticated. See docs/integrations/ZID.md.
+--
+-- Same storage rule as `access_token` / `refresh_token` / `webhook_secret`:
+-- AES-256-GCM ciphertext written only by StoreConnectionService. Nullable
+-- because Salla, Shopify and WooCommerce have no such token, and existing
+-- Zid rows (if any) have none until the merchant reconnects. No backfill: the
+-- value only comes from a fresh Zid OAuth exchange.
+ALTER TABLE "store_connections" ADD COLUMN IF NOT EXISTS "authorization_token" text;

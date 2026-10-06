@@ -1,0 +1,15 @@
+Nokkhotro Catering and Events - Booking, Payment and Cancellation
+
+Booking: an event is confirmed only when the signed quotation and the deposit are both received.
+Deposit: 30 percent of the quoted total, payable at booking. The deposit is non-refundable.
+Balance: the remaining 70 percent is due 3 days before the event.
+Final guest count: locked 5 days before the event. Increases after the lock are accepted if the kitchen has capacity and are charged at the package rate plus 10 percent. Decreases after the lock are not refunded.
+
+Cancellation by the customer
+More than 30 days before the event: deposit forfeited, nothing further owed.
+15 to 30 days before the event: 50 percent of the quoted total is owed.
+Less than 15 days before the event: 100 percent of the quoted total is owed.
+
+Cancellation by us: if we cancel for any reason other than a natural disaster or a government order, the full amount paid is refunded within 10 working days and no cancellation charge applies to the customer.
+
+Payment methods: bank transfer and cheque for the deposit and balance. bKash is accepted for amounts up to 50,000 BDT only.

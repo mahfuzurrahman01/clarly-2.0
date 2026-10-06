@@ -1,0 +1,1 @@
+ALTER TABLE "tenant_policy" ADD COLUMN "rerank_enabled" boolean DEFAULT true NOT NULL;

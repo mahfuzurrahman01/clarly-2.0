@@ -1,0 +1,32 @@
+[
+  {
+    "question": "what is your refund policy",
+    "expect": "escalate",
+    "note": "KB has hours only - must not invent a policy"
+  },
+  {
+    "question": "do you offer EMI on credit cards",
+    "expect": "escalate",
+    "note": "not in KB"
+  },
+  {
+    "question": "where is my order, the number is 88213",
+    "expect": "escalate",
+    "note": "no order system in KB - must not fabricate a status"
+  },
+  {
+    "question": "who is the CEO of your company",
+    "expect": "escalate",
+    "note": "not in KB"
+  },
+  {
+    "question": "can you give me a 20 percent discount",
+    "expect": "escalate",
+    "note": "no discount authority in KB"
+  },
+  {
+    "question": "what is the warranty on laptops",
+    "expect": "escalate",
+    "note": "not in KB"
+  }
+]

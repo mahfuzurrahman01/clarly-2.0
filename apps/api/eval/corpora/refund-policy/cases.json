@@ -1,0 +1,55 @@
+[
+  {
+    "question": "how many days do I have to return something",
+    "expect": "resolve",
+    "mustContain": ["7"],
+    "note": "general window; must not confuse with the 30-day promo window"
+  },
+  {
+    "question": "I bought it during the Eid sale, how long do I have to return it",
+    "expect": "resolve",
+    "mustContain": ["30"],
+    "note": "promo window - near-duplicate clause"
+  },
+  {
+    "question": "can I return earphones I already opened",
+    "expect": "resolve",
+    "mustContain": ["seal"],
+    "mustNotContain": [
+      "yes, you can return",
+      "you may return them for any reason"
+    ],
+    "note": "hygiene exception overrides both windows. CORRECTED 2026-08-16: mentioning the defective-item route is accurate per the KB, so '30 days' is no longer a guard - the failure is a plain yes"
+  },
+  {
+    "question": "my headphones arrived broken and I opened them, can I return them",
+    "expect": "any",
+    "expectEscalationReason": ["CUSTOMER_COMPLAINT"],
+    "mustContain": ["defective"],
+    "note": "defective clause overrides the hygiene exception - hardest case. Expectation REFRESHED cycle 3 (resolve -> any + reason CUSTOMER_COMPLAINT): v12 makes a report of a broken item received a CUSTOMER_COMPLAINT handoff even when the KB answers it (4/5 runs escalated with the correct 'yes, defective items are returnable' answer). Judge still grades the answer's facts; mustContain applies to any non-escalated turn"
+  },
+  {
+    "question": "how long until I get my money back",
+    "expect": "resolve",
+    "mustContain": ["5", "7"],
+    "note": "refund timing, not return window - easily confused"
+  },
+  {
+    "question": "who pays for return shipping",
+    "expect": "resolve",
+    "mustContain": ["customer"],
+    "note": ""
+  },
+  {
+    "question": "is there a restocking fee",
+    "expect": "resolve",
+    "mustContain": ["no"],
+    "note": "negative fact"
+  },
+  {
+    "question": "I paid cash on delivery, how do I get refunded",
+    "expect": "resolve",
+    "mustContain": ["bKash"],
+    "note": ""
+  }
+]

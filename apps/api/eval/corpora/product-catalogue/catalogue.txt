@@ -1,0 +1,12 @@
+Product Catalogue
+
+SKU BLT-PH-A55 - Samsung Galaxy A55 5G, 8GB RAM, 256GB storage - 47,999 BDT - in stock
+SKU BLT-PH-S24FE - Samsung Galaxy S24 FE, 8GB RAM, 128GB storage - 74,500 BDT - in stock
+SKU BLT-PH-RN14P - Xiaomi Redmi Note 14 Pro, 8GB RAM, 256GB storage - 34,999 BDT - in stock
+SKU BLT-PH-IP15 - Apple iPhone 15, 128GB storage - 138,000 BDT - limited stock, black and blue only
+SKU BLT-LT-VB15 - Asus Vivobook 15, Core i5 13th gen, 16GB RAM, 512GB SSD - 82,000 BDT - in stock
+SKU BLT-LT-IPS3 - Lenovo IdeaPad Slim 3, Ryzen 5, 8GB RAM, 512GB SSD - 61,500 BDT - in stock
+SKU BLT-LT-MBA3 - Apple MacBook Air M3 13 inch, 8GB RAM, 256GB SSD - 154,000 BDT - pre-order only, 2 to 3 weeks
+SKU BLT-AU-WH720 - Sony WH-CH720N wireless headphones - 12,900 BDT - in stock
+SKU BLT-AU-SCQ30 - Anker Soundcore Life Q30 - 7,400 BDT - in stock
+SKU BLT-AC-GAN65 - Baseus 65W GaN charger - 3,200 BDT - in stock

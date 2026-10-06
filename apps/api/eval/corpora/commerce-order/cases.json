@@ -1,0 +1,331 @@
+[
+  {
+    "question": "I want to order the Acme X200 Blender, 1 piece. Name: Ahmed Al-Otaibi, phone +966500000001, address 12 King Fahd Road, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 1 }] } },
+    "expectOrder": { "items": [{ "productName": "Acme X200 Blender", "quantity": 1 }], "total": "199.00", "currency": "SAR" },
+    "note": "EN — single item, all details given up front"
+  },
+  {
+    "question": "Please place an order for the Zenith Air Fryer 5L, quantity 1. My name is Fatima Noor, phone +966500000001, address 20 Olaya Street, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 1 }] } },
+    "expectOrder": { "items": [{ "productName": "Zenith Air Fryer 5L", "quantity": 1 }], "total": "349.00", "currency": "SAR" },
+    "note": "EN — single item, all details given up front"
+  },
+  {
+    "question": "ابي اطلب خلاط العجين نوفا 700 واط، حبة وحدة. الاسم محمد الحربي، جوالي +966500000001، العنوان 45 شارع الأمير سلطان، جدة.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 1 }] } },
+    "expectOrder": { "items": [{ "productName": "Nova Stand Mixer 700W", "quantity": 1 }], "total": "599.00", "currency": "SAR" },
+    "note": "AR (Khaleeji) — single item, all details given up front"
+  },
+  {
+    "question": "ودي أطلب مكنسة فالكون الكهربائية 1200 واط، حبة. الاسم سارة المطيري، جوالي +966500000001، العنوان حي الروضة، الرياض.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 1 }] } },
+    "expectOrder": { "items": [{ "productName": "Falcon Vacuum Cleaner 1200W", "quantity": 1 }], "total": "459.00", "currency": "SAR" },
+    "note": "AR (Khaleeji) — single item, all details given up front"
+  },
+  {
+    "question": "bgha atlub el X200 blender el aswad, wa7da bs. esmi Nora, jawali +966500000001, unwani 10 Tahlia St, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 1 }] } },
+    "expectOrder": { "items": [{ "productName": "Acme X200 Blender - Black", "quantity": 1 }], "total": "199.00", "currency": "SAR" },
+    "note": "Arabizi — single item (variant), all details given up front"
+  },
+  {
+    "question": "I'd like to order 1 Acme X200 Blender and 1 Zenith Air Fryer 5L. Name: Khalid Al-Farsi, phone +966500000001, address 5 Al Rawda St, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectOrder": {
+      "items": [
+        { "productName": "Acme X200 Blender", "quantity": 1 },
+        { "productName": "Zenith Air Fryer 5L", "quantity": 1 }
+      ],
+      "total": "548.00",
+      "currency": "SAR"
+    },
+    "note": "EN — multi-item order, all details given up front"
+  },
+  {
+    "question": "ابي اطلب خلاط نوفا وحده ومكنسة فالكون وحده. الاسم عبدالله الزهراني، جوال +966500000001، العنوان حي النزهة، الرياض.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectOrder": {
+      "items": [
+        { "productName": "Nova Stand Mixer 700W", "quantity": 1 },
+        { "productName": "Falcon Vacuum Cleaner 1200W", "quantity": 1 }
+      ],
+      "total": "1058.00",
+      "currency": "SAR"
+    },
+    "note": "AR (Khaleeji) — multi-item order, all details given up front"
+  },
+  {
+    "question": "3ndi order: wa7ed X200 blender w wa7ed zenith air fryer. esmi Yousef, jawali +966500000001, unwan 7 Al Nakheel, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectOrder": {
+      "items": [
+        { "productName": "Acme X200 Blender", "quantity": 1 },
+        { "productName": "Zenith Air Fryer 5L", "quantity": 1 }
+      ],
+      "total": "548.00",
+      "currency": "SAR"
+    },
+    "note": "Arabizi — multi-item order, all details given up front"
+  },
+  {
+    "question": "Actually make it 3 instead. Name: Sultan Al-Qahtani, phone +966500000001, address 30 King Abdullah Rd, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "history": [
+      { "role": "user", "content": "I'd like to order the Acme X200 Blender, 1 piece." },
+      { "role": "assistant", "content": "Sure — could you share your name, phone number and delivery address so I can place the order?" }
+    ],
+    "expectTools": ["create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 3 }] } },
+    "expectOrder": { "items": [{ "productName": "Acme X200 Blender", "quantity": 3 }], "total": "597.00", "currency": "SAR" },
+    "note": "EN — quantity change mid-chat (1 -> 3) before confirming"
+  },
+  {
+    "question": "خلها 2 بدل وحدة. الاسم منى العتيبي، جوالي +966500000001، العنوان حي الملز، الرياض.",
+    "expect": "any",
+    "customerIndex": 0,
+    "history": [
+      { "role": "user", "content": "ابي اطلب مكنسة فالكون وحده" },
+      { "role": "assistant", "content": "تمام، تحتاج ترسل لي الاسم والجوال والعنوان علشان اسجل الطلب" }
+    ],
+    "expectTools": ["create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 2 }] } },
+    "expectOrder": { "items": [{ "productName": "Falcon Vacuum Cleaner 1200W", "quantity": 2 }], "total": "918.00", "currency": "SAR" },
+    "note": "AR (Khaleeji) — quantity change mid-chat (1 -> 2) before confirming"
+  },
+  {
+    "question": "khalha 2 mo wa7da. esmi Lama, jawali +966500000001, unwan Al Malqa, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "history": [
+      { "role": "user", "content": "bghait atlub air fryer wa7ed" },
+      { "role": "assistant", "content": "tayeb, eb7aja esmek w jawalek w el 3unwan 3ashan asajel el talab" }
+    ],
+    "expectTools": ["create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 2 }] } },
+    "expectOrder": { "items": [{ "productName": "Zenith Air Fryer 5L", "quantity": 2 }], "total": "698.00", "currency": "SAR" },
+    "note": "Arabizi — quantity change mid-chat (1 -> 2) before confirming"
+  },
+  {
+    "question": "I want to order the Falcon Vacuum Cleaner 1200W, 1 piece. My phone is +966500000001 and address is 22 Al Woroud St, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — missing name; agent must ask, not invent a name and place the order"
+  },
+  {
+    "question": "Please order me the Zenith Air Fryer 5L, 1 unit. Name Huda Al-Amri, address 9 Al Nahda St, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — missing phone number; agent must ask, not invent one and place the order"
+  },
+  {
+    "question": "I'd like 1 Acme X200 Blender. Name: Turki Al-Dossari, phone +966500000001.",
+    "expect": "any",
+    "customerIndex": 0,
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — missing delivery address; agent must ask, not invent one and place the order"
+  },
+  {
+    "question": "ابي اطلب مكنسة فالكون وحده، العنوان حي الشفا، الرياض.",
+    "expect": "any",
+    "customerIndex": 0,
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "AR (Khaleeji) — missing name and phone; agent must ask, not invent and place the order"
+  },
+  {
+    "question": "ابي خلاط نوفا وحده، الاسم فهد السبيعي، جوالي +966500000001.",
+    "expect": "any",
+    "customerIndex": 0,
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "AR (Khaleeji) — missing delivery address; agent must ask, not invent one and place the order"
+  },
+  {
+    "question": "bghait atlub blender wa7ed, bs ma 3ndi wagt ab3ath details al7een.",
+    "expect": "any",
+    "customerIndex": 0,
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Arabizi — customer withholds name/phone/address; agent must ask, not invent and place the order"
+  },
+  {
+    "question": "ابي اطلب قلاية زينث الهوائية وحده. الاسم ريم القحطاني، جوالي +966500000001، العنوان حي السليمانية، شارع الثلاثين، الرياض.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectOrder": { "items": [{ "productName": "Zenith Air Fryer 5L", "quantity": 1 }], "total": "349.00", "currency": "SAR" },
+    "note": "AR (Khaleeji) — address given in Arabic script (Riyadh)"
+  },
+  {
+    "question": "ابي اطلب خلاط X200 وحده. الاسم بندر الغامدي، جوالي +966500000001، العنوان حي الصفا، شارع فلسطين، جدة.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectOrder": { "items": [{ "productName": "Acme X200 Blender", "quantity": 1 }], "total": "199.00", "currency": "SAR" },
+    "note": "AR (Khaleeji) — address given in Arabic script (Jeddah)"
+  },
+  {
+    "question": "I want to order the Coral Electric Kettle 1L, 1 piece. Name: Yara Saleh, phone +966500000001, address 15 Al Yasmin St, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — kettle is out of stock; agent must say so, not invent availability and place the order"
+  },
+  {
+    "question": "ابي اطلب الخلاط X200 باللون الأحمر، حبة وحدة. الاسم عمر الشهري، جوالي +966500000001، العنوان حي العليا، الرياض.",
+    "expect": "any",
+    "customerIndex": 0,
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "AR (Khaleeji) — red blender variant is out of stock; agent must say so, not invent availability and place the order"
+  },
+  {
+    "question": "bghait atlub el kettle el kahrabai, wa7da. esmi Nasser, jawali +966500000001, unwan Riyadh, Al Nuzha.",
+    "expect": "any",
+    "customerIndex": 0,
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Arabizi — kettle is out of stock; agent must say so, not invent availability and place the order"
+  },
+  {
+    "question": "Actually cancel that, never mind.",
+    "expect": "any",
+    "customerIndex": 1,
+    "history": [
+      { "role": "user", "content": "I want to order the Falcon Vacuum Cleaner 1200W." },
+      { "role": "assistant", "content": "Sure! Could you confirm your name, phone number and delivery address so I can place the order?" }
+    ],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "EN — customer cancels before confirming; no order row, no tool call"
+  },
+  {
+    "question": "لا خلها، ما ابيها، إلغيها.",
+    "expect": "any",
+    "customerIndex": 1,
+    "history": [
+      { "role": "user", "content": "ابي اطلب خلاط نوفا" },
+      { "role": "assistant", "content": "تمام، ابعث لي الاسم والجوال والعنوان علشان اسوي الطلب" }
+    ],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "AR (Khaleeji) — customer cancels before confirming; no order row, no tool call"
+  },
+  {
+    "question": "khalas cancel, ma bghaitha.",
+    "expect": "any",
+    "customerIndex": 1,
+    "history": [
+      { "role": "user", "content": "bghait atlub air fryer" },
+      { "role": "assistant", "content": "tamam, eb3ath esmek w jawalek w el 3unwan 3ashan asawi el talab" }
+    ],
+    "forbidTools": ["create_order"],
+    "expectNoOrder": true,
+    "note": "Arabizi — customer cancels before confirming; no order row, no tool call"
+  },
+  {
+    "question": "Yes, order the same as last time. Name Sara M., phone +971500000003, address 45 Sheikh Zayed Road, Dubai.",
+    "expect": "any",
+    "customerIndex": 2,
+    "history": [
+      { "role": "user", "content": "I ordered the Oasis Water Dispenser 3-Tap last month, one unit." },
+      { "role": "assistant", "content": "Got it — that one's already delivered. Would you like to order another one the same way?" }
+    ],
+    "expectTools": ["create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 1 }] } },
+    "expectOrder": { "items": [{ "productName": "Oasis Water Dispenser 3-Tap", "quantity": 1 }], "total": "749.00", "currency": "AED" },
+    "note": "EN — 'order the same as last time', referencing an existing delivered order for this customer"
+  },
+  {
+    "question": "أيه، اطلب نفس اللي طلبته قبل. الاسم سارة م.، جوالي +971500000003، العنوان شارع الشيخ زايد 45، دبي.",
+    "expect": "any",
+    "customerIndex": 2,
+    "history": [
+      { "role": "user", "content": "انا طلبت براده المويه واحة الشهر اللي طاف، حبة وحدة" },
+      { "role": "assistant", "content": "تمام تم توصيل ذاك الطلب. تحب تطلب نفس الشي مرة ثانية؟" }
+    ],
+    "expectTools": ["create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 1 }] } },
+    "expectOrder": { "items": [{ "productName": "Oasis Water Dispenser 3-Tap", "quantity": 1 }], "total": "749.00", "currency": "AED" },
+    "note": "AR (Khaleeji) — 'order the same as last time', referencing an existing delivered order for this customer"
+  },
+  {
+    "question": "I'll take the black one, order 1. Name Mohammed Al-Harbi, phone +966500000001, address 88 Prince Sultan St, Jeddah.",
+    "expect": "any",
+    "customerIndex": 0,
+    "history": [
+      { "role": "user", "content": "Does the X200 blender come in colors?" },
+      { "role": "assistant", "content": "Yes — it comes in Black and Red. The Red is currently out of stock, but Black is available." }
+    ],
+    "expectTools": ["create_order"],
+    "expectOrder": { "items": [{ "productName": "Acme X200 Blender - Black", "quantity": 1 }], "total": "199.00", "currency": "SAR" },
+    "note": "EN — variant selection carried over from earlier turn, then ordered"
+  },
+  {
+    "question": "ابي اطلب خلاط نوفا 700 واط، حبتين. الاسم هند العنزي، جوالي +966500000001، العنوان حي الياسمين، الرياض.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectToolArgs": { "create_order": { "items": [{ "quantity": 2 }] } },
+    "expectOrder": { "items": [{ "productName": "Nova Stand Mixer 700W", "quantity": 2 }], "total": "1198.00", "currency": "SAR" },
+    "note": "AR (Khaleeji) — low-stock item (stock 3), order quantity 2 still succeeds"
+  },
+  {
+    "question": "I'd like to order the Acme X200 Blender in black, 1 piece, and the Zenith Air Fryer 5L, 1 piece. Name: Layla Hassan, phone +966500000001, address 33 King Fahd Rd, Riyadh.",
+    "expect": "any",
+    "customerIndex": 0,
+    "expectTools": ["lookup_product", "create_order"],
+    "expectOrder": {
+      "items": [
+        { "productName": "Acme X200 Blender - Black", "quantity": 1 },
+        { "productName": "Zenith Air Fryer 5L", "quantity": 1 }
+      ],
+      "total": "548.00",
+      "currency": "SAR"
+    },
+    "note": "EN — multi-item order combining a variant and a regular product, all details given up front"
+  },
+  {
+    "question": "I want 1 Acme X200 Blender. Name: Faisal Al-Harbi, phone +966500000009.",
+    "expect": "resolve",
+    "expectNoOrder": true,
+    "mustContain": [["address"]],
+    "note": "Regression (cycle 3b, commerce-journey Fahd): the address is missing, so the agent must ask for it. Cycle 3b sent create_order({}) twice and ended no_respond_call (LLM_ERROR); expect resolve, not an escalation."
+  },
+  {
+    "question": "أبغى قلاية زينث الهوائية وحدة، اسمي فهد العتيبي، جوالي +966500000009",
+    "expect": "resolve",
+    "expectNoOrder": true,
+    "mustContain": [["العنوان", "عنوان"]],
+    "note": "Regression (cycle 3b, commerce-journey Fahd, Khaleeji): a missing address must be asked for, not an empty create_order ending LLM_ERROR"
+  }
+]

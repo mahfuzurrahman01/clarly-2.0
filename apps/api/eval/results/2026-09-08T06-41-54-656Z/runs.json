@@ -1,0 +1,195 @@
+{
+  "generatedAt": "2026-09-08T06:41:54.659Z",
+  "runs": 1,
+  "cases": 3,
+  "config": {
+    "threshold": 0.5,
+    "rerank": true,
+    "rerankProvider": "cohere",
+    "llmProvider": "qwen",
+    "llmModel": "qwen3.6-35b-a3b",
+    "embeddingModel": "qwen3-embedding-0.6b",
+    "temperaturePinned": true,
+    "temperature": 0,
+    "determinismNote": "LLM temperature PINNED to 0 for this eval run (eval-only wrapper; production is unchanged and still sends no temperature). Probed 2026-08-16: this vLLM endpoint honours temperature on tool-calling requests — three temperature-0 tool calls returned byte-identical arguments, three unpinned calls did not. Greedy decoding does not make the host bit-deterministic (continuous batching can still reorder floating-point reductions), so a residual spread is expected, not a bug.",
+    "promptVersion": "v11"
+  },
+  "perRun": [
+    {
+      "run": 1,
+      "metrics": {
+        "total": 3,
+        "answerable": 3,
+        "resolved": 2,
+        "resolutionRate": 0.6666666666666666,
+        "falseEscalations": 1,
+        "falseEscalationRate": 0.3333333333333333,
+        "missedEscalations": 0,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": null,
+        "recallSample": 0,
+        "latencyP50": 8090,
+        "latencyP95": 8668,
+        "retrievalP95": 0,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": 1,
+        "avgConfidenceFalseEscalated": 0
+      },
+      "failingCases": 1
+    }
+  ],
+  "aggregate": {
+    "total": {
+      "median": 3,
+      "min": 3,
+      "max": 3,
+      "values": [
+        3
+      ]
+    },
+    "answerable": {
+      "median": 3,
+      "min": 3,
+      "max": 3,
+      "values": [
+        3
+      ]
+    },
+    "resolved": {
+      "median": 2,
+      "min": 2,
+      "max": 2,
+      "values": [
+        2
+      ]
+    },
+    "resolutionRate": {
+      "median": 0.6666666666666666,
+      "min": 0.6666666666666666,
+      "max": 0.6666666666666666,
+      "values": [
+        0.6666666666666666
+      ]
+    },
+    "falseEscalations": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1
+      ]
+    },
+    "falseEscalationRate": {
+      "median": 0.3333333333333333,
+      "min": 0.3333333333333333,
+      "max": 0.3333333333333333,
+      "values": [
+        0.3333333333333333
+      ]
+    },
+    "missedEscalations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "hallucinations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "leaks": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "recallAt5": null,
+    "recallSample": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "latencyP50": {
+      "median": 8090,
+      "min": 8090,
+      "max": 8090,
+      "values": [
+        8090
+      ]
+    },
+    "latencyP95": {
+      "median": 8668,
+      "min": 8668,
+      "max": 8668,
+      "values": [
+        8668
+      ]
+    },
+    "retrievalP95": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "judgeIncorrect": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "avgConfidenceResolved": {
+      "median": 1,
+      "min": 1,
+      "max": 1,
+      "values": [
+        1
+      ]
+    },
+    "avgConfidenceFalseEscalated": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    }
+  },
+  "stability": {
+    "stablePass": 2,
+    "stableFail": [
+      {
+        "caseKey": "voice-support#2",
+        "corpus": "voice-support",
+        "question": "[voice] what is the delivery charge outside Dhaka",
+        "note": "a proper noun (Dhaka) plus a number the transcript must carry accurately; a garbled place name retrieves the wrong row.",
+        "outcomes": [
+          false
+        ],
+        "failuresByRun": [
+          [
+            "FALSE ESCALATION (LLM_ERROR, confidence 0)",
+            "missing expected content: \"120\""
+          ]
+        ],
+        "stability": "stable-fail"
+      }
+    ],
+    "flaky": []
+  }
+}

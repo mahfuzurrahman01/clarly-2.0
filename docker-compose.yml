@@ -1,0 +1,47 @@
+# Local dev/test infra for Feature 0. Not used in prod — Supabase (Postgres)
+# and Upstash/Railway (Redis) are the prod backing per
+# docs/decisions/F0-infra.md (deploy target: docs/GULF_PARITY_PLAN.md Phase 0.5). This gives `apps/api` something real to run NestJS ->
+# Drizzle -> Postgres and BullMQ -> Redis against locally and in CI.
+#
+# Image: `pgvector/pgvector:pg16` (swapped from plain `postgres:16-alpine`
+# in Feature 3/A1 — D3's kb_chunks needs the `vector` extension locally;
+# Supabase's prod Postgres already ships pgvector regardless). Feature 0/2.5
+# didn't need this image since D3's pgvector work hadn't landed yet.
+#
+# Usage: docker compose up -d
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: whatsapp_ai_agent
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      # Creates the non-superuser `app_user` role the app actually connects
+      # as (DATABASE_URL) — Feature 1's RLS is a silent no-op for
+      # superusers, and POSTGRES_USER above IS a superuser in this image.
+      # See docs/decisions/F1-security.md.
+      - ./docker/postgres-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:

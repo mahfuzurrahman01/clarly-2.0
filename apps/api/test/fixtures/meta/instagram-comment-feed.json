@@ -1,0 +1,27 @@
+{
+  "object": "page",
+  "entry": [
+    {
+      "id": "page-comment-001",
+      "time": 1788000000,
+      "changes": [
+        {
+          "field": "feed",
+          "value": {
+            "item": "comment",
+            "verb": "add",
+            "comment_id": "fb-comment-001",
+            "post_id": "page-comment-001_post-001",
+            "parent_id": "page-comment-001_post-001",
+            "from": {
+              "id": "FBUSER-300001",
+              "name": "Ahmad"
+            },
+            "message": "price?",
+            "created_time": 1788000000
+          }
+        }
+      ]
+    }
+  ]
+}

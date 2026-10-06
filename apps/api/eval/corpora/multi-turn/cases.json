@@ -1,0 +1,166 @@
+[
+  {
+    "question": "and in black?",
+    "expect": "resolve",
+    "mustContain": ["black"],
+    "history": [
+      {
+        "role": "user",
+        "content": "how much is the Galaxy A55"
+      },
+      {
+        "role": "assistant",
+        "content": "The Samsung Galaxy A55 5G with 8GB RAM and 256GB storage is 47,999 BDT."
+      }
+    ],
+    "note": "D7 pronoun-free follow-up - unanswerable without history"
+  },
+  {
+    "question": "is it in stock?",
+    "expect": "resolve",
+    "mustContain": ["stock"],
+    "history": [
+      {
+        "role": "user",
+        "content": "do you have the Sony WH-CH720N headphones"
+      },
+      {
+        "role": "assistant",
+        "content": "Yes, the Sony WH-CH720N is 12,900 BDT."
+      }
+    ],
+    "note": "D7 elliptical follow-up"
+  },
+  {
+    "question": "how long is the warranty on that",
+    "expect": "resolve",
+    "mustContain": [["6 month", "6-month"]],
+    "history": [
+      {
+        "role": "user",
+        "content": "price of the Sony WH-CH720N?"
+      },
+      {
+        "role": "assistant",
+        "content": "The Sony WH-CH720N is 12,900 BDT."
+      }
+    ],
+    "note": "D7 - 'that' must resolve to headphones (6 months), not the phone warranty (1 year)"
+  },
+  {
+    "question": "ok and how much is delivery for that order",
+    "expect": "resolve",
+    "mustContain": ["free"],
+    "history": [
+      {
+        "role": "user",
+        "content": "I want the MacBook Air M3"
+      },
+      {
+        "role": "assistant",
+        "content": "The MacBook Air M3 13 inch is 154,000 BDT, available on pre-order with 2 to 3 weeks lead time."
+      },
+      {
+        "role": "user",
+        "content": "fine, I am in Dhaka"
+      }
+    ],
+    "note": "D7 three-turn - 154,000 BDT is above the 50,000 free-delivery threshold, so this requires carrying both the item price and the city across turns"
+  },
+  {
+    "question": "when will it arrive then",
+    "expect": "resolve",
+    "mustContain": ["2 to 3 weeks"],
+    "history": [
+      {
+        "role": "user",
+        "content": "is the MacBook Air M3 available"
+      },
+      {
+        "role": "assistant",
+        "content": "The MacBook Air M3 13 inch is pre-order only."
+      }
+    ],
+    "note": "D7 - must not answer the generic 1-2 day shipping line for a pre-order item"
+  },
+  {
+    "question": "can I get it in red",
+    "expect": "any",
+    "mustNotContain": ["yes, red", "red is available"],
+    "history": [
+      {
+        "role": "user",
+        "content": "I want the iPhone 15"
+      },
+      {
+        "role": "assistant",
+        "content": "The Apple iPhone 15 128GB is 138,000 BDT, in limited stock in black and blue only."
+      }
+    ],
+    "note": "D7 absent fact inside a follow-up - the KB says black and blue only"
+  },
+  {
+    "question": "thanks, that is all",
+    "expect": "any",
+    "mustNotContain": ["47,999"],
+    "history": [
+      {
+        "role": "user",
+        "content": "how much is the Galaxy A55"
+      },
+      {
+        "role": "assistant",
+        "content": "The Samsung Galaxy A55 5G is 47,999 BDT."
+      }
+    ],
+    "note": "D7 conversation close - must not re-dump the previous answer"
+  },
+  {
+    "question": "hi",
+    "expect": "any",
+    "mustNotContain": ["I'm going to connect you with a human"],
+    "history": [
+      {
+        "role": "user",
+        "content": "how much is the Galaxy A55"
+      },
+      {
+        "role": "assistant",
+        "content": "The Samsung Galaxy A55 5G is 47,999 BDT."
+      }
+    ],
+    "note": "D7 bare greeting mid-conversation - a greeting is not an escalation trigger"
+  },
+  {
+    "question": "so is that 1 to 2 days or 3 to 5",
+    "expect": "resolve",
+    "mustContain": ["1"],
+    "history": [
+      {
+        "role": "user",
+        "content": "I live in Dhanmondi, Dhaka"
+      },
+      {
+        "role": "assistant",
+        "content": "Noted. How can I help with your order?"
+      }
+    ],
+    "note": "D7 - the disambiguating fact (city) is only in history"
+  },
+  {
+    "question": "can I pay cash when it arrives",
+    "expect": "resolve",
+    "mustContain": [["prepaid", "in advance", "paid in advance", "pay before"]],
+    "history": [
+      {
+        "role": "user",
+        "content": "I am ordering to Sylhet"
+      },
+      {
+        "role": "assistant",
+        "content": "Understood, delivery to Sylhet takes 3 to 5 business days."
+      }
+    ],
+    "note": "D7 - COD is Dhaka-only; the location comes from history, not this message. mustContain is any-of: the KB says prepaid but a correct answer often paraphrases it as payment in advance"
+  }
+]

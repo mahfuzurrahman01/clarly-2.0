@@ -1,0 +1,181 @@
+{
+  "generatedAt": "2026-09-08T06:29:32.973Z",
+  "runs": 1,
+  "cases": 3,
+  "config": {
+    "threshold": 0.5,
+    "rerank": true,
+    "rerankProvider": "cohere",
+    "llmProvider": "qwen",
+    "llmModel": "qwen3.6-35b-a3b",
+    "embeddingModel": "qwen3-embedding-0.6b",
+    "temperaturePinned": true,
+    "temperature": 0,
+    "determinismNote": "LLM temperature PINNED to 0 for this eval run (eval-only wrapper; production is unchanged and still sends no temperature). Probed 2026-08-16: this vLLM endpoint honours temperature on tool-calling requests — three temperature-0 tool calls returned byte-identical arguments, three unpinned calls did not. Greedy decoding does not make the host bit-deterministic (continuous batching can still reorder floating-point reductions), so a residual spread is expected, not a bug.",
+    "promptVersion": "v11"
+  },
+  "perRun": [
+    {
+      "run": 1,
+      "metrics": {
+        "total": 3,
+        "answerable": 0,
+        "resolved": 0,
+        "resolutionRate": 0,
+        "falseEscalations": 0,
+        "falseEscalationRate": 0,
+        "missedEscalations": 0,
+        "hallucinations": 0,
+        "leaks": 0,
+        "recallAt5": null,
+        "recallSample": 0,
+        "latencyP50": 691,
+        "latencyP95": 10274,
+        "retrievalP95": 0,
+        "judgeIncorrect": 0,
+        "avgConfidenceResolved": null,
+        "avgConfidenceFalseEscalated": null
+      },
+      "failingCases": 1
+    }
+  ],
+  "aggregate": {
+    "total": {
+      "median": 3,
+      "min": 3,
+      "max": 3,
+      "values": [
+        3
+      ]
+    },
+    "answerable": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "resolved": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "resolutionRate": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "falseEscalations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "falseEscalationRate": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "missedEscalations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "hallucinations": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "leaks": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "recallAt5": null,
+    "recallSample": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "latencyP50": {
+      "median": 691,
+      "min": 691,
+      "max": 691,
+      "values": [
+        691
+      ]
+    },
+    "latencyP95": {
+      "median": 10274,
+      "min": 10274,
+      "max": 10274,
+      "values": [
+        10274
+      ]
+    },
+    "retrievalP95": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "judgeIncorrect": {
+      "median": 0,
+      "min": 0,
+      "max": 0,
+      "values": [
+        0
+      ]
+    },
+    "avgConfidenceResolved": null,
+    "avgConfidenceFalseEscalated": null
+  },
+  "stability": {
+    "stablePass": 2,
+    "stableFail": [
+      {
+        "caseKey": "media-unreadable#2",
+        "corpus": "media-unreadable",
+        "question": "",
+        "note": "readable bytes, nothing to hear. 'we could not open it' and 'we could not hear it' are different failures; either detail passes, but the turn must not invent a question to answer.",
+        "outcomes": [
+          false
+        ],
+        "failuresByRun": [
+          [
+            "WRONG ESCALATION REASON: got LLM_ERROR, expected one of UNSUPPORTED_MEDIA",
+            "WRONG ESCALATION DETAIL: got deadline_exceeded, expected one of transcription_failed/media_unreadable"
+          ]
+        ],
+        "stability": "stable-fail"
+      }
+    ],
+    "flaky": []
+  }
+}

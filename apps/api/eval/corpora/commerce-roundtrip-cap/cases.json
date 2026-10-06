@@ -1,0 +1,72 @@
+[
+  {
+    "question": "I'd like to order the Coleman Camping Tent 4-Person and a Stanley Vacuum Flask 1L. Name Faisal Al Otaibi, phone +966502223344, deliver to 12 Tahlia Street, Riyadh.",
+    "expect": "any",
+    "expectTools": ["lookup_product", "lookup_product", "create_order"],
+    "expectOrder": {
+      "items": [
+        { "productName": "Coleman Camping Tent 4-Person", "quantity": 1 },
+        { "productName": "Stanley Vacuum Flask 1L", "quantity": 1 }
+      ],
+      "total": "638.00",
+      "currency": "SAR"
+    },
+    "note": "two distinct product lookups then a combined order — 3 logical tool calls against MAX_TOOL_ROUND_TRIPS=2; tests whether the agent batches both lookups into one round trip or the cap breaks the order"
+  },
+  {
+    "question": "أبغى أطلب كاميرا جو برو هيرو 12 مع ترمس ستانلي فراغي 1 لتر. الاسم فيصل العتيبي، جوالي +966502223344، التوصيل لشارع التحلية، الرياض.",
+    "expect": "any",
+    "expectTools": ["lookup_product", "lookup_product", "create_order"],
+    "expectOrder": {
+      "items": [
+        { "productName": "GoPro Hero 12", "quantity": 1 },
+        { "productName": "Stanley Vacuum Flask 1L", "quantity": 1 }
+      ],
+      "total": "1988.00",
+      "currency": "SAR"
+    },
+    "note": "Khaleeji Arabic — two lookups (a higher-value electronics item plus a cheap accessory) then a combined order"
+  },
+  {
+    "question": "أبي أطلب طقم وسائد مجلس الصحراء وترمس ستانلي فراغي 1 لتر. الاسم موزة الكعبي، جوالي +966502223344، التوصيل بيت رقم 7 شارع الكورنيش، جدة.",
+    "expect": "any",
+    "expectTools": ["lookup_product", "lookup_product", "create_order"],
+    "expectOrder": {
+      "items": [
+        { "productName": "Al Sahra Majlis Cushion Set", "quantity": 1 },
+        { "productName": "Stanley Vacuum Flask 1L", "quantity": 1 }
+      ],
+      "total": "438.00",
+      "currency": "SAR"
+    },
+    "note": "Khaleeji Arabic — home category item plus outdoor accessory, two lookups then order"
+  },
+  {
+    "question": "Can I get the Coleman Camping Tent 4-Person and the GoPro Hero 12 together? Name Sara Al Harbi, phone +966502223344, ship to 9 King Fahd Road, Jeddah.",
+    "expect": "any",
+    "expectTools": ["lookup_product", "lookup_product", "create_order"],
+    "expectOrder": {
+      "items": [
+        { "productName": "Coleman Camping Tent 4-Person", "quantity": 1 },
+        { "productName": "GoPro Hero 12", "quantity": 1 }
+      ],
+      "total": "2448.00",
+      "currency": "SAR"
+    },
+    "note": "two higher-value items in different categories — the most likely pair to force separate lookups"
+  },
+  {
+    "question": "Abi atlub Majlis Cushion Set w Coleman Tent 4-Person sawa. Al esm Noura Al Shamsi, al jawal +966502223344, al 3enwan 21 Corniche Road, Dammam.",
+    "expect": "any",
+    "expectTools": ["lookup_product", "lookup_product", "create_order"],
+    "expectOrder": {
+      "items": [
+        { "productName": "Al Sahra Majlis Cushion Set", "quantity": 1 },
+        { "productName": "Coleman Camping Tent 4-Person", "quantity": 1 }
+      ],
+      "total": "898.00",
+      "currency": "SAR"
+    },
+    "note": "Arabizi — two lookups then a combined order"
+  }
+]

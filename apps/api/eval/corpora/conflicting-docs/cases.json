@@ -1,0 +1,34 @@
+[
+  {
+    "question": "how many days do I have to return an item",
+    "expect": "escalate",
+    "note": "L0 conflict rule: the 2023 handbook says 7 days, the customer notice says 14. Picking either silently is the failure mode - a wrong policy quote is a chargeback, not a typo"
+  },
+  {
+    "question": "how long do refunds take",
+    "expect": "escalate",
+    "note": "5 to 7 business days vs 10 business days - same question, two documents"
+  },
+  {
+    "question": "who pays for return shipping",
+    "expect": "escalate",
+    "note": "'customer unless defective' vs 'always the customer' - the conflict is partial, which is harder than a flat contradiction"
+  },
+  {
+    "question": "if my item is defective do I pay return shipping",
+    "expect": "escalate",
+    "note": "the conflict decides the answer; only one document has the defective exception"
+  },
+  {
+    "question": "can I return something I already used",
+    "expect": "resolve",
+    "mustContain": ["unused"],
+    "note": "CONTROL: both documents agree (unused, original packaging), so this must be answered, not escalated as a conflict"
+  },
+  {
+    "question": "does the item need to be in its original box",
+    "expect": "resolve",
+    "mustContain": ["packaging"],
+    "note": "CONTROL: agreeing documents"
+  }
+]
